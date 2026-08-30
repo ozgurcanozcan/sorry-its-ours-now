@@ -1,0 +1,71 @@
+# Sorry, It's Ours Now
+
+Unity 6 (`6000.3.23f1`, URP) oyunu. Birinci şahıs, stilize low-poly, kara komedi:
+gündüz borçlunun evini boşalt, akşam müzayedede sat.
+
+Ekip: **A** Çağatay (saha) · **B** Özgür (sistem/UI) · **C** Onat (teknik sanat).
+
+Ayrıntılı kurallar: `docs/kurallar.md`, `docs/araclar.md`, `docs/ajan-kurallari.md`
+
+## Dallar
+
+`feature/<konu>` dalları **`dev`'den** açılır, **`dev`'e** döner.
+`main`'den dallanma. `main`'e sadece kilometre taşında, `dev` üzerinden girilir.
+
+Aynı anda en fazla 2 açık PR. Kendi PR'ını onaylama.
+
+## Klasör sahipliği
+
+```
+Code/Field                                  A
+Code/Core, Economy, Auction, UI, Utils      B
+Art, Prefabs, Data, Audio                   C
+```
+
+Başka rolün klasörüne yazma. Gerekiyorsa önce sor.
+`Code/Core` altındaki mevcut imzaları değiştirme — ekleme serbest, değiştirme
+başkasının kodunu kırar.
+
+## Dil ve biçim
+
+Kod Türkçe: `OyuncuKontrolcu`, `yurumeHizi`. Unity tipleri İngilizce: `Transform`.
+Yorumlarda ASCII kullan (Türkçe karakter yok): `esya`, `deger`, `sure`.
+Yorum "neden" anlatır, "ne" değil.
+
+## Yasaklar
+
+- `UnityEngine.Random` → `Code/Utils/Rastgele` (tohumlu)
+- Singleton / `Instance` / `FindObjectOfType`
+- `Scenes/*.unity` düzenleme
+- `.meta` elle düzenleme
+
+## Denge sayıları ölçülür
+
+Faiz, kapasite, fiyat, süre, olasılık uydurulmaz. Ya ölç, ya da sağlaması
+gereken kısıtı yaz.
+
+Bilinen örnek: günlük %2 faiz makul görünüyordu ama asgari ödemeyi geçtiği için
+mükemmel oynayan oyuncunun bile borcunu düşürmesini imkânsız kılıyordu. 42 günlük
+simülasyonla çıktı.
+
+## Unity'yi arayüzsüz çalıştırma
+
+```bash
+Unity.exe -batchmode -quit -nographics -projectPath <proje> \
+          -executeMethod <Sinif.Metot> -logFile <yol>
+```
+
+- **Unity KAPALI olmalı**, yoksa kilit çakışır. Önce `Temp/UnityLockfile` kontrol et.
+- Log yolunda 8.3 kısa yol (`ZGR~1`) kullanma — Unity yazamıyor, iş çalışmadı
+  sanılıyor. Tam yol ya da `$env:TEMP` kullan.
+- Batch iş öncesi kullanıcıya haber ver, Unity'yi kapatmasını iste.
+
+## Yapamadıkların
+
+Sahne düzenleme, Canvas kurma, Inspector'da referans bağlama, görünüşe bakma.
+Görsel olan her şey insanda. Bunları tarif et, yapmaya çalışma.
+
+## Test
+
+Sistem kodu yazıldığında EditMode testi de yazılır. Test yoksa kod bitmemiştir.
+Testleri batch modda koştur, sonucu PR'a yaz.

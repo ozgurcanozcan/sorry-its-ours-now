@@ -1,0 +1,55 @@
+# Sorry, It's Ours Now — Cursor kuralları
+# Tam hâli: docs/ajan-kurallari.md ve docs/kurallar.md
+
+Bu bir Unity 6 (6000.3.23f1, URP) oyun projesi. Birinci şahıs, stilize
+low-poly, kara komedi. Borçlunun evini boşaltıp müzayedede satma oyunu.
+
+## KİPİ
+
+Bu projede Cursor SOHBET ve TEK DOSYA düzenleme aracıdır.
+Composer / agent kipiyle çok dosyalı otonom değişiklik YAPMA.
+
+Sebep: repo genelinde Claude Code çalışıyor. İki ajan aynı anda yazarsa git
+geçmişi anlamsızlaşır. Çok dosyalı iş gerekiyorsa kullanıcıya söyle, Claude
+Code'a devretsin.
+
+## DİL
+
+Kod Türkçe yazılır: OyuncuKontrolcu, yurumeHizi, EsyaVerisi, MuzayedeCozumu.
+Unity'nin kendi tipleri İngilizce kalır: Transform, MonoBehaviour, Collider.
+Yorumlarda Türkçe karakter kullanma (ASCII): "esya", "deger", "sure".
+
+Yorum "ne yaptığını" değil "neden öyle yaptığını" anlatır.
+
+## YASAK
+
+- UnityEngine.Random — bunun yerine Code/Utils/Rastgele (tohumlu)
+- Singleton, Instance property'si, FindObjectOfType
+- Scenes/*.unity dosyalarına dokunmak
+- .meta dosyalarını elle düzenlemek
+- Code/Core altındaki mevcut imzaları DEĞİŞTİRMEK (eklemek serbest)
+
+## KLASÖR SAHİPLİĞİ
+
+  Code/Field                                    A - Cagatay
+  Code/Core, Economy, Auction, UI, Utils        B - Ozgur
+  Art, Prefabs, Data, Audio                     C - Onat
+
+Kullanıcının rolü dışındaki klasöre yazman istenirse önce uyar.
+
+## DENGE SAYILARI
+
+Faiz, kapasite, fiyat, süre, olasılık gibi sayıları uydurma.
+Ya ölçülmüş bir değer kullan, ya da sağlaması gereken kısıtı yaz.
+"Makul görünüyor" gerekçe değildir.
+
+## TEST
+
+Sistem kodu yazıldığında EditMode testi de yazılır.
+Test yoksa kod bitmiş sayılmaz.
+
+## MİMARİ
+
+- Doğruluk tek yerde: OyunDurumu. MonoBehaviour'lar sadece gösterir.
+- Her eylem bir komut, her komut aktör kimliği taşır (co-op'a hazırlık).
+- Rastgelelik tohumlu, tohum OyunDurumu içinde saklanır.
