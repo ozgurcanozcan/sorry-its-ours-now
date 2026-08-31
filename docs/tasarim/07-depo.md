@@ -112,13 +112,12 @@ Tamir garantili değil. Başarı ihtimali iki şeye bağlı:
 > gereken bilgi oyuncuda olmalı. Gizli kalan şey **sonuç** olmalı, **olasılık**
 > değil.
 
-**Açık:** başarısızlıkta ne oluyor?
-- Para ve süre gider, eşya aynı kalır *(en yaygın ve en adil)*
-- Para gider, süre gitmez (hemen belli olur)
-- Eşya bir kademe daha iner *(sert — muhtemelen fazla)*
+**Başarısızlıkta:** *(karar: 31.08.2026)* para ve süre gider, **eşya bozulmaz.**
+Sonuç **sürenin sonunda** belli olur — üç gün beklersin, eşya aynı hâlde döner.
 
-**Açık:** başarısızlık sürenin sonunda mı belli oluyor, hemen mi? Sonunda olması
-daha dramatik ama üç gün bekleyip elin boş dönmesi sinir bozabilir.
+Bu, riski gerçek ama adil kılıyor: kaybettiğin para ve zaman, elindeki mal değil.
+Cuma'ya yetiştirmek için riskli tamirciye verdiysen ve tutmadıysa, o hafta
+satamıyorsun — ceza zaten bu.
 
 **Açık:** kaç tamirci var ve nasıl açılıyorlar? Fiyat / hız / beceri üçgeninde
 farklılaşmalılar. Daha iyi tamirciler depo kademesiyle mi geliyor, itibarla mı,
@@ -159,9 +158,9 @@ Oyun ilerledikçe daha gelişmiş depolara geçilir:
 - [ ] Kaç alet slotu?
 - [ ] Aletler satın mı alınıyor, yıpranıyor mu?
 - [ ] Kaç tamirci, fiyat/hız/beceri dengesi nasıl, nasıl açılıyorlar?
-- [ ] Başarısızlıkta ne oluyor — para+süre mi gidiyor, eşya da mı bozuluyor?
-- [ ] Başarısızlık sürenin sonunda mı belli oluyor, hemen mi?
+- [x] Başarısızlıkta para ve süre gider, eşya bozulmaz *(karar: 31.08.2026)*
+- [x] Başarısızlık sürenin sonunda belli olur *(karar: 31.08.2026)*
 - [ ] Ürün klasmanı nasıl belirleniyor? (`05-icerik.md`)
-- [ ] Depoda geçen süre oyun gününden mi yiyor, serbest mi?
+- [x] Depoda da saat işler *(karar: 31.08.2026)*
 - [ ] Sahadan dönünce eşyalar otomatik mi boşalıyor, elle mi taşınıyor?
 - [ ] Depo mekânı kaç oda? Tek büyük hacim mi, bölmeli mi?

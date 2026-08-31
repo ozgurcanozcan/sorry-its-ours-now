@@ -179,3 +179,41 @@ oyuncuda olmalı. Gizli kalan **sonuç** olmalı, **olasılık** değil.
 
 Eşyanın tamir zorluğu. Kategoriyle aynı şey değil — aynı kategoride kolay ve zor
 eşyalar olabilir. `05-icerik.md`'ye eklendi, tanımlanmayı bekliyor.
+
+---
+
+# 31.08.2026 — Zaman (beşinci tur)
+
+**Onaylayan:** Özgür (B)
+
+## 12. Tamir başarısızlığı: para ve süre gider, eşya bozulmaz
+
+Sonuç sürenin sonunda belli olur. Üç gün beklersin, eşya aynı hâlde döner.
+
+Riski gerçek ama adil kılıyor: kaybettiğin para ve zaman, elindeki mal değil.
+Cuma'ya yetiştirmek için riske girdiysen ve tutmadıysa o hafta satamıyorsun —
+ceza zaten bu.
+
+## 13. Günü oyuncu bitirir
+
+Sabit gerçek zamanlı süre yok. Hazır olduğunda "günü bitir" der.
+
+## 14. Depoda da saat işler
+
+Depoda oyalanmak bedava değil.
+
+> **Çözülmemiş gerilim:** 13 ile 14 tam oturmuyor. Saat işliyorsa gün
+> kendiliğinden de bitiyor demektir. İki okuma var (saatli gün / işlem sayaçlı
+> gün), `01-dongu.md`'de yazılı. Karar bekliyor.
+
+## 15. Müzayede haftada bir gün: CUMA
+
+En güçlü ritim seçeneği. Kaçırırsan bir hafta beklersin ve o hafta boyunca eşya
+depoda **yer kaplar**.
+
+> **Doğan örtüşme:** borcun asgari ödemesi de haftalık. İkisi aynı güne denk
+> geliyor — *"Cuma ödeme var"* cümlesi hem satış hem borç anlamına geliyor.
+> Haftanın tamamı o güne akıyor. Bu tesadüf değil, tutulmalı.
+
+Tamir süreleri de bu takvimde ölçülüyor: "üç gün sürer" demek "Cuma'ya yetişir mi?"
+demek.
