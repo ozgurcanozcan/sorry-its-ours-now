@@ -67,3 +67,26 @@ Ayrıntı ve pivot kuralı: `docs/uretim/ev-kiti.md`
 > **Kapı genişliği bir denge sayısıdır.** `02-saha.md` dar kapıyı engel sayıyor;
 > kanepeyi kapıdan geçirmek oyunun görsel şakası. 0.80 m tek başına
 > değiştirilmez — A'nın taşıma denemesini doğrudan etkiliyor.
+
+---
+
+## 63. Gardırop kapıdan dik geçmez — kasıtlı
+
+**Onaylayan:** Onat (C) ve Özgür (B)
+
+Gardırop `1.00 × 0.55 × 2.00`, kapı boşluğu `0.80 × 2.00`. Dik geçmiyor;
+yan çevrilse yükseklik tam sınırda; **yatırmak gerekiyor.**
+
+Gerçek hayatta da dolap yatırılarak taşınır. Gardırop zaten iki kişilik /
+el arabası gerektiren bir eşya, el arabası da yükü yatırarak taşır.
+
+**Bu bir ölçü hatası değil.** Kapı 0.80 m ya da gardırop 1.00 m değişirse
+bulmaca kaybolur.
+
+### A için gereksinim
+
+Taşıma sistemi **döndürme ve yatırma** desteklemeli. "Eşyayı önünde tut"
+yetmiyor; oyuncu açıyı değiştirebilmeli.
+
+Koridor genişliği de böylece kısıt oluyor: 2.00 m'lik cismi yatırmak için yer
+gerekiyor. Dar koridorlu gecekondu kendiliğinden zorlaşıyor.

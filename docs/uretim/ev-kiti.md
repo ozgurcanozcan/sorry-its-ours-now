@@ -121,3 +121,29 @@ gerçek `Assets/` üzerinde değil, ama aynı proje sürümü ve aynı FBX dosya
 FBX'ler `.meta` dosyalarıyla **birlikte** commit edilir (`docs/kurallar.md`).
 Bu PR henüz FBX/`.meta` taşımıyor — onlar Unity projesi `dev`'e sabitlenip
 gerçek `Assets/_Project/Art/Models/` içinde üretildiğinde ayrı bir adımda girer.
+
+## Gardırop–kapı ilişkisi — kasıtlı
+
+Gardırop `1.00 × 0.55 × 2.00`, kapı boşluğu `0.80 × 2.00`. Bu ölçüler
+**bilerek** böyle:
+
+| Nasıl tutulursa | Sonuç |
+|-----------------|-------|
+| Dik, önden | 1.00 m > 0.80 m — geçmez |
+| Dik, yan çevrilmiş | 0.55 m < 0.80 m ✓ ama yükseklik 2.00 = kapı 2.00, tam sınırda |
+| Yatırılmış | geçer |
+
+Gerçek hayatta da dolap yatırılarak taşınır. Gardırop zaten iki kişilik /
+el arabası gerektiren bir eşya; el arabası da yükü zaten yatırarak taşır.
+
+> **Bu bir ölçü hatası değil. Düzeltmeyin.**
+> Kapı 0.80 m ya da gardırop 1.00 m değişirse bu bulmaca kaybolur.
+
+### A'yı ilgilendiren sonuç
+
+Taşıma sistemi **döndürme ve yatırma** desteklemek zorunda. "Eşyayı önünde tut"
+yeterli değil — oyuncu elindeki eşyanın açısını değiştirebilmeli.
+
+Bu ayrıca koridor genişliğini de bir kısıt hâline getiriyor: 2.00 m'lik bir
+cismi yatırmak için koridorda yer gerekiyor. Dar koridorlu gecekondu
+(`05-icerik.md`) burada kendiliğinden zorlaşıyor.
