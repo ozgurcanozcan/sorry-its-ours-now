@@ -389,3 +389,51 @@ Baskısız toplama ve satma; rahatlama modu.
 > Serbest modun kendi baskısı olmalı: koleksiyon, hedefler, yükseltme zinciri
 > ya da zorluk kademeleri. Karar verilmedi ama "borç yok" tek başına yeterli
 > bir tasarım değil.
+
+---
+
+# 31.08.2026 — Serbest mod, itibar, ipuçları, lot (onuncu tur)
+
+**Onaylayan:** Özgür (B)
+
+## 33. Serbest modun baskısı: koleksiyon + yükseltme + zorluk kademeleri
+
+Borç yerine üç kaynak:
+- **Koleksiyon** — nadir eşyaları tamamlama, depoda sergileme
+- **Yükseltme zinciri** — para hâlâ bir şeye yarıyor: depo, kamyon, alet
+- **Zorluk kademeleri** — daha zor evler, daha sıkı süre, daha az ipucu
+
+"Hedefler/görevler" alınmadı. Serbest mod bir başarım listesi değil, ustalaşma
+alanı olacak.
+
+## 34. Dar itibar: şikâyet sayısı
+
+Gizli puan değil, **somut olaylar**. "3 şikâyet aldın." Her şikâyet iş emri
+kalitesini bir kademe düşürür.
+
+Sebep-sonuç okunaklı: oyuncu neyin neden olduğunu bilir, ama bir sayıyı
+optimize etme oyununa da dönüşmez.
+
+**Açık:** şikâyet geri kazanılabiliyor mu? Zamanla siliniyor mu, temiz iş
+yaparak mı düşüyor?
+
+## 35. İpucu kaynakları: ev sahibi + duvarda soluk kare + kilitli çekmece
+
+Açık/dağınık çekmece alınmadı.
+
+- **Ev sahibi** — bir eşyayı fazla koruyorsa orada bir şey vardır *(karar 22)*
+- **Duvarda soluk kare** — tablo asılıydı, indirilmiş. Nerede saklanıyor?
+- **Kilitli çekmece / kasa** — görünür ödül vaadi, ama **levye** gerektirir
+
+Sonuncusu levyeye ikinci bir iş veriyor: kilitli oda **ve** kilitli çekmece.
+Alet kararı böylece hem mekâna hem ödüle bağlanıyor.
+
+## 36. Lot sınırı depo/şirket kademesiyle artar
+
+Başlangıçta az lot çıkarılabilir, yükseltmeyle çoğalır. Bir ilerleme ödülü daha.
+
+> **Denge uyarısı:** bu, depo yer kısıtıyla **çift sıkıştırma** yaratıyor.
+> Depo doluysa yeni iş alamıyorsun; lot sınırı düşükse depoyu boşaltamıyorsun.
+> İkisi birden sıkarsa oyuncu kilitlenir ve bu sinir bozucu olur.
+>
+> Erken oyunda en az birinin gevşek olması gerekiyor. Oynayarak ayarlanacak.

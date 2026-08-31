@@ -54,5 +54,5 @@ anlamlı olması için **eşyanın elde kalıp sonra tekrar çıkarılabilmesi**
 - [ ] Katalog abartma kalıyor (bedeli: iş emri kalitesinin düşmesi). Açık olan,
       abartmanın nasıl yapıldığı — kaydırıcı mı, hazır ifade seçimi mi?
 - [ ] Lot kurma arayüzü nasıl? Sürükle-bırak mı, liste mi?
-- [ ] Oyuncu müzayedeye kaç lot çıkarabiliyor? Sınır var mı?
+- [x] Lot sınırı var, depo/kademeyle artar *(karar: 31.08.2026)*
 - [ ] Alıcı sayısı: havuzda kaç kişi, her seferinde kaç kişi gelecek?

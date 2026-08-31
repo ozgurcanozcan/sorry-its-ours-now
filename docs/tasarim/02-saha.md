@@ -130,8 +130,13 @@ En doğal ipucu kaynağı **ev sahibinin kendisi:** bir eşyayı fazla koruyorsa
 > Aynı karakter hem seni yavaşlatıyor hem de nereye bakacağını söylüyor —
 > ve bunu istemeden yapıyor. Tona da uygun: adam kendini ele veriyor.
 
-**Açık:** başka ipucu kaynakları var mı? (Açık çekmece, taze toprak, duvarda
-soluk kare, kilitli çekmece.) Ve arama etkileşimi ne kadar sürüyor?
+İki ipucu kaynağı daha *(karar: 31.08.2026)*: **duvarda soluk kare** (tablo
+indirilmiş, nerede saklanıyor?) ve **kilitli çekmece/kasa** (levye gerektirir).
+
+Sonuncusu levyeye ikinci bir iş veriyor: kilitli oda VE kilitli çekmece.
+Alet kararı hem mekâna hem ödüle bağlanıyor.
+
+**Açık:** arama etkileşimi ne kadar sürüyor?
 
 ### Engeller — M1'de sadece ev sahibi *(karar: 31.08.2026)*
 
@@ -182,8 +187,8 @@ dokuma kilim çıkıyordu; hem kurgu bozuluyor hem antika nadirliği eriyordu.
 - [x] Gerçek zamanlı sayaç *(karar: 31.08.2026)*
 - [x] Gıdıklama sesi + yazı *(karar: 31.08.2026)*
 - [x] M1.de sadece ev sahibi; köpek ve komşu sonraya *(karar: 31.08.2026)*
-- [ ] Dar itibar somut olarak nasıl işliyor? Kaç kötü davranıştan sonra dosyalar
-      kötüleşir, oyuncu bunu nereden anlar, geri kazanılabilir mi?
+- [x] Şikâyet sayısı ile *(karar: 31.08.2026)* — her şikâyet dosya kalitesini
+      bir kademe düşürür. Geri kazanılıp kazanılmadığı açık.
 - [x] El arabası, levye, matkap *(karar: 31.08.2026)* — `07-depo.md`
 - [x] Tek kişilikte el arabası, co-op.ta iki kişi *(karar: 31.08.2026)*
 - [x] Ev tipine göre değişir *(karar: 31.08.2026)*
