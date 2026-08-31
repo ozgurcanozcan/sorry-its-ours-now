@@ -664,3 +664,47 @@ trafik/yaya AI'ı, ortak olarak streaming ve performans bütçesi.
 
 **M2'nin süresi yeniden hesaplanmalı** — plandaki 8 haftalık tahmin bu kararı
 içermiyordu.
+
+---
+
+# 31.08.2026 — İnceleme halkası (on yedinci tur)
+
+**Onaylayan:** Özgür (B)
+**Bağlam:** "Herkes onaylayabilir" kuralıyla çalışılınca üç Claude de her pull
+sonrası aynı değişikliği inceliyordu. Üç kat iş, tek sonuç.
+
+## 64. Her PR'ın tek ve önceden belli bir inceleyicisi var
+
+```
+Çağatay (A)  →  Özgür (B) inceler
+Özgür (B)    →  Onat (C) inceler
+Onat (C)     →  Çağatay (A) inceler
+```
+
+Halka biçiminde: kimse kendi işini onaylamıyor, herkes tam olarak bir kişinin
+işinden sorumlu.
+
+**Yan fayda:** herkes kendi alanı dışında bir alan okuyor. B saha kodunu görüyor,
+C sistem kodunu, A üretim hattını. Üç kişilik ekipte bilgi tek kişide birikmiyor.
+
+### Kural iki yere birden yazıldı
+
+`docs/kurallar.md` insanlar için, **`CLAUDE.md` Claude'lar için.** İkincisi şart:
+asıl israfı yaratan insanlar değil, her pull sonrası yardımcı olmaya çalışan
+Claude oturumlarıydı. Talimat açık: *"sana atanmamış PR'ı inceleme."*
+
+### Onay kapalı bir listeye bağlandı
+
+Sınırsız inceleme her seferinde tasarımı baştan sorgulamaya dönüyor. Altı madde:
+doğru dal · klasör sahipliği · paylaşılan imza · derleme ve test · kararlarla
+çelişki · `.meta` dosyaları.
+
+Altısı tamamsa onaylanır. Takılan bir madde varsa **o madde** yazılır.
+
+### İki emniyet maddesi
+
+**Anlamadığını onaylama.** Kendi alanın olmayan kodu inceliyorsun; altı madde
+alan bilgisi gerektirmiyor ama bir şey yanlış görünüyorsa sor, geçiştirme.
+
+**İnceleyici yoksa PR beklemez.** Ulaşılamıyorsa Discord'a yazılır, üçüncü kişi
+devralır. Kural hızlandırmak için var.

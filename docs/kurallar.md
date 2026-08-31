@@ -88,3 +88,47 @@ demiştik" diye baştan başlanır.
 
 Bu belgeyi değiştiren PR açılır, üçü de onaylar. Değişiklik `docs/kararlar/`
 altına da not düşülür.
+
+## İnceleme halkası
+
+Her PR'ın **tek bir inceleyicisi** var ve kim olduğu baştan belli:
+
+| Kimin işi | Kim inceler ve merge eder |
+|-----------|---------------------------|
+| Çağatay (A) | **Özgür (B)** |
+| Özgür (B) | **Onat (C)** |
+| Onat (C) | **Çağatay (A)** |
+
+**Sana atanmamış PR'ı inceleme.** "Herkes bakabilir" demek ya herkesin bakması
+(üç kat israf) ya da kimsenin sahiplenmemesi demek. Halka ikisini de çözüyor.
+
+Yan fayda: herkes kendi alanı dışındaki bir alanı okuyor. B saha kodunu görüyor,
+C sistem kodunu, A üretim hattını.
+
+### Onay ne demek — kapalı liste
+
+İnceleme **bu altı maddeden ibarettir.** Tasarımı baştan sorgulamak değil:
+
+- [ ] Doğru dala açılmış mı (`dev`)
+- [ ] Yazar kendi klasöründe mi kalmış (`kurallar.md` > sahiplik tablosu)
+- [ ] Paylaşılan imza (`Code/Core`) değişmiş mi — değiştiyse konuşuldu mu
+- [ ] Derleniyor mu, sistem kodu ise testi var mı
+- [ ] `docs/kararlar/` ile çelişen bir şey var mı
+- [ ] Yeni dosyaların `.meta`'ları geldi mi
+
+Altısı da tamamsa onaylanır. Bir madde takılıyorsa **o madde** yazılır, PR
+baştan tartışılmaz.
+
+### Anlamadığın bir şeyi onaylama
+
+Kendi alanın olmayan kodu inceliyorsun; her satırı yargılayamayabilirsin ve bu
+normal. Yukarıdaki altı madde zaten alan bilgisi gerektirmiyor.
+
+Ama bir şey sana yanlış görünüyorsa ve emin değilsen, **onaylama** — sor.
+"Anlamadım ama onayladım" incelemeyi tamamen değersizleştirir.
+
+### Tıkanma önlemi
+
+İnceleyici o gün ulaşılamıyorsa (hasta, izinli, uyuyor) PR beklemez:
+Discord'a yazılır ve **üçüncü kişi** devralır. Kural akışı hızlandırmak için
+var, yavaşlatmak için değil.

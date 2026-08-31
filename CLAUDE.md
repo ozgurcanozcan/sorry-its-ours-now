@@ -29,6 +29,22 @@ tasarım sorusu çıkarsa cevabı `docs/` altında aranır, orada yoksa sorulur.
 
 Aynı anda en fazla 2 açık PR. Kendi PR'ını onaylama.
 
+## İnceleme halkası — SANA ATANMAMIŞ PR'I İNCELEME
+
+| Kimin işi | Kim inceler ve merge eder |
+|-----------|---------------------------|
+| Çağatay (A) | Özgür (B) |
+| Özgür (B) | Onat (C) |
+| Onat (C) | Çağatay (A) |
+
+**`git pull` sonrası gelen değişiklikleri kendiliğinden incelemeye kalkma.**
+Üç Claude aynı şeyi kontrol edince üç kat vakit gidiyor. Sadece kullanıcının
+inceleyicisi olduğu PR'a bak, o da istendiğinde.
+
+İncelerken `docs/kurallar.md` > "Onay ne demek" başlığındaki **altı maddelik
+kapalı listeye** bak. Tasarımı baştan sorgulama; karar zaten `docs/kararlar/`
+içinde.
+
 ## Klasör sahipliği
 
 ```
