@@ -76,6 +76,14 @@ Kaynak/
 docs/
 ```
 
+## Kredi
+
+`Assets/ThirdParty/` altındaki dış kaynak modeller için atıf zorunluluğu
+olabilir — her klasörün kendi `ATIF.md`'sine bakılır. Şu an:
+
+- **Low Poly Home Set** by VNBP - Leo ([vnbp.itch.io](https://vnbp.itch.io/low-poly-home-set)) — CC-BY 4.0.
+  Credits ekranına eklenmesi gereken satır: `Assets/ThirdParty/VNBP-HomeSet/ATIF.md`
+
 ## Durum — 31 Ağustos 2026
 
 Tasarım ve plan yazıldı. **63 karar** alındı, hepsi gerekçesiyle
