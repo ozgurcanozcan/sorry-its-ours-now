@@ -141,3 +141,44 @@ Rider'a geçer.
 
 **Onat (C)** — ikisine de az ihtiyacı var, hayatı Blender'da geçecek. İçe
 aktarma betiklerine bakması gerekirse Rider yeter.
+
+### Batch modun sınırı — 31.08.2026'da öğrenildi
+
+Unity'yi batch modda çalıştırmak **her geçişi tetiklemiyor.**
+
+Sürüm 6.3 → 6.5 yükseltmesinde batch mod `packages-lock.json`'ı güncelledi ama
+`manifest.json` ile dört asset dosyasına (Mobile/PC RPAsset, PackageManagerSettings,
+URPProjectSettings) hiç dokunmadı. Proje gerçek arayüzde açılıp Package Manager'ın
+bitmesi beklenince beşi birden güncellendi.
+
+Sebep muhtemelen şu: bazı geçişler render pipeline'ın gerçekten yüklenmesini ve
+Scene View'ın çizilmesini gerektiriyor; batch mod bunları yapmıyor.
+
+> **Kural:** sürüm yükseltmesi hem **batch modda** hem **gerçek arayüzde** açılır,
+> ikisinden sonra `git status` karşılaştırılır. "Batch temiz" tek başına yeterli
+> değil — batch mod bir insanın Unity'yi açmasının yerini tutmuyor.
+
+### Batch modun sınırı — 31.08.2026'da öğrenildi
+
+Unity'yi batch modda çalıştırmak **her geçişi tetiklemiyor.**
+
+6.3 → 6.5 yükseltmesinde batch mod `packages-lock.json`'ı güncelledi ama
+`manifest.json` ile dört asset dosyasına (Mobile/PC RPAsset,
+PackageManagerSettings, URPProjectSettings) hiç dokunmadı. Proje **gerçek
+arayüzde** açılıp Package Manager'ın bitmesi beklenince beşi birden güncellendi.
+
+Sebep muhtemelen şu: bazı geçişler render pipeline'ın gerçekten yüklenmesini ve
+Scene View'ın çizilmesini gerektiriyor; batch mod bunları yapmıyor.
+
+> **Kural:** sürüm yükseltmesi hem **batch modda** hem **gerçek arayüzde**
+> açılır, ikisinden sonra `git status` karşılaştırılır. "Batch temiz" tek başına
+> yeterli değil.
+
+### İç içe Unity projesi tuzağı — aynı gün yaşandı
+
+Unity Hub, repo klasörünün içinde yeni bir proje oluşturabiliyor. Kökteki
+`.gitignore` kuralları (`/Library/`, `/Temp/`) **alt klasörleri kapsamıyor**,
+bu yüzden `git add -A` iç projenin `Library`'sini de sahneliyor — binlerce dosya.
+
+`.gitignore`'a `/*/Library/` gibi kurallar eklendi. Ama asıl korunma:
+**`git add -A` yerine dosyaları adıyla ekleyin.**

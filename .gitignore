@@ -83,3 +83,14 @@ desktop.ini
 # ---------------------------------------------
 /Kaynak/Blender/cikti/
 /Kaynak/Blender/**/cikti/
+
+# ---------------------------------------------
+# Ic ice olusmus Unity projeleri
+# Unity Hub yanlislikla repo icinde proje olusturursa buraya dusuyor.
+# Kok Assets/ Library/ kurallari alt klasorleri kapsamiyor.
+# ---------------------------------------------
+/*/Library/
+/*/Temp/
+/*/Logs/
+/*/UserSettings/
+/Sorry It's Ours Now/

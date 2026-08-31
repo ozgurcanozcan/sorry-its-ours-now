@@ -74,11 +74,25 @@ Unity.exe -batchmode -quit -nographics -projectPath <proje> \
 - Log yolunda 8.3 kısa yol (`ZGR~1`) kullanma — Unity yazamıyor, iş çalışmadı
   sanılıyor. Tam yol ya da `$env:TEMP` kullan.
 - Batch iş öncesi kullanıcıya haber ver, Unity'yi kapatmasını iste.
+- **Batch mod her geçişi tetiklemiyor.** Sürüm yükseltmesinde bazı asset-seviyesi
+  geçişler (render pipeline varlıkları, `manifest.json`) yalnızca proje **gerçek
+  arayüzde** açılınca oluyor. "Batch temiz" tek başına yeterli değil; bir insan
+  Unity'yi açıp `git status`'a bakmalı. *(31.08.2026'da öğrenildi)*
+
+## `git add -A` kullanma
+
+Repo kökünde iç içe Unity projesi oluşabiliyor — Unity Hub yanlışlıkla repo
+içinde proje kurarsa. Kökteki `/Library/` kuralı alt klasörleri kapsamıyor,
+`git add -A` binlerce dosyayı sahneliyor.
+
+**Değiştirdiğin dosyaları adıyla ekle.** *(31.08.2026'da yaşandı)*
 
 ## Yapamadıkların
 
 Sahne düzenleme, Canvas kurma, Inspector'da referans bağlama, görünüşe bakma.
 Görsel olan her şey insanda. Bunları tarif et, yapmaya çalışma.
+
+**Batch mod bir insanın Unity'yi açmasının yerini tutmuyor** — yukarıya bak.
 
 ## Test
 
