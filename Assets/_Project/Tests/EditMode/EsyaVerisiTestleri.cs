@@ -151,5 +151,24 @@ namespace Oyun.Testler
         {
             StringAssert.Contains("buzdolabi", Kur().ToString());
         }
+
+        // --- Sozluk ------------------------------------------------------------
+
+        [Test]
+        public void KondisyonKotudenIyiyeSirali()
+        {
+            // Tamir bir ya da iki kademe yukari tasiyor (docs/tasarim/07-depo.md);
+            // sira bozulursa tamir esyayi kotulestirir.
+            Assert.Less((int)Kondisyon.Hasarli, (int)Kondisyon.Eski);
+            Assert.Less((int)Kondisyon.Eski, (int)Kondisyon.IyiDurumda);
+        }
+
+        [Test]
+        public void SekizKategoriVar()
+        {
+            // docs/tasarim/05-icerik.md sekiz kategori sayiyor ve C her birine
+            // ayri bir kategori rengi verecek. Sayi degisirse palet de degisir.
+            Assert.AreEqual(8, Enum.GetValues(typeof(Kategori)).Length);
+        }
     }
 }
