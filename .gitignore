@@ -77,3 +77,9 @@ crashlytics-build.properties
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# ---------------------------------------------
+# Blender script ciktilari - kaynak script, cikti degil
+# ---------------------------------------------
+/Kaynak/Blender/cikti/
+/Kaynak/Blender/**/cikti/
