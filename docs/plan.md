@@ -11,7 +11,7 @@
 | Kod | Süre | Ne | Geçme kriteri |
 |-----|------|-----|---------------|
 | **M1** | 6 hafta | Oynanabilir çekirdek | **5 dış kişi oynadı, 3'ü "devam ederdim" dedi** |
-| M2 | 8 hafta | Dikey dilim | Yabancı biri 20 dk anlatımsız oynuyor; kalan iş ölçüldü |
+| M2 | **yeniden hesaplanacak** | Dikey dilim + dünya haritası | Yabancı biri 20 dk anlatımsız oynuyor; kalan iş ölçüldü |
 | M3 | 12 hafta | Sistem derinliği | 3 saat oynanıyor; Steam sayfası açık, wishlist geliyor |
 | M4 | 10 hafta | İçerik üretimi | Tekrar hissi olmadan 8 saat |
 | M5 | 8 hafta | Demo + pazarlama | Demo çökmüyor, fragman hazır |

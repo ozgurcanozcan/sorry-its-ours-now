@@ -622,3 +622,45 @@ Her eşya basit Box Collider. Taşıma ve kapıdan geçirme bu kutuya göre çal
 > Sorun görülen birkaçına sonradan elle çarpışma mesh'i yapılır — ama önce
 > oynanıp hangisinin sorunlu olduğu görülmeli. Baştan hepsine elle yapmak
 > israf olur.
+
+---
+
+# 31.08.2026 — Dünya haritası (on beşinci tur)
+
+**Onaylayan:** Özgür (B)
+**Bağlam:** Bu karardan önce oyunun örtük modeli "menüden adres seç, sahne
+yüklensin" idi. Hiçbir belgede dünya haritası yoktu. Sonradan eklendi ve
+projenin en pahalı kararı.
+
+## 53. Oyun gezilebilir bir kasabada geçiyor
+
+Depo bir bina, evler bina, aralarında kamyonla gidiliyor. Referans: Schedule I.
+
+## 54. Tek kasaba, kesintisiz
+
+Mahalleler arası yükleme ekranı yok. Streaming ve performans işi getiriyor.
+
+## 55. Kamyonu oyuncu sürüyor
+
+Araç fiziği, direksiyon, park etme. A için yepyeni bir sistem.
+
+## 56. Trafik + yayalar + girilebilir dükkânlar
+
+Yaşayan bir kasaba. NPC sistemi gerekiyor.
+
+## 57. Harita M2'de — M1'de harita ekranı kalıyor
+
+M1 planlandığı gibi devam ediyor.
+
+> **Neden doğru:** M1'in tek sorusu "bu döngü eğlenceli mi?" ve bu sorunun cevabı
+> haritadan bağımsız. Harita eğlenceyi artırır ama yaratmaz.
+>
+> Sıra da doğru: kasabayı kurmadan önce evlerin ve deponun nasıl göründüğünü
+> bilmek gerekiyor. İç mekân dili M1'de oturacak, dış mekân onun üstüne gelecek.
+
+**M1'de alınacak dört önlem** ve **maliyet dökümü** `docs/tasarim/08-dunya.md`
+içinde. Özet: C için ayrı bir dış mekân üretim hattı, A için araç kontrolü ve
+trafik/yaya AI'ı, ortak olarak streaming ve performans bütçesi.
+
+**M2'nin süresi yeniden hesaplanmalı** — plandaki 8 haftalık tahmin bu kararı
+içermiyordu.
