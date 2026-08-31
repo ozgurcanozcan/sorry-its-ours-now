@@ -78,7 +78,7 @@ docs/
 
 ## Durum — 31 Ağustos 2026
 
-Tasarım ve plan yazıldı. **57 karar** alındı, hepsi gerekçesiyle
+Tasarım ve plan yazıldı. **62 karar** alındı, hepsi gerekçesiyle
 [`docs/kararlar/`](docs/kararlar/) altında kayıtlı.
 
 Sırada **Unity projesinin kurulması** ve M1'in 1. haftası var

@@ -8,7 +8,7 @@ aynı doğrulanmış ihraç ayarıyla (`axis_forward='Z'`, bkz. ev-kiti.md "Dene
 
 **Bunlar gri kutu.** Doğru boyut, doğru pivot, karakteri yok — M1 için istenen
 tam bu (`docs/plan.md`: "güzel görünmesi gerekmiyor, eğlenceli olması gerekiyor").
-Karakterli hâle M2'de geçilecek, karar 53'te not düşüldü.
+Karakterli hâle M2'de geçilecek, karar 58'de not düşüldü.
 
 ## Pivot kuralı — ev kitinden farklı
 

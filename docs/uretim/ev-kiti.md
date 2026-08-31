@@ -1,7 +1,7 @@
 # Ev Kiti — ölçü ve ihraç şeması
 
 > Sahibi: C (Onat) · `docs/plan.md` Hafta 1, gün 2–3
-> Kararlar: 46 (iki ayrı modüler kit), 48 (önce ihraç akışı), 53–57
+> Kararlar: 46 (iki ayrı modüler kit), 48 (önce ihraç akışı), 58–62
 
 Kit **script ile üretiliyor** (`Kaynak/Blender/ev_kiti.py`). Elle modellenmiyor:
 modüler bir kitte hataların neredeyse tamamı ölçü hatasıdır ve script'te ölçü

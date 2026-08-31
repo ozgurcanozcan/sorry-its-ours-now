@@ -42,7 +42,7 @@ kuralına uygun.
 
 VNBP Home Set'in duvar/kapı/pencere ölçüleri de ölçüldü: **2.00×0.20×3.00 m**
 (genişlik×kalınlık×yükseklik) — kendi içinde tutarlı ama **bizim ızgaramızdan
-farklı** (biz 1 m modül + 0.10 m kalınlık + 2.70 m kat kullanıyoruz, karar 57).
+farklı** (biz 1 m modül + 0.10 m kalınlık + 2.70 m kat kullanıyoruz, karar 62).
 İki kiti karıştırmak parçaların birbirine oturmamasına yol açar.
 
 ## Bulgular
