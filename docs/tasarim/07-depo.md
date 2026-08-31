@@ -60,17 +60,24 @@ Temizleme ve tamir **mini oyun değil, hizmet.** Dealer's Life 2'deki gibi:
 
 1. Bilgisayardan bir tamirci seçilir
 2. Ücret ödenir
-3. **Eşya depodan kaybolur** — tamirciye gider
-4. Tamircinin verdiği süre dolunca **depoya geri döner**, değeri artmış olarak
+3. **Eşya depoda kalır ama kilitlenir** — üstünde `TAMİRDE · Kalan süre: 3 gün`
+   uyarısı görünür. Alınamaz, lota konamaz, satılamaz.
+4. Süre dolunca kilit kalkar, eşya değeri artmış olarak kullanıma döner
 
 Bunun güzelliği: el becerisi değil, **zamanlama ve ekonomi kararı**.
 
 - *"Bu eşyaya 300 ₺ ve üç gün harcamaya değer mi?"*
 - *"Cuma müzayedesine yetişir mi?"*
-- Ve beklenmedik bir yan etki: eşya tamirdeyken **depoda yer kaplamıyor.**
-  Yani tamire yollamak, yer açmanın da bir yolu.
 
-Bu son madde tesadüf değil, tutmalı: iki sistem birbirini besliyor.
+> **Önemli:** eşya tamirdeyken **yer kaplamaya devam eder.**
+>
+> Bu bilinçli bir karar. Yer açsaydı en iyi strateji "depo dolunca her şeyi
+> tamire yolla" olurdu; tamir bir ekonomik karar olmaktan çıkıp **depolama
+> hilesine** dönerdi. Yer kaplamaya devam edince tamir gerçek bir maliyet
+> taşıyor: para, süre ve **yer**, aynı anda.
+>
+> Ayrıca oyuncu eşyasının nerede olduğunu görmeye devam ediyor — "eşyam
+> kayboldu" kafa karışıklığı olmuyor.
 
 **Açık:** kaç tamirci var? Dealer's Life'ta farklı tamircilerin fiyat, hız ve
 kalite dengesi farklı — ucuz ve yavaş, pahalı ve hızlı, ya da riskli olan.

@@ -87,11 +87,19 @@ Hacimle ilgisi yok, kamyon yerinden yemiyor. Ayrı ve okunaklı bir kısıt.
 
 ## 8. Tamirci — mini oyun değil, hizmet
 
-Dealer's Life 2 modeli: bilgisayardan tamirci seçilir, ücret ödenir, **eşya
-depodan kaybolur**, süre dolunca değeri artmış olarak **geri döner**.
+Dealer's Life 2 modeli: bilgisayardan tamirci seçilir, ücret ödenir, eşya
+tamire girer, süre dolunca değeri artmış olarak kullanıma döner.
 
 **Gerekçe:** karar el becerisi değil, zamanlama ve ekonomi. *"Cuma müzayedesine
 yetişir mi?"*
 
-**Yan etki (istenen):** eşya tamirdeyken depoda yer kaplamıyor. Yani tamire
-yollamak, yer açmanın da bir yolu. İki sistem birbirini besliyor — bu tutmalı.
+**Eşya tamirdeyken depoda KALIR ve yer kaplamaya DEVAM EDER.** Üstünde
+`TAMİRDE · Kalan süre: X gün` uyarısı görünür; alınamaz, lota konamaz, satılamaz.
+
+> Bu madde bir açığı kapatmak için böyle. İlk taslakta eşya tamire gidince
+> depodan çıkıyordu — o hâlde en iyi strateji "depo dolunca her şeyi tamire
+> yolla" olurdu ve tamir, ekonomik karar olmaktan çıkıp depolama hilesine
+> dönerdi. Yer kaplamaya devam edince tamirin üç maliyeti birden oluyor:
+> para, süre ve yer.
+>
+> Yan fayda: oyuncu eşyasının nerede olduğunu görmeye devam ediyor.
