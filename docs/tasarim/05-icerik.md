@@ -97,7 +97,7 @@ olduğunu uzaktan ayırt edebilmeli. Sekiz kategori var.
 ## Açık sorular
 
 - [ ] Kategori listesi kesin mi? "Çöp" mü "Hurda" mı — ad seçilmeli
-- [ ] İlk sürümde kaç eşya olacak? 20 yeter mi, 40 mı gerekli?
+- [x] M1.de 20, çıkışta 60+ *(karar: 31.08.2026)*
 - [ ] Alıcı havuzu kaç kişi?
 - [ ] Her ev tipi için oda ve eşya sayısı
 - [ ] Palet — C belirleyecek
@@ -114,3 +114,30 @@ Güncel eşya alan seti:
 
 `ad · id · kategori · taban değer · ağırlık · hacim · kırılgan · haczedilebilir ·
 bolluk · değer belirsizliği · ikiKişiGerekir · cebeGirer · klasman`
+
+## Ölçek *(karar: 31.08.2026)*
+
+| Ne | M1 (prototip) | Çıkış |
+|----|---------------|-------|
+| Eşya çeşidi | **20** | **60+** |
+| Ev tipi | 1–2 (gecekondu, daire) | 5 (+ dükkân, villa, fabrika) |
+| Alıcı | *(açık)* | *(açık)* |
+
+M1'de 20 eşya yeterli — denemede bu sayıyla oynandı ve mekanik çalıştı.
+Çıkışa kadar kademeli büyür, C'nin yükü zamana yayılır.
+
+## Yeni alan: `sabit` *(karar: 31.08.2026)*
+
+Matkap gerektiren eşyalar için. Duvara veya zemine bağlı: radyatör, mutfak
+dolabı, bakır tesisat, klima, avize.
+
+Alet olmadan **hiç alınamazlar** — envanterde görünmezler bile, sökülmeleri
+gerekir. Sökme işlemi ayrıca süre yer.
+
+Bu, alet kararının en sert hâli: matkap almadıysan evin en değerli şeyi gözünün
+önünde durur ve dokunamazsın.
+
+Güncel eşya alan seti:
+
+`ad · id · kategori · taban değer · ağırlık · hacim · kırılgan · haczedilebilir ·
+bolluk · değer belirsizliği · ikiKişiGerekir · cebeGirer · klasman · sabit`

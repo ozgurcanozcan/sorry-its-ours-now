@@ -129,9 +129,23 @@ parayla mı?
 Sahaya çıkarken raftan **belirli sayıda** alet alınır. Hacimle ilgisi yok,
 kamyon yerinden yemiyor — ayrı ve okunaklı bir kısıt.
 
-Bilinen adaylar: matkap, levye, el arabası, battaniye.
-Bunlar `02-saha.md`'deki engellere cevap veriyor: kilitli oda, ağır eşya,
-kırılganlık.
+### İlk alet seti *(karar: 31.08.2026)*
+
+| Alet | Ne açıyor |
+|------|-----------|
+| **El arabası** | Ağır eşya — buzdolabı, gardırop, koltuk takımı. Tek kişilikte şart. |
+| **Levye** | Kilitli oda ve dolap. Gürültü çıkarır, ev sahibini üzerine çeker. |
+| **Matkap** | **Sabit eşya sökme** — radyatör, mutfak dolabı, bakır tesisat. |
+
+Battaniye (kırılgan koruma) **listede yok**. Kırılganlık riski aletle değil,
+oyuncunun dikkatiyle yönetiliyor: acele etmezsen düşürmezsin.
+
+> **Matkap yeni bir eşya sınıfı açıyor: sabit eşyalar.** Duvara veya zemine
+> bağlı oldukları için alet olmadan hiç alınamazlar. Bu, alet kararını en sert
+> hâline getiriyor — matkap almadıysan evdeki en değerli şey gözünün önünde
+> duruyor ve dokunamıyorsun.
+>
+> Sökme işlemi süre yer, yani matkap almak yetmiyor; zaman da ayırmak gerekiyor.
 
 **5 slot** *(karar: 31.08.2026)* — ve bu slotlar **küçük eşyalarla paylaşılır**
 (`02-saha.md`). Alet almak, o sefer taşıyacağın küçük eşya sayısını düşürür.

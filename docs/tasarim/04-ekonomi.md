@@ -69,7 +69,37 @@ Kampanya bitince **Serbest Mod**: tüm kademeler açık, sınırsız prosedürel
       rakip AI'ı yok. Açık kalan: kaç dosya kapılıyor, hangi sıklıkta salona geliyor?
 - [x] Kamyon, depo, alet ve işletme giderleri (tamir vb.) *(karar: 31.08.2026)*
 - [ ] Ekipman satın alınabiliyor mu, yoksa sadece kademe ilerledikçe mi geliyor?
-- [ ] Kampanya kaç saat sürmeli? Fiyatı ve içerik miktarını bu belirler.
+- [x] 15-20 saat, ~25 USD bandı *(karar: 31.08.2026)*
 - [ ] Final kararı (temize çık / rakibi yut) iki farklı son mu, yoksa tek son
       iki renkte mi?
-- [ ] Serbest modda borç var mı, yoksa sınırsız oyun alanı mı?
+- [x] Serbest modda borç YOK *(karar: 31.08.2026)* — ama baskı kaynağı açık,
+      aşağı bak
+
+## Serbest mod — borçsuz *(karar: 31.08.2026)*
+
+Kampanya bitince açılan serbest modda **borç ve faiz yok.** Baskısız toplama
+ve satma; rahatlama modu.
+
+> **Çözülmesi gereken:** borç bu oyunun merkezi sayacı. *"Bu köpekli eve neden
+> giriyorum?"* sorusunun cevabı *"çünkü cuma ödeme var"* idi. Borç gidince o
+> cevap da gidiyor — riskli karar almanın sebebi kalmıyor.
+>
+> Serbest modun kendi baskısı olmalı. Adaylar:
+> - **Koleksiyon** — nadir eşyaları tamamlama, müzede sergileme
+> - **Hedefler** — "en pahalı satışını yap", "şu evi eksiksiz boşalt"
+> - **Depo/kamyon yükseltme zinciri** — para hâlâ bir şeye yarıyor
+> - **Zorluk kademeleri** — daha zor evler, daha sıkı süre
+>
+> Karar verilmedi. Ama "borç yok" tek başına yeterli bir tasarım değil,
+> yerine bir şey konmalı.
+
+## Kampanya uzunluğu: 15–20 saat *(karar: 31.08.2026)*
+
+~25 USD fiyat bandı hedefleniyor.
+
+> **Maliyet uyarısı:** 15–20 görev × ~1 saat demek. Bu, 60+ eşya, 5 ev tipi ve
+> geniş bir alıcı havuzu gerektiriyor. Üç kişilik ekip için ciddi bir içerik
+> yükü — kapsam kesme sırası (`00-ozet.md`) burada devreye girecek.
+>
+> 12 aylık takvimde bu hacim gerçekçi değilse kısaltmak yerine **çıkışı
+> ertelemek** doğru olur; yarım içerikle 25 USD istemek en kötü seçenek.

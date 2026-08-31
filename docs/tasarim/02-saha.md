@@ -184,6 +184,6 @@ dokuma kilim çıkıyordu; hem kurgu bozuluyor hem antika nadirliği eriyordu.
 - [x] M1.de sadece ev sahibi; köpek ve komşu sonraya *(karar: 31.08.2026)*
 - [ ] Dar itibar somut olarak nasıl işliyor? Kaç kötü davranıştan sonra dosyalar
       kötüleşir, oyuncu bunu nereden anlar, geri kazanılabilir mi?
-- [ ] Aletler ne işe yarıyor? (levye = kilitli oda, el arabası = kapasite?)
+- [x] El arabası, levye, matkap *(karar: 31.08.2026)* — `07-depo.md`
 - [x] Tek kişilikte el arabası, co-op.ta iki kişi *(karar: 31.08.2026)*
 - [x] Ev tipine göre değişir *(karar: 31.08.2026)*
