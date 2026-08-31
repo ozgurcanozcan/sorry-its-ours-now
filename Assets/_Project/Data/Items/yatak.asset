@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd98da5ec94da04449bf012ff031ae63, type: 3}
+  m_Name: yatak
+  m_EditorClassIdentifier: Oyun::Oyun.Core.EsyaTanimi
+  id: yatak
+  ad: Yatak
+  kategori: 0
+  tabanDeger: 6500
+  agirlik: 35
+  hacim: 1.6
+  kirilgan: 0
+  haczedilebilir: 0
+  ikiKisiGerekir: 1
+  cebeGirer: 0
+  sabit: 0
+  bolluk: 9
