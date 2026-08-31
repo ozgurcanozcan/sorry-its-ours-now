@@ -10,7 +10,7 @@ Ekip: **A** Çağatay (saha) · **B** Özgür (sistem/UI) · **C** Onat (teknik 
 | Belge | Ne zaman |
 |-------|----------|
 | `docs/plan.md` | Ne üzerinde çalışıldığını anlamak için — M1 kapsamı ve haftalık görevler |
-| `docs/kararlar/` | **Bir tasarım sorusu aklına geldiğinde ilk buraya bak.** 52 karar, hepsi gerekçeli |
+| `docs/kararlar/` | **Bir tasarım sorusu aklına geldiğinde ilk buraya bak.** 71 karar, hepsi gerekçeli |
 | `docs/tasarim/` | O alanda iş yapmadan önce ilgili dosyayı oku (00–07) |
 | `docs/kurallar.md` | Dal düzeni, klasör sahipliği, PR akışı |
 | `docs/araclar.md` | Unity / Rider / Cursor / Claude — kim ne zaman |
