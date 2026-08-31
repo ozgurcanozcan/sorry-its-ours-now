@@ -118,6 +118,38 @@ süresi bu boyutta ölçülemez.
 `Oyun` asmdef'i `Unity.InputSystem`'e referans veriyor — A'nın birinci şahıs
 kontrolü için gerekecek.
 
+### Yan etkisi: "Editor" klasörü sihri asmdef içinde çalışmıyor
+
+**Ölçüldü, tahmin değil.** `Oyun.asmdef` (#5) ile A'nın editör aracı (#4)
+`dev`'de buluştuğunda `Code/Field/Editor/SahaGreyboxAraci.cs` **çalışma zamanı
+derlemesi `Oyun.dll`'e** girdi:
+
+```
+SahaGreyboxAraci  -> Oyun.dll          (yanlis)
+EsyaVarlikUretici -> Oyun.Editor.dll   (dogru, kendi asmdef'i var)
+
+Oyun.dll icinde "UnityEditor" gecen referans: VAR
+```
+
+Unity, klasör adına dayalı "Editor" kuralını asmdef kapsamında uygulamıyor;
+editör kodu için ayrı bir asmdef şart.
+
+**Bunu EditMode testleri yakalamadı.** Editor'de `UnityEditor` her derlemeye
+açık olduğu için 60/60 geçiyordu. Kırılma yalnızca **player build**'inde
+çıkardı — yani ilk demo alınırken, en kötü anda. Bulgu testten değil,
+`Library/ScriptAssemblies/` içindeki assembly üyeliğine bakılarak çıktı.
+
+**İki kişi bağımsız olarak aynı hatayı buldu.** Düzeltme #6 ile geldi
+(`Code/Field/Editor/Oyun.Field.Editor.asmdef`, yalnız Editor platformu).
+Doğrulandı: araç `Oyun.Field.Editor.dll`'e taşındı, `Oyun.dll` temizlendi,
+60/60 korundu.
+
+> **Kural olarak:** `Code/` altında `UnityEditor` kullanan her klasörün kendi
+> Editor asmdef'i olmalı. Yeni bir rol editör aracı yazarsa aynısı gerekecek.
+>
+> **Ve daha genel olarak:** yeşil EditMode testi player build'inin derlendiğini
+> göstermiyor. İkisi ayrı sorular.
+
 ---
 
 ## 6. Bulgu: Unity batch, test başarısızlığında da 0 döndürüyor
