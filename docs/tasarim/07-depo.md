@@ -161,7 +161,12 @@ Oyun ilerledikçe daha gelişmiş depolara geçilir:
 - daha fazla alet slotu
 - belki daha iyi bilgisayar (daha çok dosya görünür, daha iyi tamirciler açılır)
 
-**Açık:** kaç kademe depo var ve her biri neyi açıyor.
+**5 kademe** *(karar: 31.08.2026)*, şirket kademeleriyle eşleşiyor. Ayrıca her
+deponun içinde ayrı geliştirme yapılabiliyor: raf, tezgâh, bilgisayar.
+
+> **C için:** beş depo, beş ayrı bina değil. Aynı modüler kitten kurulsun,
+> farkları boyut ve yerleşim olsun. Malzeme ve detay seviyesi kademeyle artsın
+> (çıplak beton → boyalı duvar → düzgün aydınlatma).
 
 > Not: depo kademesi ile **şirket kademesi** (`04-ekonomi.md`) aynı şey değil.
 > Şirket kademesi hangi iş tiplerinin açıldığını söyler; depo kademesi fiziksel
@@ -170,10 +175,10 @@ Oyun ilerledikçe daha gelişmiş depolara geçilir:
 ## Açık sorular
 
 - [x] Hacim (m³) *(karar: 31.08.2026)*
-- [ ] Kaç kademe depo, her biri neyi açıyor?
+- [x] 5 kademe + her kademede içsel geliştirme *(karar: 31.08.2026)*
 - [x] 5 slot, küçük eşyalarla paylaşımlı *(karar: 31.08.2026)*
 - [ ] Aletler satın mı alınıyor, yıpranıyor mu?
-- [ ] Kaç tamirci, fiyat/hız/beceri dengesi nasıl, nasıl açılıyorlar?
+- [x] 3 tamirci, şirket kademesiyle açılır *(karar: 31.08.2026)*
 - [x] Başarısızlıkta para ve süre gider, eşya bozulmaz *(karar: 31.08.2026)*
 - [x] Başarısızlık sürenin sonunda belli olur *(karar: 31.08.2026)*
 - [ ] Ürün klasmanı nasıl belirleniyor? (`05-icerik.md`)

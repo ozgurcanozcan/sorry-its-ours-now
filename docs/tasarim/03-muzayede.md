@@ -53,6 +53,6 @@ anlamlı olması için **eşyanın elde kalıp sonra tekrar çıkarılabilmesi**
 - [x] Restorasyon = tamirci hizmeti, depoda *(karar: 31.08.2026)* — `07-depo.md`
 - [ ] Katalog abartma kalıyor (bedeli: iş emri kalitesinin düşmesi). Açık olan,
       abartmanın nasıl yapıldığı — kaydırıcı mı, hazır ifade seçimi mi?
-- [ ] Lot kurma arayüzü nasıl? Sürükle-bırak mı, liste mi?
+- [x] Tezgâhta fiziksel *(karar: 31.08.2026)*
 - [x] Lot sınırı var, depo/kademeyle artar *(karar: 31.08.2026)*
 - [ ] Alıcı sayısı: havuzda kaç kişi, her seferinde kaç kişi gelecek?

@@ -437,3 +437,51 @@ Başlangıçta az lot çıkarılabilir, yükseltmeyle çoğalır. Bir ilerleme �
 > İkisi birden sıkarsa oyuncu kilitlenir ve bu sinir bozucu olur.
 >
 > Erken oyunda en az birinin gevşek olması gerekiyor. Oynayarak ayarlanacak.
+
+---
+
+# 31.08.2026 — Depo kademeleri, tamirciler, lot (on birinci tur)
+
+**Onaylayan:** Özgür (B)
+
+## 37. Şikâyet zamanla siliniyor
+
+Birkaç hafta temiz iş yaparsan eski şikâyet düşer. Hata affedilebilir olur,
+oyuncu kalıcı cezalandırılmaz.
+
+Bu, "borç acele ettirsin cezalandırmasın" kuralıyla aynı ruhta: kaybetme
+geri döndürülebilir olmalı.
+
+## 38. 5 kademe depo — VE her kademede içsel geliştirme
+
+İki eksenli ilerleme:
+- **Taşınma** — 5 farklı depo, şirket kademeleriyle eşleşiyor
+- **Geliştirme** — bulunduğun depo içinde raf, tezgâh, bilgisayar iyileştirmesi
+
+> **C için maliyet:** 5 ayrı depo mekânı demek. Bunu 5 ayrı bina olarak üretirsek
+> iş katlanır.
+>
+> **Azaltıcı yol:** beşi de aynı modüler kitten kurulsun, farkları **boyut ve
+> yerleşim** olsun — tek gözlü küçük dükkân, iki katlı sanayi deposu, uzun
+> antrepo. Malzeme ve detay seviyesi kademeyle artar (çıplak beton → boyalı
+> duvar → düzgün aydınlatma).
+>
+> Böylece 5 mekân, 5 ayrı üretim değil, tek kitin 5 kullanımı olur.
+
+## 39. 3 tamirci, şirket kademesiyle açılır
+
+Ucuz/yavaş/riskli → orta → pahalı/hızlı/güvenilir.
+
+Erken oyunda tek seçeneğin acemi tamirci olması doğru: riski göze almak
+zorunda kalırsın, ilerledikçe rahatlarsın.
+
+## 40. Lot kurma tezgâhta fiziksel
+
+Eşyaları tezgâha koyup grupluyorsun. Depo fiziksel mekân olduğu için tutarlı.
+
+> **Playtest'te izlenecek:** fiziksel lot kurma ilk seferde keyifli, kırkıncı
+> seferde yorucu olabilir. Özellikle lot sınırı ve depo doluluğuyla birleşince
+> her Cuma bir yerleştirme işine dönme riski var.
+>
+> Erken çözüm: eşyayı tezgâha koyunca kendiliğinden gruplanması, ve "geçen
+> haftaki lotu tekrarla" gibi bir kısayol. Ama önce oynanıp görülmeli.
