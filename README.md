@@ -39,6 +39,7 @@ Ayrıntılar: [`docs/araclar.md`](docs/araclar.md)
 
 | Belge | İçerik |
 |-------|--------|
+| [`docs/kurulum.md`](docs/kurulum.md) | **Sıfırdan kurulum — herkes bunu uygular** |
 | [`docs/kurallar.md`](docs/kurallar.md) | Dal düzeni, klasör sahipliği, PR akışı, sahne kuralı |
 | [`docs/araclar.md`](docs/araclar.md) | Unity, Rider, Cursor, Claude — kim ne zaman |
 | [`docs/ajan-kurallari.md`](docs/ajan-kurallari.md) | AI araçlarının uyacağı kurallar |
