@@ -76,7 +76,7 @@ kaynağı script. `.gitignore`'da.
 
 ```
 apply_scale_options = FBX_SCALE_NONE      global_scale = 1.0
-axis_forward = -Z                         axis_up = Y
+axis_forward = Z                          axis_up = Y
 bake_space_transform = True               object_types = {MESH}
 mesh_smooth_type = FACE                   add_leaf_bones = False
 ```
@@ -85,17 +85,38 @@ Blender Z-yukarı, Unity Y-yukarı çalışır. Bu ayar dönüşümü ihraç an�
 pişiriyor; model Unity'de boş bir objenin altında −90° dönmüş görünmüyor.
 Deneme sürümünde tam burada takılınmıştı (karar 48).
 
+### Deney: `axis_forward` neden `-Z` değil `Z`
+
+Çoğu Blender→Unity kılavuzu `axis_forward='-Z'` önerir ve script ilk yazıldığında
+bu kullanılmıştı. Gerçek bir Unity içe aktarmasıyla test edilince (bkz. aşağıdaki
+"Unity'de içe aktarma" bölümü) **X ekseninin ters çıktığı** görüldü: pivot kuralı
+"parça (0,0,0)'dan +X yönüne büyür" diyor, ama `-Z` ile ihraç edilen parça Unity'de
+**−X yönüne** büyüyordu. Y (yükseklik) ve Z (derinlik) doğruydu, sadece X ters.
+
+Dört `axis_forward` değeri (X, −X, Z, −Z), asimetrik bir test kutusuyla Unity'de
+gerçekten ölçülerek karşılaştırıldı — sonuç sayı: sadece `Z` üçünü birden
+(X, Y, Z) doğru işaretle ve doğru pivotla veriyor. Test render'ı ile yüzeylerin
+içe dönmediği (normal/winding sorunu olmadığı) de doğrulandı.
+
+**Kural: bu proje için Blender→Unity ihracında `axis_forward='Z'` kullanılır,
+kılavuzların önerdiği `-Z` değil.** Sebebi bizim pivot kuralımız (ızgara hücresinin
+iç-alt köşesi, +X yönüne büyüme) — başka bir pivot kuralı seçilseydi sonuç
+değişebilirdi. Yeni bir modelleme script'i yazılırsa bu değer kopyalanır,
+"mantıklı görünen" `-Z`'ye geri dönülmez.
+
 ## Unity'de içe aktarma — kontrol listesi
 
-**Henüz koşulmadı.** Unity editörü kurulup Unity projesi `dev`'e girdiğinde
-yapılacak ilk iş bu:
+**Koşuldu (31.08.2026), geçici bir test worktree'sinde** — henüz PR'a girmiş
+gerçek `Assets/` üzerinde değil, ama aynı proje sürümü ve aynı FBX dosyalarıyla:
 
-- [ ] Scale Factor = 1, Convert Units açık → 1 birim = 1 metre
-- [ ] Duvar Unity'de 2.70 birim yüksek görünüyor
-- [ ] Model rotasyonu (0,0,0), ölçek (1,1,1)
-- [ ] Pivot tabanda: obje Y=0'a konunca zemine oturuyor
-- [ ] İki duvar X=0 ve X=1'e konunca arada boşluk / bindirme yok
+- [x] Scale Factor = 1 (`globalScale: 1`, `useFileScale: 1` — meta dosyasında görüldü)
+- [x] Duvar Unity'de 2.70 birim yüksek (mesh.bounds ile ölçüldü)
+- [x] Pivot tabanda ve ızgara köşesinde: X ve Y için min = 0.00
+- [x] Normal/winding bozulmadı — test render'ında yüzeyler solid, içe dönük değil
+- [ ] İki duvarı gerçek sahnede yan yana koyup boşluk/bindirme yok mu — bu,
+      gerçek `Assets/` üzerinde, Unity açıkken elle bakılacak (görsel iş, insanda)
 - [ ] Read/Write Enabled kapalı
 
 FBX'ler `.meta` dosyalarıyla **birlikte** commit edilir (`docs/kurallar.md`).
-Unity içe aktarmadan `.meta` üretilemez, o yüzden bu adım atlanamaz.
+Bu PR henüz FBX/`.meta` taşımıyor — onlar Unity projesi `dev`'e sabitlenip
+gerçek `Assets/_Project/Art/Models/` içinde üretildiğinde ayrı bir adımda girer.

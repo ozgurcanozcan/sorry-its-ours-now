@@ -74,9 +74,13 @@ def ihrac(o):
     bpy.ops.object.select_all(action='DESELECT')
     o.select_set(True); bpy.context.view_layer.objects.active = o
     yol = os.path.join(FBX, o.name + ".fbx")
+    # axis_forward='Z' (Unity icin genelde '-Z' tavsiye edilir ama bizim
+    # pivot kuralimizda (ic-alt kose 0,0,0, parca +X yonune buyur) X ekseni
+    # ters cikiyordu. Unity'de gercek olcup bulundu - bkz.
+    # docs/uretim/ev-kiti.md "Deney: axis_forward".
     bpy.ops.export_scene.fbx(filepath=yol, use_selection=True,
         apply_scale_options='FBX_SCALE_NONE', global_scale=1.0,
-        axis_forward='-Z', axis_up='Y', bake_space_transform=True,
+        axis_forward='Z', axis_up='Y', bake_space_transform=True,
         object_types={'MESH'}, mesh_smooth_type='FACE', add_leaf_bones=False)
     return yol
 

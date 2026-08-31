@@ -42,7 +42,11 @@ bpy.ops.export_scene.fbx(
     use_selection=False,
     apply_scale_options='FBX_SCALE_NONE',
     global_scale=1.0,
-    axis_forward='-Z',
+    # NOT: '-Z' Unity icin genel tavsiye edilen deger ama bizim pivot
+    # kuralimizda (ic-alt kose = 0,0,0, parca +X yonune buyur) X eksenini
+    # ters cikariyordu - Unity'de deneyip olcerek bulundu, bkz.
+    # docs/uretim/ev-kiti.md "Deney: axis_forward"
+    axis_forward='Z',
     axis_up='Y',
     bake_space_transform=True,
     object_types={'MESH'},
