@@ -74,13 +74,15 @@ farklı** (biz 1 m modül + 0.10 m kalınlık + 2.70 m kat kullanıyoruz, karar 
 
 Bunlar ekipçe konuşulmadan kapatılmadı — bilerek açık bırakıldı.
 
-- [ ] **M2'de hazır asset mi kullanılacak, yoksa elle mi üretilecek?** (Karar
-  53'ün bıraktığı kapı — karar verilmedi, sadece seçenekler araştırıldı.)
-- [ ] **Hazır asset kullanılacaksa: Kenney mi, VNBP Home Set mi?** İkisi farklı
-  ızgara sistemi kullanıyor, ikisi birden seçilemez.
-- [ ] **VNBP Home Set seçilirse:** CC-BY 4.0 atıf zorunlu — oyunun credits
-  ekranına "Low Poly Home Set by VNBP - Leo" gibi bir satır eklenmeli. Bu iş
-  kalemi unutulmamalı.
+- [x] **Hazır asset mi kullanılacak, yoksa elle mi üretilecek?** Karar 64:
+  **VNBP Home Set**, M1'de bile — `docs/kararlar/2026-08-31-vnbp-home-set-kullanimi.md`.
+- [x] **Kenney mi, VNBP Home Set mi?** VNBP kazandı (gerçek ölçek, en yakın eşleşme).
+- [ ] **Hangi sahnede hangi ızgara kullanılacak** — VNBP'nin duvar ölçüsü
+  (2.00×0.20×3.00) bizim kendi ev kitimizden (1 m modül, 2.70 m kat) farklı.
+  A (Çağatay) sahne kurmaya başlayınca netleşmeli.
+- [ ] **CC-BY 4.0 atıf** — credits ekranına eklenmesi gereken satır hazır
+  (`Assets/ThirdParty/VNBP-HomeSet/ATIF.md`), ama **henüz UI'a girmedi.**
+  Bu iş kalemi kapanana kadar açık.
 - [ ] **Broken Vector Storage Pack kullanılacaksa:** önce lisans netleştirilmeli
   — yazara itch.io üzerinden (yorum) ya da support@brokenvector.net üzerinden
   yazılmalı. Netleşmeden kullanılmaz.
