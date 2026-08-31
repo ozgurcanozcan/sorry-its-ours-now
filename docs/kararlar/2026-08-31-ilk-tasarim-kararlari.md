@@ -667,13 +667,13 @@ içermiyordu.
 
 ---
 
-# 31.08.2026 — İnceleme halkası (on yedinci tur)
+# 31.08.2026 — İnceleme halkası (on sekizinci tur)
 
 **Onaylayan:** Özgür (B)
 **Bağlam:** "Herkes onaylayabilir" kuralıyla çalışılınca üç Claude de her pull
 sonrası aynı değişikliği inceliyordu. Üç kat iş, tek sonuç.
 
-## 64. Her PR'ın tek ve önceden belli bir inceleyicisi var
+## 71. Her PR'ın tek ve önceden belli bir inceleyicisi var
 
 ```
 Çağatay (A)  →  Özgür (B) inceler

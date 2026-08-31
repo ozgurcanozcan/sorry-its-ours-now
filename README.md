@@ -86,7 +86,7 @@ olabilir — her klasörün kendi `ATIF.md`'sine bakılır. Şu an:
 
 ## Durum — 31 Ağustos 2026
 
-Tasarım ve plan yazıldı. **64 karar** alındı, hepsi gerekçesiyle
+Tasarım ve plan yazıldı. **71 karar** alındı, hepsi gerekçesiyle
 [`docs/kararlar/`](docs/kararlar/) altında kayıtlı.
 
 Sırada **Unity projesinin kurulması** ve M1'in 1. haftası var

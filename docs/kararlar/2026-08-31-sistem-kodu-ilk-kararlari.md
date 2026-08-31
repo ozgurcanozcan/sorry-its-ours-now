@@ -5,7 +5,7 @@
 
 ---
 
-## 1. Eşya verisi: kod kaynak, ScriptableObject türetilir
+## 64. Eşya verisi: kod kaynak, ScriptableObject türetilir
 
 **Karar:** Eşya tanımlarının doğruluk kaynağı **kod içindeki katalog**.
 Bir editör script'i ondan `.asset` dosyalarını üretir; Onat prefab'ları
@@ -39,7 +39,7 @@ ve dosyalar C'nin klasörüne düşer, oysa 20 eşyayı B dolduruyor
 
 ---
 
-## 2. `klasman` alanı şimdilik yok
+## 65. `klasman` alanı şimdilik yok
 
 **Karar:** Tamir zorluğu alanı `EsyaVerisi` şablonuna **konmadı**.
 
@@ -54,7 +54,7 @@ zor"* birleşimi (kimsenin tamir ettirmeye değmeyeceği şey) korunmalı —
 
 ---
 
-## 3. Değer belirsizliği eşya alanı değil, sistem parametresi
+## 66. Değer belirsizliği eşya alanı değil, sistem parametresi
 
 **Karar:** `degerBelirsizligi` `EsyaVerisi` şablonunda yok. Değer biçme
 sisteminin parametresi olarak duruyor.
@@ -71,7 +71,7 @@ istiyorsa, bu eşya alanı değil **kategori tablosu** olarak eklenir.
 
 ---
 
-## 4. Rastgelelik: PCG32, adla türetilen dallar
+## 67. Rastgelelik: PCG32, adla türetilen dallar
 
 **Karar:** `Code/Utils/Rastgele` — PCG32 tabanlı, kendi yazdığımız üretici.
 Alt akışlar `Dal(ad)` ile açılıyor ve sonuç yalnızca `(tohum, ad)` çiftine
@@ -98,7 +98,7 @@ kırılıyorsa buraya not düşülmeli.**
 
 ---
 
-## 5. Tek derleme birimi: `Oyun`
+## 68. Tek derleme birimi: `Oyun`
 
 **Karar:** `Assets/_Project/Code/` altındaki bütün kod tek bir asmdef'te
 (`Oyun`). Ayrıca `Oyun.Editor` (yalnız editör) ve `Oyun.Testler.EditMode`.
@@ -120,7 +120,7 @@ kontrolü için gerekecek.
 
 ### Yan etkisi: "Editor" klasörü sihri asmdef içinde çalışmıyor
 
-**Ölçüldü, tahmin değil.** `Oyun.asmdef` (#5) ile A'nın editör aracı (#4)
+**Ölçüldü, tahmin değil.** `Oyun.asmdef` (#68) ile A'nın editör aracı (#67)
 `dev`'de buluştuğunda `Code/Field/Editor/SahaGreyboxAraci.cs` **çalışma zamanı
 derlemesi `Oyun.dll`'e** girdi:
 
@@ -152,7 +152,7 @@ Doğrulandı: araç `Oyun.Field.Editor.dll`'e taşındı, `Oyun.dll` temizlendi,
 
 ---
 
-## 6. Bulgu: Unity batch, test başarısızlığında da 0 döndürüyor
+## 69. Bulgu: Unity batch, test başarısızlığında da 0 döndürüyor
 
 **Karar değil, ölçüm.** 31.08.2026'da sürüklenme testi bilerek kırıldı
 (bir `.asset` elle bozuldu). Sonuç:

@@ -1,8 +1,8 @@
-# 31.08.2026 — VNBP Low Poly Home Set kullanımı (on beşinci tur)
+# 31.08.2026 — VNBP Low Poly Home Set kullanımı (on yedinci tur)
 
 **Onaylayan:** Onat (C), yüz yüze (Discord'a düşülmedi)
 
-## 64. M1'de hazır asset kullanımı: VNBP Low Poly Home Set
+## 70. M1'de hazır asset kullanımı: VNBP Low Poly Home Set
 
 Karar 53, M1'in script tabanlı gri kutuyla gideceğini, hazır asset kullanımını
 M2'ye erteliyordu. Ekip bugün bunu **değiştirdi**: gri kutu yeterince
