@@ -113,9 +113,10 @@ gerçek `Assets/` üzerinde değil, ama aynı proje sürümü ve aynı FBX dosya
 - [x] Duvar Unity'de 2.70 birim yüksek (mesh.bounds ile ölçüldü)
 - [x] Pivot tabanda ve ızgara köşesinde: X ve Y için min = 0.00
 - [x] Normal/winding bozulmadı — test render'ında yüzeyler solid, içe dönük değil
-- [ ] İki duvarı gerçek sahnede yan yana koyup boşluk/bindirme yok mu — bu,
-      gerçek `Assets/` üzerinde, Unity açıkken elle bakılacak (görsel iş, insanda)
-- [ ] Read/Write Enabled kapalı
+- [x] İki duvarı gerçek sahnede yan yana koyup boşluk/bindirme yok mu — Onat
+      (C) Unity Editor'ü açıp `SM_Duvar_1m` ve `SM_Duvar_2m`'i sahneye
+      sürükleyip kendi gözüyle baktı (31.08.2026): **boşluksuz birleşiyor**
+- [ ] Read/Write Enabled kapalı — henüz ayarlanmadı, gerçek içe aktarmada yapılacak
 
 FBX'ler `.meta` dosyalarıyla **birlikte** commit edilir (`docs/kurallar.md`).
 Bu PR henüz FBX/`.meta` taşımıyor — onlar Unity projesi `dev`'e sabitlenip
