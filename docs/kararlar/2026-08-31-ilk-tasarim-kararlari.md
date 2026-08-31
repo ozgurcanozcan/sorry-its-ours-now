@@ -529,3 +529,49 @@ bir sistemin üstüne son kurmak olurdu.
 
 Kaç oda, kaç eşya — oynamadan karar verilmeyecek. Doğru yaklaşım: denemedeki
 ölçekle (3–4 oda / 12–15 eşya) başlanır, playtest'te ayarlanır.
+
+---
+
+# 31.08.2026 — Sanat kararları (on üçüncü tur)
+
+**Onaylayan:** Onat (C) · Özgür yanında
+
+## 45. Kondisyon görseli: decal katmanı
+
+Tek mesh + üstte çizik/çatlak/leke decal'leri.
+
+Decal seti **ortak** olduğu için eşya başına ekstra iş yok: yeni bir eşya
+eklemek hâlâ tek model demek. 20 eşya × 3 kondisyon = 60 görünüm sorunu
+böylece çözülüyor.
+
+## 46. İki ayrı modüler kit: ev kiti ve depo kiti
+
+Ev kiti ve depo kiti bağımsız.
+
+> **Maliyet:** 5 depo kademesi düşünüldüğünde ciddi yük. Ama karar C'nin —
+> işi yapan kişi kendi kapasitesini bilir, ve deponun evlere benzememesi
+> oyunun mekân duygusu için değerli.
+>
+> **Hafifletici:** iki kit eşit büyüklükte olmak zorunda değil. Sanayi mekânı
+> daha az ve daha büyük parçayla kurulur — geniş düz duvar, beton kolon,
+> kepenk kapı, çelik kiriş. Ev kiti ~9–10 parça ise depo kiti ~5–6 parça
+> yetebilir.
+>
+> 5 depo kademesi de 5 ayrı kit değil: aynı depo kitinin farklı boyut ve
+> yerleşimle 5 kullanımı, detay ve malzeme seviyesi kademeyle artarak.
+
+## 47. Palet referans panosundan türetilecek
+
+Önce PureRef panosu (Türk apartmanı, gecekondu içi, eski eşya, sanayi deposu),
+palet oradan çıkar.
+
+Bir adım fazla ama daha sağlam: palet havadan seçilmiş 8 renk değil, gerçek
+mekânlardan damıtılmış bir şey olur.
+
+## 48. C'nin ilk işi: Blender → Unity akışını kurmak
+
+Tek bir küple ölçek, pivot ve ihraç ayarlarını kanıtlamak.
+
+Sıkıcı ama doğru olan: akış kanıtlanmadan üretilen 20 model, ayar yanlışsa
+20 kez yeniden ihraç edilir. Deneme sürümünde tam olarak burada takılmıştık
+(ölçek ve `.meta` sorunları).
