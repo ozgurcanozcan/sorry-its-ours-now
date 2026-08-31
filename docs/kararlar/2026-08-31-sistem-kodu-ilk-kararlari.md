@@ -118,6 +118,34 @@ süresi bu boyutta ölçülemez.
 `Oyun` asmdef'i `Unity.InputSystem`'e referans veriyor — A'nın birinci şahıs
 kontrolü için gerekecek.
 
+### Yan etkisi: "Editor" klasörü sihri asmdef içinde çalışmıyor
+
+**Ölçüldü, tahmin değil.** `Oyun.asmdef` eklendikten sonra Çağatay'ın
+`Code/Field/Editor/SahaGreyboxAraci.cs` dosyası `Oyun.Editor.dll`'e değil,
+**çalışma zamanı derlemesi `Oyun.dll`'e** girdi:
+
+```
+SahaGreyboxAraci  -> Oyun.dll          (yanlis)
+EsyaVarlikUretici -> Oyun.Editor.dll   (dogru, kendi asmdef'i var)
+
+Oyun.dll icinde "UnityEditor" gecen referans: VAR
+```
+
+Unity, klasör adına dayalı "Editor" kuralını asmdef kapsamında uygulamıyor;
+editör kodu için ayrı bir asmdef şart.
+
+**Bunu EditMode testleri yakalamıyor.** Editor'de `UnityEditor` her derlemeye
+açık olduğu için testler geçiyor; kırılma yalnızca **player build**'inde
+çıkardı — yani ilk demo alınırken, en kötü anda.
+
+**Düzeltme:** `Code/Field/Editor/Oyun.Field.Editor.asmdef` eklendi
+(yalnız Editor platformu, `Oyun` ve `Unity.InputSystem`'e referans).
+Çağatay'ın koduna dokunulmadı, tek yeni dosya. Klasör A'nın; dosyayı buraya
+koymanın sebebi sorunun `Oyun.asmdef` kararından doğması.
+
+> **Kural olarak:** `Code/` altında `UnityEditor` kullanan her klasörün kendi
+> Editor asmdef'i olmalı. Yeni bir rol editör aracı yazarsa aynısı gerekecek.
+
 ---
 
 ## 6. Bulgu: Unity batch, test başarısızlığında da 0 döndürüyor
