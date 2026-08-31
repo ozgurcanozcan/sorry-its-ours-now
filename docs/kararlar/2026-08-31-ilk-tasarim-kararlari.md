@@ -52,3 +52,46 @@ Anlamsız mırıltı sesle çıkar, söylediği konuşma balonunda yazılı gör
 Gerekçe: ses baskı ve karakter verir (sessiz sahne gerilim taşımaz), yazı anlamı
 taşır ve çeviriye açıktır. Gerçek seslendirmenin maliyeti ve her dil için tekrar
 kayıt derdi yok — yerellik kuralına da uygun.
+
+---
+
+# 31.08.2026 — Depo iç yapısı (ikinci tur)
+
+**Onaylayan:** Özgür (B)
+
+## 5. Depo fiziksel bir mekân — içinde yürünüyor
+
+Menü değil. Sahayla aynı kip: birinci şahıs. Bilgisayara yürüyüp başına
+geçiyorsun, raftan alet alıyorsun.
+
+**Gerekçe:** depo "merkez" hissi vermeli ve bürokrasi mizahının bir mekânı olmalı.
+
+**Maliyeti:** C için ciddi iş — depo, saha evleri kadar önemli bir mekân ve
+oyuncunun en çok vakit geçirdiği yer. Modüler oda kiti buraya da hizmet etmeli.
+A için: depodaki etkileşim (oturma, raftan alma) sahadaki eşya alma etkileşimiyle
+tek sistem olmalı.
+
+## 6. Bekletmenin tek bedeli: yer
+
+Kira yok, bayatlama yok. Eşya depoda yer kaplar; depo dolunca yeni iş alınamaz.
+
+**Gerekçe:** bedeli para değil **fırsat** yapmak. Aynı zamanda depo yükseltmesini
+anlamlı bir ödüle çeviriyor: daha çok yer = daha çok sabır.
+
+**Dikkat:** depo kapasitesi eşya hacimleriyle aynı ölçekte tutulmalı. Denemede
+kamyon kapasitesi tam bu yüzden kırılmıştı (12/20/32 birim vs 0.06–2.20 m³).
+
+## 7. Aletler: sınırlı slot
+
+Hacimle ilgisi yok, kamyon yerinden yemiyor. Ayrı ve okunaklı bir kısıt.
+
+## 8. Tamirci — mini oyun değil, hizmet
+
+Dealer's Life 2 modeli: bilgisayardan tamirci seçilir, ücret ödenir, **eşya
+depodan kaybolur**, süre dolunca değeri artmış olarak **geri döner**.
+
+**Gerekçe:** karar el becerisi değil, zamanlama ve ekonomi. *"Cuma müzayedesine
+yetişir mi?"*
+
+**Yan etki (istenen):** eşya tamirdeyken depoda yer kaplamıyor. Yani tamire
+yollamak, yer açmanın da bir yolu. İki sistem birbirini besliyor — bu tutmalı.

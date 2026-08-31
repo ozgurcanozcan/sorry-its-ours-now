@@ -1,33 +1,105 @@
 # 07 — Depo (merkez)
 
-**Depo bir aşama değil, oyuncunun merkezi.** Gün burada başlar, gün burada biter,
+**Depo bir aşama değil, oyuncunun merkezi.** Gün burada başlar, burada biter,
 arada iki kez daha buraya dönülür.
 
-Bu karar "Ofis" ve "Hazırlık" aşamalarını yuttu — ikisi de artık depoda oluyor.
+Bu karar "Ofis" ve "Hazırlık" aşamalarını yuttu — ikisi de artık depoda.
 İki ayrı menü yerine tek bir mekân.
+
+## Biçim: fiziksel mekân *(karar: 31.08.2026)*
+
+Depo **içinde yürüdüğün bir mekân.** Sahayla aynı kip: birinci şahıs.
+Bilgisayara yürüyüp başına geçiyorsun, raftan alet alıyorsun, tezgâha gidiyorsun.
+
+Menü değil. Sebep: depo "merkez" hissi vermeli, ve bürokrasi mizahının bir mekânı
+olmalı — form dolduran bir ekran, üstünde damga, yanında çay bardağı.
+
+> **Maliyet uyarısı:** bu C için ciddi iş. Depo, saha evleri kadar önemli bir
+> mekân ve oyuncunun en çok vakit geçirdiği yer olacak. Modüler oda kiti buraya
+> da hizmet etmeli — yoksa depo ayrı bir üretim hattı olur.
+>
+> Ayrıca A için: depoda etkileşim (bilgisayar başına oturma, raftan alma) sahadaki
+> eşya alma etkileşiminden farklı. İkisi tek sistemle çözülmeli.
 
 ## Depoda ne var
 
 | Yer | Ne yapılıyor |
 |-----|--------------|
-| **Bilgisayar** | Haciz dosyaları (iş emirleri), şirket durumu, borç, yükseltmeler |
-| **Alet rafı** | Matkap, levye vb. — sahaya çıkmadan seçilir |
-| **Tezgâh** | Temizleme, tamir, lot kurma |
-| **Eşya alanı** | Sahadan gelen ve satılmayan eşyalar burada durur |
+| **Bilgisayar** | Haciz dosyaları, şirket durumu, borç, yükseltmeler, **tamirci** |
+| **Alet rafı** | Sahaya çıkmadan alet seçilir — sınırlı slot |
+| **Tezgâh** | Lot kurma |
+| **Eşya alanı** | Sahadan gelen ve satılmayan eşyalar burada durur, **yer kaplar** |
 | **Garaj / kapı** | Kamyon seçimi, sahaya çıkış |
 
-Bilgisayar oyunun idare masası: dosya seçmek, hesap görmek, yükseltme almak
-hepsi orada. Bu aynı zamanda **bürokrasi mizahının** doğal yeri — form
-doldurulan, damga basılan, "Ek-4/B belgesi" istenen ekran.
+## Eşya alanı — sabrın para birimi
+
+Satılmayan eşya depoda kalır ve sonraki müzayedeye tekrar çıkarılabilir.
+**Bu, rezerv kararını anlamlı kılan şey.**
+
+**Bekletmenin tek bedeli: yer.** *(karar: 31.08.2026)*
+
+Kira yok, bayatlama yok. Eşya yer kaplar; depo dolunca **yeni iş alamazsın**.
+
+Bu tek kısıt üç şeyi birden çözüyor:
+
+- Bekletmek bedava değil — ama bedeli para değil **fırsat**
+- Depo yükseltmesi anlamlı bir ödül oluyor: daha çok yer = daha çok sabır
+- "Şu kilimi Koleksiyoncu gelene kadar tutayım mı?" sorusunun cevabı depo
+  doluluğuna bağlı, yani duruma göre değişiyor
+
+> **Dikkat:** depo büyüdükçe bekleme kararı kolaylaşır. Bu bir kusur değil,
+> ilerlemenin kendisi — ama denge kurulurken depo kapasitesi eşya hacimleriyle
+> aynı ölçekte tutulmalı. Denemede kamyon kapasitesi bu yüzden kırılmıştı.
+
+**Açık:** kapasite neyle ölçülüyor — eşya sayısı mı, hacim mi? Hacim daha
+tutarlı olur (eşyaların zaten hacmi var, kamyon da hacimle ölçülüyor).
+
+## Tamirci *(karar: 31.08.2026)*
+
+Temizleme ve tamir **mini oyun değil, hizmet.** Dealer's Life 2'deki gibi:
+
+1. Bilgisayardan bir tamirci seçilir
+2. Ücret ödenir
+3. **Eşya depodan kaybolur** — tamirciye gider
+4. Tamircinin verdiği süre dolunca **depoya geri döner**, değeri artmış olarak
+
+Bunun güzelliği: el becerisi değil, **zamanlama ve ekonomi kararı**.
+
+- *"Bu eşyaya 300 ₺ ve üç gün harcamaya değer mi?"*
+- *"Cuma müzayedesine yetişir mi?"*
+- Ve beklenmedik bir yan etki: eşya tamirdeyken **depoda yer kaplamıyor.**
+  Yani tamire yollamak, yer açmanın da bir yolu.
+
+Bu son madde tesadüf değil, tutmalı: iki sistem birbirini besliyor.
+
+**Açık:** kaç tamirci var? Dealer's Life'ta farklı tamircilerin fiyat, hız ve
+kalite dengesi farklı — ucuz ve yavaş, pahalı ve hızlı, ya da riskli olan.
+Aynı yapı buraya da uyar ama karar verilmedi.
+
+**Açık:** tamir sonucu kesin mi? "300 ₺ verdin, değer %40 arttı" mı, yoksa
+"artabilir de bozabilir de" mi? İkincisi gerilim katar ama sinir bozucu olabilir.
+
+## Aletler — sınırlı slot *(karar: 31.08.2026)*
+
+Sahaya çıkarken raftan **belirli sayıda** alet alınır. Hacimle ilgisi yok,
+kamyon yerinden yemiyor — ayrı ve okunaklı bir kısıt.
+
+Bilinen adaylar: matkap, levye, el arabası, battaniye.
+Bunlar `02-saha.md`'deki engellere cevap veriyor: kilitli oda, ağır eşya,
+kırılganlık.
+
+**Açık:** kaç slot? İki alet mi üç mü — bu sayı "neyi feda ediyorsun" kararının
+sertliğini belirliyor.
+
+**Açık:** aletler satın mı alınıyor, kademeyle mi geliyor? Yıpranıyor mu?
 
 ## Depo bir ilerleme ekseni
 
-Oyun ilerledikçe daha gelişmiş depolara geçilir. Depo yükseltmesi:
+Oyun ilerledikçe daha gelişmiş depolara geçilir:
 
-- daha fazla eşya alanı (satılmayanı bekletme kapasitesi)
-- daha fazla alet rafı
-- daha iyi tezgâh (restorasyon hızı / kalitesi)
-- belki daha iyi bilgisayar (daha çok dosya görünür?)
+- daha fazla eşya alanı (bekletme kapasitesi)
+- daha fazla alet slotu
+- belki daha iyi bilgisayar (daha çok dosya görünür, daha iyi tamirciler açılır)
 
 **Açık:** kaç kademe depo var ve her biri neyi açıyor.
 
@@ -35,37 +107,14 @@ Oyun ilerledikçe daha gelişmiş depolara geçilir. Depo yükseltmesi:
 > Şirket kademesi hangi iş tiplerinin açıldığını söyler; depo kademesi fiziksel
 > kapasiteyi. İkisi bağlantılı olabilir ama ayrı tutulmalı.
 
-## Aletler
-
-Sahaya çıkmadan raftan seçiliyor. Bilinen adaylar: matkap, levye, el arabası,
-battaniye (kırılgan eşya için?).
-
-Bunlar `02-saha.md`'deki engellere cevap veriyor — kilitli oda, ağır eşya,
-kırılganlık.
-
-**Açık:** alet taşımanın bedeli ne? Kamyon yerinden mi yiyor, hepsini alabiliyor
-musun, yoksa sınırlı mı? Sınır yoksa "neyi feda ediyorsun" kararı yok demektir.
-
-## Eşya alanı ve bekletme
-
-Satılmayan eşya depoda kalır ve sonraki müzayedeye tekrar çıkarılabilir.
-**Bu, rezerv kararını anlamlı kılan şey** — denemede satılmayan eşya kayboluyordu
-ve yüksek rezerv koymanın hiçbir getirisi yoktu.
-
-**Açık:** bekletmenin bedeli ne? Adaylar:
-- depo alanı işgali (yeni iş alamazsın)
-- kira / stok maliyeti
-- eşyanın "bayatlaması" (aynı lot tekrar tekrar çıkarsa alıcı ilgisi düşer)
-
-En az biri olmalı, yoksa oyuncu her şeyi sonsuza kadar bekletir ve rezerv
-kararı yine ölür — bu sefer ters yönden.
-
 ## Açık sorular
 
-- [ ] Depo fiziksel bir mekân mı (içinde yürüyorsun) yoksa menü ekranı mı?
+- [ ] Depo kapasitesi neyle ölçülüyor — eşya sayısı mı, hacim mi?
 - [ ] Kaç kademe depo, her biri neyi açıyor?
-- [ ] Alet taşımanın bedeli ne?
-- [ ] Eşya bekletmenin bedeli ne?
-- [ ] Temizleme ve tamir nasıl yapılıyor — mini oyun mu, süre mi, tek tuş mu?
+- [ ] Kaç alet slotu?
+- [ ] Aletler satın mı alınıyor, yıpranıyor mu?
+- [ ] Kaç tamirci, fiyat/hız/kalite dengesi nasıl?
+- [ ] Tamir sonucu kesin mi, riskli mi?
 - [ ] Depoda geçen süre oyun gününden mi yiyor, serbest mi?
 - [ ] Sahadan dönünce eşyalar otomatik mi boşalıyor, elle mi taşınıyor?
+- [ ] Depo mekânı kaç oda? Tek büyük hacim mi, bölmeli mi?
