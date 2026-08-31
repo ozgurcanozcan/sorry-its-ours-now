@@ -158,22 +158,6 @@ Scene View'ın çizilmesini gerektiriyor; batch mod bunları yapmıyor.
 > ikisinden sonra `git status` karşılaştırılır. "Batch temiz" tek başına yeterli
 > değil — batch mod bir insanın Unity'yi açmasının yerini tutmuyor.
 
-### Batch modun sınırı — 31.08.2026'da öğrenildi
-
-Unity'yi batch modda çalıştırmak **her geçişi tetiklemiyor.**
-
-6.3 → 6.5 yükseltmesinde batch mod `packages-lock.json`'ı güncelledi ama
-`manifest.json` ile dört asset dosyasına (Mobile/PC RPAsset,
-PackageManagerSettings, URPProjectSettings) hiç dokunmadı. Proje **gerçek
-arayüzde** açılıp Package Manager'ın bitmesi beklenince beşi birden güncellendi.
-
-Sebep muhtemelen şu: bazı geçişler render pipeline'ın gerçekten yüklenmesini ve
-Scene View'ın çizilmesini gerektiriyor; batch mod bunları yapmıyor.
-
-> **Kural:** sürüm yükseltmesi hem **batch modda** hem **gerçek arayüzde**
-> açılır, ikisinden sonra `git status` karşılaştırılır. "Batch temiz" tek başına
-> yeterli değil.
-
 ### İç içe Unity projesi tuzağı — aynı gün yaşandı
 
 Unity Hub, repo klasörünün içinde yeni bir proje oluşturabiliyor. Kökteki
@@ -182,3 +166,33 @@ bu yüzden `git add -A` iç projenin `Library`'sini de sahneliyor — binlerce d
 
 `.gitignore`'a `/*/Library/` gibi kurallar eklendi. Ama asıl korunma:
 **`git add -A` yerine dosyaları adıyla ekleyin.**
+
+### macOS'ta Homebrew yoksa: git-lfs ve gh CLI
+
+Onat'ın makinesinde Homebrew kurulu değildi. İkisi de resmi kaynaktan,
+`sudo` gerektirmeden kuruldu — aynı yol Çağatay/Özgür'de de işe yarar.
+
+**git-lfs** — GitHub Desktop kurulu olan makinelerde zaten gömülü geliyor,
+ayrıca indirmeye gerek yok:
+
+```bash
+mkdir -p ~/.local/bin
+ln -sf "/Applications/GitHub Desktop.app/Contents/Resources/app/git/libexec/git-core/git-lfs" ~/.local/bin/git-lfs
+export PATH="$HOME/.local/bin:$PATH"   # ~/.zshrc'ye kalıcı eklenir
+git lfs install
+```
+
+**GitHub CLI (`gh`)** — resmi `cli/cli` reposundan (github.com/cli/cli/releases),
+mimariye uygun `macOS_arm64.zip` ya da `macOS_amd64.zip`:
+
+```bash
+curl -sSL -o gh.zip "https://github.com/cli/cli/releases/latest/download/gh_<surum>_macOS_arm64.zip"
+unzip gh.zip && cp gh_*/bin/gh ~/.local/bin/gh && chmod +x ~/.local/bin/gh
+gh auth login --hostname github.com --git-protocol ssh --web
+```
+
+Son komut bir tek-seferlik kod ve `github.com/login/device` linki verir —
+tarayıcıda onaylanınca `gh auth status` ile doğrulanır.
+
+**Kalıcılık:** `~/.zshrc`'de `export PATH="$HOME/.local/bin:$PATH"` satırı
+varsa (yoksa eklenir), yeni terminal oturumlarında da çalışır.
