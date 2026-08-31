@@ -575,3 +575,50 @@ Tek bir küple ölçek, pivot ve ihraç ayarlarını kanıtlamak.
 Sıkıcı ama doğru olan: akış kanıtlanmadan üretilen 20 model, ayar yanlışsa
 20 kez yeniden ihraç edilir. Deneme sürümünde tam olarak burada takılmıştık
 (ölçek ve `.meta` sorunları).
+
+---
+
+# 31.08.2026 — Sanat kararları, ikinci tur (on dördüncü)
+
+**Onaylayan:** Onat (C)
+
+## 49. Üç ev sahibi tipi
+
+Ev tipiyle eşleşebilir: gecekonduda başkası, villada başkası.
+
+## 50. Oyuncu tam vücut — kendini görüyor
+
+Aşağı bakınca gövdeni görüyorsun. Birinci şahıs + görünür beden.
+
+> **Maliyet — en pahalı sanat kararı bu.** Gerektirenler:
+> - Beden modeli ve IK (eller nesneye, ayaklar zemine oturmalı)
+> - Yürüme, koşma, merdiven, eğilme animasyonları
+> - **Taşıma animasyonu her eşya boyutu için**: gümüş takım ile gardırop aynı
+>   tutulmaz. Tek eşya elde taşıma kararı (19) bunu doğrudan büyütüyor.
+> - El arabası itme animasyonu
+>
+> **Sıralama önerisi:** karar dursun, ama **M1'de sadece eller** yapılsın.
+> Tam vücut M2'de eklenir. Tasarım değişmez, sadece görsel katman sonra gelir —
+> ve M1'in amacı zaten "eğlenceli mi" sorusunu cevaplamak, "güzel mi" değil.
+>
+> Yan fayda: beden modeli co-op'ta zaten gerekecek (diğer oyuncuyu görmek için),
+> yani iş boşa gitmiyor, sadece doğru zamana kayıyor.
+
+## 51. Stilize / düz gölgeleme
+
+Gerçekçi ışık yerine stilize shader.
+
+**Pratik not:** URP'nin **Shader Graph**'ı düğüm tabanlı, kod yazmadan
+kurulabiliyor. Yani bu C'nin alanında kalabilir, B'ye devretmek gerekmez.
+
+Prosedürel evlerle de uyumlu: baked lightmap her sahne değişiminde yeniden
+pişirme isterdi, stilize gölgeleme istemiyor.
+
+## 52. Çarpışma: otomatik kutu, Unity'de
+
+Her eşya basit Box Collider. Taşıma ve kapıdan geçirme bu kutuya göre çalışır.
+
+> Kanepe ve bisiklet gibi tuhaf biçimli eşyalarda kutu sorun çıkarabilir.
+> Sorun görülen birkaçına sonradan elle çarpışma mesh'i yapılır — ama önce
+> oynanıp hangisinin sorunlu olduğu görülmeli. Baştan hepsine elle yapmak
+> israf olur.
