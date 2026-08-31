@@ -265,3 +265,40 @@ de bağlayıcı olması gerekiyor; ancak oynayarak ayarlanır.
 
 **Acil hâle gelen soru:** iki kişi gerektiren eşyalar (buzdolabı, gardırop,
 koltuk takımı) tek kişilikte nasıl alınıyor?
+
+---
+
+# 31.08.2026 — Saha ayrıntıları (yedinci tur)
+
+**Onaylayan:** Özgür (B)
+
+## 20. Ağır eşya: tek kişilikte el arabası, co-op'ta iki kişi
+
+Aynı eşya, moda göre iki farklı çözüm. Co-op geldiğinde tek kişilik oyun
+kırılmıyor, sadece başka bir yolu açılıyor.
+
+**Dikkat:** el arabası tek kişilikte zorunlu hâle gelirse alet slotu kararı ölür.
+Çözüm hazırlıkta: haciz dosyası evde büyük eşya olup olmadığını sezdirmeli.
+"Eşyalı 3+1 daire" ile "boş gecekondu" farklı hazırlık ister.
+
+## 21. Kamyon ev tipine göre park eder
+
+Gecekonduda kapının önünde, apartmanda sokakta. Mesafe, ev tipinin zorluğunun
+parçası — apartman zaten merdivenli, bir de kamyon uzakta.
+
+Tek eşya taşındığı için (karar 19) bu doğrudan süreye yansıyor.
+
+## 22. Gizli değer: önce ipucu, sonra arama
+
+Kör arama yok. En doğal ipucu kaynağı **ev sahibinin kendisi**: bir eşyayı fazla
+koruyorsa, önüne geçiyorsa orada bir şey vardır.
+
+> Bu, ev sahibini engel olmaktan çıkarıp **bilgi kaynağına** çeviriyor. Aynı
+> karakter hem yavaşlatıyor hem nereye bakacağını söylüyor — ve bunu istemeden
+> yapıyor. Tona da uygun: adam kendini ele veriyor.
+
+## 23. M1'de tek canlı engel: ev sahibi
+
+Köpek ve komşu (polis sayacı) sonraki miladlara. Dar kapı, asansörsüz kat ve
+kilitli oda mekân kaynaklı engeller olarak kalıyor — C'nin oda kitinden doğuyorlar,
+ayrı sistem gerektirmiyorlar.

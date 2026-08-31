@@ -69,17 +69,62 @@ oyuncu bakınca anlayabilmeli, C de sonsuz ara hâl modellemek zorunda kalmamal�
 Kondisyon **görsel olarak desteklenir** — oyuncu etiket okumadan ayırt edebilmeli.
 
 ### Fizik
-Ağırlık, hacim, kırılganlık. Bazı eşyalar tek kişiyle taşınamaz.
+Ağırlık, hacim, kırılganlık.
 
 Kırılgan eşya düşerse **bir kondisyon kademesi iner** (iyi → eski → hasarlı).
 Denemede "değerin yarısı gider" şeklindeydi; kademe sistemi hem daha okunaklı
 hem görsel olarak gösterilebilir.
 
-### Gizli değer
-Yatak altı, dolap arkası, çerçeve arkası, dondurucu. Aramak süre yer.
+### Ağır eşya: el arabası *(karar: 31.08.2026)*
 
-**Açık:** aramak nasıl yapılıyor? Ayrı bir etkileşim mi, yoksa eşyayı taşırken
-kendiliğinden mi çıkıyor? Oyuncu nereye bakacağını nereden biliyor?
+Buzdolabı, gardırop, koltuk takımı gibi eşyalar tek kişiyle elde taşınamaz.
+
+- **Tek kişilik modda:** el arabasıyla taşınır. Alet slotunda el arabası yoksa
+  o eşya alınamaz.
+- **Co-op'ta:** iki kişi gerekir. El arabası yerine ortak taşıma.
+
+Aynı eşya, moda göre iki farklı çözüm. Co-op geldiğinde tek kişilik oyun
+kırılmıyor, sadece başka bir yolu açılıyor.
+
+> **Dikkat edilecek denge:** el arabası tek kişilikte neredeyse zorunlu hâle
+> gelirse alet slotu kararı ölür — "her seferinde el arabası al" tek doğru
+> cevap olur.
+>
+> Çözüm hazırlık aşamasında: **haciz dosyası evde büyük eşya olup olmadığını
+> sezdirmeli.** "Eşyalı 3+1 daire" ile "boş gecekondu" farklı hazırlık ister.
+> O zaman el arabası bir seçim olur, refleks değil.
+
+### Kamyon nerede park ediyor *(karar: 31.08.2026)*
+
+**Ev tipine göre değişir.** Gecekonduda kapının önünde, apartmanda sokakta.
+
+Mesafe, ev tipinin zorluğunun bir parçası: apartman zaten merdivenli, bir de
+kamyon uzakta. Tek eşya taşındığı için bu doğrudan süreye yansıyor.
+
+### Gizli değer — ipucu, sonra arama *(karar: 31.08.2026)*
+
+Yatak altı, dolap arkası, çerçeve arkası, dondurucu.
+
+Kör arama yok. Önce **ipucu** gelir, sonra oyuncu arar ve arama süre yer.
+
+En doğal ipucu kaynağı **ev sahibinin kendisi:** bir eşyayı fazla koruyorsa,
+önüne geçiyorsa, ona doğru bağırıyorsa orada bir şey vardır.
+
+> Bu, ev sahibini **engel olmaktan çıkarıp bilgi kaynağına** çeviriyor.
+> Aynı karakter hem seni yavaşlatıyor hem de nereye bakacağını söylüyor —
+> ve bunu istemeden yapıyor. Tona da uygun: adam kendini ele veriyor.
+
+**Açık:** başka ipucu kaynakları var mı? (Açık çekmece, taze toprak, duvarda
+soluk kare, kilitli çekmece.) Ve arama etkileşimi ne kadar sürüyor?
+
+### Engeller — M1'de sadece ev sahibi *(karar: 31.08.2026)*
+
+Köpek ve komşu (polis sayacı) **M1'e girmiyor**, sonraki miladlara kalıyor.
+Kapsam kesme sırasında zaten üst sıralardaydılar.
+
+M1'in tek canlı engeli ev sahibi. Dar kapı, asansörsüz kat ve kilitli oda
+mekân kaynaklı engeller olarak kalıyor — onlar C'nin oda kitinden doğuyor,
+ayrı bir sistem gerektirmiyor.
 
 ### Yasak liste
 Yatak, mutfak eşyası, mesleki alet. Hukuki doğruluk aranmıyor, basitleştirilmiş.
@@ -124,13 +169,10 @@ dokuma kilim çıkıyordu; hem kurgu bozuluyor hem antika nadirliği eriyordu.
 - [x] Tek eşya, elde *(karar: 31.08.2026)*
 - [x] Kamyona gidip gelinir — tek eşya taşındığı için zorunlu *(31.08.2026)*
 - [x] Gerçek zamanlı sayaç *(karar: 31.08.2026)*
-- [ ] Ev sahibi konuşuyor mu? (seslendirme / gıdıklama sesi / sadece yazı)
-- [ ] Köpek ve komşu M1'de var mı, sonraya mı kalıyor?
+- [x] Gıdıklama sesi + yazı *(karar: 31.08.2026)*
+- [x] M1.de sadece ev sahibi; köpek ve komşu sonraya *(karar: 31.08.2026)*
 - [ ] Dar itibar somut olarak nasıl işliyor? Kaç kötü davranıştan sonra dosyalar
       kötüleşir, oyuncu bunu nereden anlar, geri kazanılabilir mi?
 - [ ] Aletler ne işe yarıyor? (levye = kilitli oda, el arabası = kapasite?)
-- [ ] **İki kişi gereken eşyalar tek kişilikte nasıl alınıyor?** Sürüklenerek mi
-      (yavaş), el arabasıyla mı, yoksa hiç alınamıyor mu? Tek eşya taşıma kararı
-      bu soruyu acil hâle getirdi.
-- [ ] Kamyon nerede park ediyor? Eve uzaklığı sabit mi, ev tipine göre değişiyor mu?
-      (Apartmanda sokakta, gecekonduda kapının önünde gibi.)
+- [x] Tek kişilikte el arabası, co-op.ta iki kişi *(karar: 31.08.2026)*
+- [x] Ev tipine göre değişir *(karar: 31.08.2026)*
