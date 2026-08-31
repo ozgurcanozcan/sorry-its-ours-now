@@ -18,7 +18,7 @@
 
 ## İlk kurulum
 
-**1. Unity Hub'dan `6000.3.23f1` (Unity 6.3 LTS) kur.** Modüller:
+**1. Unity Hub'dan `6000.5.10f1` (Unity 6.5) kur.** Modüller:
 `Windows Build Support (IL2CPP)` ve `Documentation`.
 
 **2. Git LFS ve repo:**
