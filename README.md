@@ -42,8 +42,8 @@ Ayrıntılar: [`docs/araclar.md`](docs/araclar.md)
 | [`docs/kurallar.md`](docs/kurallar.md) | Dal düzeni, klasör sahipliği, PR akışı, sahne kuralı |
 | [`docs/araclar.md`](docs/araclar.md) | Unity, Rider, Cursor, Claude — kim ne zaman |
 | [`docs/ajan-kurallari.md`](docs/ajan-kurallari.md) | AI araçlarının uyacağı kurallar |
-| `docs/plan.md` | Kilometre taşları ve geçme kriterleri *(yazılacak)* |
-| `docs/tasarim/` | Oyun tasarımı *(yazılacak)* |
+| [`docs/plan.md`](docs/plan.md) | Kilometre taşları, M1 kapsamı, haftalık görev dağılımı |
+| [`docs/tasarim/`](docs/tasarim/) | Oyun tasarımı — 7 belge |
 | `docs/kararlar/` | Tarihli karar kaydı — ne, neden, kim |
 | `docs/gorevler/` | Ajanlara verilen şartnameler |
 
@@ -73,7 +73,15 @@ Assets/
 docs/
 ```
 
-## Durum
+## Durum — 31 Ağustos 2026
 
-Repo yeni kuruldu. Şu an yapılan: **plan ve tasarımın ayrıntılandırılması.**
-Unity projesi tasarım netleştikten sonra oluşturulacak.
+Tasarım ve plan yazıldı. **52 karar** alındı, hepsi gerekçesiyle
+[`docs/kararlar/`](docs/kararlar/) altında kayıtlı.
+
+Sırada **Unity projesinin kurulması** ve M1'in 1. haftası var
+([`docs/plan.md`](docs/plan.md)).
+
+İlk işler:
+- **A** — Field sahnesi ve birinci şahıs kontrol
+- **B** — tohumlu rastgelelik ve eşya veri şablonu
+- **C** — Blender→Unity akışını kanıtlamak (ölçek, pivot, ihraç)
