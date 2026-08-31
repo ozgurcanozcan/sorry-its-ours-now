@@ -1,3 +1,5 @@
+using Oyun.Core;
+using Oyun.Field;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -115,6 +117,13 @@ public static class SahaGreyboxAraci
         kamera.transform.localPosition = Vector3.zero;
         kamera.transform.localRotation = Quaternion.identity;
 
+        // El capasi kameranin cocugu: bakisla birlikte donsun, esya elde
+        // sabit dursun. Gozun biraz onunde ve altinda - tam gozde olursa
+        // esya ekrani kapatiyor.
+        var elCapasi = new GameObject("ElCapasi");
+        elCapasi.transform.SetParent(kamera.transform, false);
+        elCapasi.transform.localPosition = new Vector3(0.25f, -0.25f, 0.6f);
+
         var kontrolcu = oyuncu.AddComponent<OyuncuKontrolcu>();
 
         // Alanlar private SerializeField; Inspector'da elle baglamak yerine
@@ -124,6 +133,14 @@ public static class SahaGreyboxAraci
         seri.FindProperty("girdiVarligi").objectReferenceValue =
             AssetDatabase.LoadAssetAtPath<InputActionAsset>(GirdiYolu);
         seri.ApplyModifiedPropertiesWithoutUndo();
+
+        var etkilesim = oyuncu.AddComponent<OyuncuEtkilesim>();
+        var seri2 = new SerializedObject(etkilesim);
+        seri2.FindProperty("kamera").objectReferenceValue = kamera.transform;
+        seri2.FindProperty("elCapasi").objectReferenceValue = elCapasi.transform;
+        seri2.FindProperty("girdiVarligi").objectReferenceValue =
+            AssetDatabase.LoadAssetAtPath<UnityEngine.InputSystem.InputActionAsset>(GirdiYolu);
+        seri2.ApplyModifiedPropertiesWithoutUndo();
 
         Selection.activeGameObject = oyuncu;
     }
@@ -221,6 +238,13 @@ public static class SahaGreyboxAraci
         Parca("SM_DuvarKapi_1m", new Vector3(0f, 0f, 5f), kok.transform);
         Parca("SM_Duvar_2m", new Vector3(1f, 0f, 5f), kok.transform);
 
+        // Baslangicin hemen onunde, kesin alinabilir iki esya. Mekanigin
+        // calistigini gormek icin duvara kadar yurumek gerekmemeli - 31.08'de
+        // ilk denemede en yakin esyalarin hepsi "iki kisi gerekir" ciktigi icin
+        // mekanik bozuk sanildi.
+        Parca("SM_Masa", new Vector3(-1.5f, 0f, 2.5f), kok.transform);
+        Parca("SM_TV", new Vector3(1.5f, 0f, 2.5f), kok.transform);
+
         // Kapinin arkasinda, gecirmeye calisacagin esya.
         Parca("SM_Gardirop", new Vector3(1.5f, 0f, 6.5f), kok.transform);
 
@@ -228,9 +252,7 @@ public static class SahaGreyboxAraci
         // Kapinin arkasina, birbirine girmeyecek araliklarla diziliyorlar.
         Parca("SM_Buzdolabi", new Vector3(-2.5f, 0f, 6.5f), kok.transform);
         Parca("SM_CamasirMakinesi", new Vector3(-1.5f, 0f, 6.5f), kok.transform);
-        Parca("SM_Masa", new Vector3(-1f, 0f, 8f), kok.transform);
         Parca("SM_Yatak", new Vector3(-4f, 0f, 7f), kok.transform);
-        Parca("SM_TV", new Vector3(2.5f, 0f, 8f), kok.transform);
         Parca("SM_Hali", new Vector3(0f, 0f, 9.5f), kok.transform);
 
         EditorSceneManager.MarkSceneDirty(sahne);
@@ -260,6 +282,7 @@ public static class SahaGreyboxAraci
         ornek.transform.position = konum;
 
         CarpisanEkle(ornek);
+        EsyaYap(ornek, ad);
     }
 
     private const string VitrinKoku = "Vitrin";
@@ -311,6 +334,11 @@ public static class SahaGreyboxAraci
             // Vitrinde de carpisan olmali: modellerin sadece boyutuna degil,
             // etrafinda donerken nasil hissettirdigine de bakiliyor.
             CarpisanEkle(ornek);
+
+            // Esya olan modeller vitrinde de alinabilir olmali. Aksi halde
+            // ayni model bir yerde etkilesiyor, otekinde olu duruyor ve
+            // "bu neden calismiyor" sorusu doguyor (31.08'de yasandi).
+            EsyaYap(ornek, ornek.name);
         }
 
         Debug.Log($"Vitrin kuruldu: {kimlikler.Length} model, kok x=30");
@@ -456,6 +484,7 @@ public static class SahaGreyboxAraci
             ornek.name = onKalip.name;
             ornek.transform.localPosition = new Vector3((i % Sutun) * Aralik, 0f, (i / Sutun) * Aralik);
             CarpisanEkle(ornek);
+            EsyaYap(ornek, ornek.name);
         }
 
         Debug.Log($"VNBP vitrini kuruldu: {kimlikler.Length} model, kok (26, 0, -18)");
@@ -636,5 +665,66 @@ public static class SahaGreyboxAraci
         Debug.Log("VNBP kapi testi kuruldu: x=-26..-20, kapi x=-24");
         EditorSceneManager.MarkSceneDirty(sahne);
         EditorSceneManager.SaveScene(sahne, SahneYolu);
+    }
+
+    // Model adi -> EsyaTanimi varlik adi. Iki kit de ayni yedi esyayi
+    // temsil ediyor, isimleri farkli. Eslesmeyen model (duvar, zemin) esya
+    // degil; listede olmamasi onu "alinamaz" yapmiyor, sadece esya saymiyor.
+    private static readonly System.Collections.Generic.Dictionary<string, string> EsyaEslesmesi =
+        new System.Collections.Generic.Dictionary<string, string>
+        {
+            { "SM_Buzdolabi", "buzdolabi" },
+            { "SM_CamasirMakinesi", "camasir-makinesi" },
+            { "SM_Gardirop", "gardirop" },
+            { "SM_Hali", "hali" },
+            { "SM_Masa", "masa" },
+            { "SM_TV", "tv" },
+            { "SM_Yatak", "yatak" },
+            { "Fridge", "buzdolabi" },
+            { "Washing Machine", "camasir-makinesi" },
+            { "Wardrobe", "gardirop" },
+            { "Rug 1", "hali" },
+            { "Dining Table", "masa" },
+            { "TV 1", "tv" },
+            { "Bed Base 1 1", "yatak" },
+        };
+
+    // Modelse ve esya listesinde varsa: Rigidbody + Esya ekleyip tanimi baglar.
+    private static void EsyaYap(GameObject nesne, string modelAdi)
+    {
+        string varlikAdi;
+        if (!EsyaEslesmesi.TryGetValue(modelAdi, out varlikAdi))
+        {
+            return;
+        }
+
+        string[] kimlikler = AssetDatabase.FindAssets($"{varlikAdi} t:EsyaTanimi",
+            new[] { "Assets/_Project/Data/Items" });
+
+        if (kimlikler.Length == 0)
+        {
+            Debug.LogWarning($"EsyaTanimi bulunamadi: {varlikAdi}");
+            return;
+        }
+
+        var tanim = AssetDatabase.LoadAssetAtPath<EsyaTanimi>(
+            AssetDatabase.GUIDToAssetPath(kimlikler[0]));
+
+        // Esya RequireComponent(Rigidbody) istiyor; AddComponent onu kendisi
+        // ekliyor ama kutlesini veriden almiyor - agirlik EsyaVerisi'nde.
+        var esya = nesne.AddComponent<Esya>();
+        var seri = new SerializedObject(esya);
+        seri.FindProperty("tanim").objectReferenceValue = tanim;
+        seri.ApplyModifiedPropertiesWithoutUndo();
+
+        var katiCisim = nesne.GetComponent<Rigidbody>();
+        katiCisim.mass = Mathf.Max(0.1f, tanim.Veri().Agirlik);
+
+        // MeshCollider varsayilan olarak convex degil; convex olmayan collider
+        // hareketli Rigidbody ile calismiyor. Esyalar hareket edecegi icin sart.
+        foreach (var carpisan in nesne.GetComponentsInChildren<MeshCollider>())
+        {
+            carpisan.convex = true;
+        }
     }
 }
