@@ -16,6 +16,15 @@ Ekip: **A** Çağatay (saha) · **B** Özgür (sistem/UI) · **C** Onat (teknik 
 | `docs/araclar.md` | Unity / Rider / Cursor / Claude — kim ne zaman |
 | `docs/ajan-kurallari.md` | AI araçlarının uyacağı kurallar |
 
+**Karar numaraları tüm dosyalar boyunca tektir.** Her dosya 1'den başlamaz.
+Yeni karar yazmadan önce sıradaki numarayı **hesapla**:
+
+```bash
+grep -h '^## [0-9]' docs/kararlar/*.md | sed 's/\..*//' | tr -d '# ' | sort -n | tail -1
+```
+
+*(31.08.2026'da iki kez çakıştı — iki oturum aynı numarayı kullandı.)*
+
 **Bir tasarım kararı zaten verilmiş olabilir.** `docs/kararlar/` içinde ara; yoksa
 kullanıcıya sor, kendi başına karar verme. Verilen karar oraya yazılır.
 
