@@ -347,3 +347,45 @@ Bilgisayarın rolü genişliyor: dosya + hesap + tamirci + **piyasa**.
 - **İşletme giderleri** — tamir ücreti ve benzeri iş kalemleri
 
 Borç ödemesi bunlarla yarışıyor: *"bugünü mü yarını mı besliyorsun?"*
+
+---
+
+# 31.08.2026 — Alet seti, ölçek, kampanya (dokuzuncu tur)
+
+**Onaylayan:** Özgür (B)
+
+## 29. İlk alet seti: el arabası, levye, matkap
+
+Battaniye (kırılgan koruma) **alınmadı**. Kırılganlık riski aletle değil,
+oyuncunun dikkatiyle yönetiliyor.
+
+**Matkap yeni bir eşya sınıfı açtı: `sabit` eşyalar.** Radyatör, mutfak dolabı,
+bakır tesisat, klima, avize — duvara/zemine bağlı oldukları için alet olmadan
+hiç alınamıyorlar.
+
+Bu, alet kararının en sert hâli: matkap almadıysan evin en değerli şeyi gözünün
+önünde durur ve dokunamazsın. Sökme işlemi ayrıca süre yiyor.
+
+## 30. Ölçek: M1'de 20 eşya, çıkışta 60+
+
+Denemede 20 eşyayla oynandı ve mekanik çalıştı. Çıkışa kadar kademeli büyür,
+C'nin yükü zamana yayılır.
+
+## 31. Kampanya 15–20 saat, ~25 USD bandı
+
+> **Maliyet uyarısı:** 15–20 görev × ~1 saat demek. 60+ eşya, 5 ev tipi ve geniş
+> alıcı havuzu gerektiriyor. Üç kişilik ekip için ciddi içerik yükü.
+>
+> 12 aylık takvimde bu hacim tutmazsa **kısaltmak yerine çıkışı ertelemek** doğru
+> olur; yarım içerikle 25 USD istemek en kötü seçenek.
+
+## 32. Serbest modda borç yok
+
+Baskısız toplama ve satma; rahatlama modu.
+
+> **Çözülmesi gereken:** borç bu oyunun merkezi sayacı. *"Bu köpekli eve neden
+> giriyorum?"* → *"çünkü cuma ödeme var."* Borç gidince o cevap da gidiyor.
+>
+> Serbest modun kendi baskısı olmalı: koleksiyon, hedefler, yükseltme zinciri
+> ya da zorluk kademeleri. Karar verilmedi ama "borç yok" tek başına yeterli
+> bir tasarım değil.
