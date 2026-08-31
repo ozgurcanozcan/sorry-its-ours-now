@@ -3,6 +3,7 @@
     "rootNamespace": "Oyun.Testler",
     "references": [
         "Oyun",
+        "Oyun.Editor",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"
     ],

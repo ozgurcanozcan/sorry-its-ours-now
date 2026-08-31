@@ -120,6 +120,29 @@ kontrolü için gerekecek.
 
 ---
 
+## 6. Bulgu: Unity batch, test başarısızlığında da 0 döndürüyor
+
+**Karar değil, ölçüm.** 31.08.2026'da sürüklenme testi bilerek kırıldı
+(bir `.asset` elle bozuldu). Sonuç:
+
+```
+testler: 60 toplam, 59 geçti, 1 kaldı
+Unity çıkış kodu: 0
+```
+
+`docs/ajan-kurallari.md` şu otomasyonu planlıyor:
+
+> PR açıldı → Unity batch: derle + EditMode testleri koştur → sonucu PR'a yaz
+
+**Bu otomasyon çıkış koduna bakarsa kırık testleri yeşil geçirir.**
+`-testResults` XML'indeki `failed="..."` sayısı ayrıştırılmalı.
+
+Aynı ölçüm sürüklenme testinin de çalıştığını gösterdi: `.asset` katalogdan
+ayrıştığı anda `UretilmisVarliklarKataloglaAyni` kırılıyor. Hibrit veri
+kararının ön koşulu karşılandı.
+
+---
+
 ## Bu kararların dokunduğu yerler
 
 ```
