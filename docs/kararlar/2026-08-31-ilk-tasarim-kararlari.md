@@ -217,3 +217,51 @@ depoda **yer kaplar**.
 
 Tamir süreleri de bu takvimde ölçülüyor: "üç gün sürer" demek "Cuma'ya yetişir mi?"
 demek.
+
+---
+
+# 31.08.2026 — Ritim (altıncı tur)
+
+**Onaylayan:** Özgür (B)
+
+## 16. Saatli gün: 09:00 – 00:00, Schedule I modeli
+
+Gün sabah dokuzda başlar, gece yarısında **duvara çarpar**. 00:00'dan sonra
+hiçbir işlem yapılamaz; oyuncu sadece boş boş dolaşır ve "günü bitir" demek
+zorunda kalır.
+
+Ceza ekranı değil, bir **his**: geç kaldın, elin kolun bağlı, depoda dikiliyorsun.
+Ezik bir kötü adamın gecesi — tona denk düşüyor.
+
+13 numaralı karar ("günü oyuncu bitirir") böylece 14 ile uzlaştı: bitirmeyi
+oyuncu yapar, ama ne zaman bitireceğini saat söyler.
+
+## 17. Bir günde birden fazla iş yapılabilir
+
+Zaman yeterse. Küçük gecekonduyu öğleden önce bitirip ikinciye gidilebilir.
+
+*"Bu eve girersem akşama yetişir miyim?"* sorusu iş seçiminin parçası oluyor.
+
+## 18. Sahada gerçek zamanlı sayaç
+
+Eylem başına harcama değil. Oyalanmak da koşturmak da gerçek zaman yer.
+
+Denemedeki "hamle bütçesi" bu değildi — o, konsolda gerçek zaman olmadığı için
+kullanılan bir kuklaydı.
+
+## 19. Tek eşya, elde taşınır
+
+Envanter yok, cep yok. Her eşya için kamyona gidip gelinir.
+
+**Sonuçları (üçü de istenen):**
+- Mesafe önem kazanır → oda yerleşimi (C) doğrudan oynanışa dokunur
+- Büyük eşya gerçekten yorucu olur → ağırlık hissedilen bir şey olur
+- Komik olur → kanepeyi kapıdan geçirmek bu oyunun görsel şakası
+
+**Doğan denge sorunu:** tek eşya + gerçek zamanlı sayaç birleşince bağlayıcı
+kısıt kapasite değil **süre** olma riski var. Kamyon hiç dolmadan zaman biterse
+"neyi alıp neyi bırakıyorum" sorusu "neye yetişebilirim"e indirgenir. İkisinin
+de bağlayıcı olması gerekiyor; ancak oynayarak ayarlanır.
+
+**Acil hâle gelen soru:** iki kişi gerektiren eşyalar (buzdolabı, gardırop,
+koltuk takımı) tek kişilikte nasıl alınıyor?

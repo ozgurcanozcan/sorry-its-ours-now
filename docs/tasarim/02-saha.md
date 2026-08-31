@@ -11,6 +11,39 @@ Her eşya bu dördünün kesişiminde bir bulmaca:
 Bir eşyayı almak bu dördünden en az ikisine dokunmuyorsa o eşya karar değil,
 toplama işidir.
 
+## Taşıma: tek eşya, elde *(karar: 31.08.2026)*
+
+Oyuncu **aynı anda tek eşya taşır** ve onu elinde tutar. Her eşya için kamyona
+gidip gelmek gerekir.
+
+Envanter yok, cep yok. Gümüş çay takımı da elde taşınır, gardırop da.
+
+Bunun üç sonucu var ve üçü de istenen:
+
+- **Mesafe önem kazanır.** Evin arka odasındaki bir eşya, kapının yanındakinden
+  pahalıya mal olur. Oda yerleşimi (C'nin işi) doğrudan oynanışa dokunur.
+- **Büyük eşya gerçekten yorucudur.** Ağırlık bir sayı değil, hissedilen bir şey.
+- **Komiktir.** Kanepeyi kapıdan geçirmeye çalışmak bu oyunun görsel şakası.
+
+## Süre: gerçek zamanlı sayaç *(karar: 31.08.2026)*
+
+Sahada gerçek zamanlı bir geri sayım işler. Eylem başına harcama değil —
+oyalanmak da, koşturmak da gerçek zaman yer.
+
+> **Not:** deneme sürümündeki "hamle bütçesi" bu değildi. O, konsolda gerçek
+> zaman olmadığı için kullanılan bir kuklaydı. Gerçek oyunda süre sahnedeki
+> hareketten doğuyor: koridorun uzunluğu, merdiven, dar kapı, kamyona kaç kez
+> gidip geldiğin.
+
+### Doğan denge sorunu
+
+Tek eşya taşıma + gerçek zamanlı sayaç birleşince **bağlayıcı kısıt kapasite
+değil süre olma riski taşıyor.** Kamyon hiç dolmadan zaman biterse "neyi alıp
+neyi bırakıyorum" sorusu "neye yetişebilirim"e indirgenir.
+
+İkisinin de bağlayıcı olması gerekiyor: bazı günler kamyon dolmalı, bazı günler
+zaman bitmeli. Bu ancak oynayarak ayarlanır.
+
 ## Mekanikler
 
 ### Değerleme
@@ -88,11 +121,16 @@ dokuma kilim çıkıyordu; hem kurgu bozuluyor hem antika nadirliği eriyordu.
 
 ## Açık sorular
 
-- [ ] Oyuncu aynı anda kaç eşya taşıyabiliyor? Tek mi, birkaç mı?
-- [ ] Kamyona gidip gelme var mı, yoksa eşya alınca doğrudan kamyona mı sayılıyor?
-- [ ] Süre gerçek zamanlı sayaç mı, yoksa eylem başına mı harcanıyor?
+- [x] Tek eşya, elde *(karar: 31.08.2026)*
+- [x] Kamyona gidip gelinir — tek eşya taşındığı için zorunlu *(31.08.2026)*
+- [x] Gerçek zamanlı sayaç *(karar: 31.08.2026)*
 - [ ] Ev sahibi konuşuyor mu? (seslendirme / gıdıklama sesi / sadece yazı)
 - [ ] Köpek ve komşu M1'de var mı, sonraya mı kalıyor?
 - [ ] Dar itibar somut olarak nasıl işliyor? Kaç kötü davranıştan sonra dosyalar
       kötüleşir, oyuncu bunu nereden anlar, geri kazanılabilir mi?
 - [ ] Aletler ne işe yarıyor? (levye = kilitli oda, el arabası = kapasite?)
+- [ ] **İki kişi gereken eşyalar tek kişilikte nasıl alınıyor?** Sürüklenerek mi
+      (yavaş), el arabasıyla mı, yoksa hiç alınamıyor mu? Tek eşya taşıma kararı
+      bu soruyu acil hâle getirdi.
+- [ ] Kamyon nerede park ediyor? Eve uzaklığı sabit mi, ev tipine göre değişiyor mu?
+      (Apartmanda sokakta, gecekonduda kapının önünde gibi.)

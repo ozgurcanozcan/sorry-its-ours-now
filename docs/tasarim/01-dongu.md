@@ -47,28 +47,46 @@ ve o hafta boyunca depoda **yer kaplar**.
 Tamir süreleri de bu takvimde ölçülüyor: *"üç gün sürer"* demek *"Cuma'ya
 yetişir mi?"* demek.
 
-### Çözülmesi gereken gerilim
+### Saatli gün: 09:00 – 00:00 *(karar: 31.08.2026)*
 
-"Günü oyuncu bitirir" ile "depoda saat işler" birbirine tam oturmuyor.
-Saat işliyorsa gün kendiliğinden de bitiyor demektir. İki okuma var:
+Gün sabah dokuzda başlar, gece yarısında **duvara çarpar.**
 
-- **Saatli gün:** günün bir açılış–kapanış aralığı var (09:00–18:00 gibi).
-  Saat dolunca gün biter; "günü bitir" erken kapatma seçeneğidir. Cuma
-  müzayedesinin de bir saati vardır — geç kalırsan kaçırırsın.
-- **İşlem sayaçlı gün:** saat yok, eylem var. Depodaki her işlem günden bir
-  parça yer. Gün, işlem bütçesi bitince ya da oyuncu isteyince biter.
+Saat 00:00'ı geçince hiçbir işlem yapılamaz — dosya alınamaz, sahaya çıkılamaz,
+tamir verilemez, lot kurulamaz. Oyuncu sadece **boş boş dolaşır** ve "günü bitir"
+demek zorunda kalır. (Schedule I'deki gibi.)
 
-Birincisi daha zengin (müzayede saati, tamirci mesaisi, "yetişemedim" gerilimi),
-ikincisi daha sade. Karar verilmedi.
+Bu bir ceza ekranı değil, bir **his**: geç kaldın, elin kolun bağlı, depoda
+dikiliyorsun. Oyunun tonuna denk düşüyor — ezik bir kötü adamın gecesi.
+
+Yani "günü oyuncu bitirir" hâlâ doğru, ama **ne zaman bitireceğini saat
+söylüyor.** Erken bitirmek serbest; geç kalmak boş vakit demek.
+
+### Birden fazla iş *(karar: 31.08.2026)*
+
+Zaman yeterse bir günde birden fazla haciz yapılabilir. Küçük bir gecekonduyu
+öğleden önce bitirip öğleden sonra ikinciye gidebilirsin.
+
+Bu, saatli günle doğal çalışıyor: *"bu eve girersem akşama yetişir miyim?"*
+sorusu iş seçiminin parçası oluyor.
+
+### Açık: gerçek zaman ↔ oyun zamanı oranı
+
+15 saatlik bir gün var ve sahada gerçek zamanlı sayaç işliyor. Oranın ne olacağı
+kararlaştırılmadı.
+
+> **Kısıt (sayı değil):** bir günün toplam gerçek süresi, oyuncunun bir oturuşta
+> birkaç gün oynayabileceği kadar kısa olmalı. Tek bir gün 45 dakika sürerse
+> haftalık ritim (5 gün + Cuma) bir oturuşa sığmaz ve "Cuma'ya yetiştirme"
+> gerilimi hissedilmez.
 
 ## Açık: kampanyanın uzunluğu
 
-Gün serbest olunca kampanyanın kaç saat ettiği de belirsizleşiyor. Bu, oyunun
-fiyatını doğrudan etkiliyor — M2'de ölçülmesi gereken bir şey.
+Gün uzunluğu oranı belirlenince kampanyanın kaç saat ettiği de çıkacak.
+Bu, oyunun fiyatını doğrudan etkiliyor — M2'de ölçülmesi gereken bir şey.
 
 ## Açık sorular
 
-- [ ] Bir günde kaç iş alınabiliyor? Tek mi, birden fazla mı?
+- [x] Zaman yeterse birden fazla *(karar: 31.08.2026)*
 - [ ] Oyuncu bir işi reddedebiliyor mu? Reddetmenin bedeli ne?
 - [ ] Aşamalar sıralı mı, yoksa oyuncu istediğinde müzayedeye gidebiliyor mu?
       (Bekletme mekaniği varsa ikincisi gerekli olabilir.)
