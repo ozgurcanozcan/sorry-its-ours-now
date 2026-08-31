@@ -67,8 +67,7 @@ Kampanya bitince **Serbest Mod**: tüm kademeler açık, sınırsız prosedürel
 - [x] **Rakip şirket: hafif dokunuş** *(karar: 31.08.2026)*. Bazı iş emirleri
       "kapılmış" gelir, arada müzayedede karşına çıkıp fiyatı yükseltir. Ayrı bir
       rakip AI'ı yok. Açık kalan: kaç dosya kapılıyor, hangi sıklıkta salona geliyor?
-- [ ] Para nereye harcanıyor? Kamyon ve alet dışında ne var — depo, personel,
-      lisans, reklam?
+- [x] Kamyon, depo, alet ve işletme giderleri (tamir vb.) *(karar: 31.08.2026)*
 - [ ] Ekipman satın alınabiliyor mu, yoksa sadece kademe ilerledikçe mi geliyor?
 - [ ] Kampanya kaç saat sürmeli? Fiyatı ve içerik miktarını bu belirler.
 - [ ] Final kararı (temize çık / rakibi yut) iki farklı son mu, yoksa tek son

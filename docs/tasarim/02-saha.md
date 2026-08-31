@@ -11,19 +11,35 @@ Her eşya bu dördünün kesişiminde bir bulmaca:
 Bir eşyayı almak bu dördünden en az ikisine dokunmuyorsa o eşya karar değil,
 toplama işidir.
 
-## Taşıma: tek eşya, elde *(karar: 31.08.2026)*
+## Taşıma: elde tek eşya + 5 paylaşımlı slot *(karar: 31.08.2026)*
 
-Oyuncu **aynı anda tek eşya taşır** ve onu elinde tutar. Her eşya için kamyona
+İki farklı taşıma yolu var:
+
+**Elde** — orta ve büyük eşyalar. Aynı anda **tek tane**. Her biri için kamyona
 gidip gelmek gerekir.
 
-Envanter yok, cep yok. Gümüş çay takımı da elde taşınır, gardırop da.
+**Slotta** — küçük eşyalar cebe/çantaya girer. **5 slot var ve aletlerle
+paylaşılır.**
 
-Bunun üç sonucu var ve üçü de istenen:
+> **Doğan takas: alet mi, kapasite mi?**
+>
+> Levye ve el arabası aldıysan geriye 3 slot kalır — o sefer cebe atabileceğin
+> küçük eşya sayısı üçtür. Alet almazsan beş küçük eşya taşırsın ama kilitli
+> odayı açamaz, gardırobu kaldıramazsın.
+>
+> Bu, hazırlık aşamasındaki *"neyi feda ediyorsun?"* sorusunu her sefere yayıyor.
+> Alet seçimi bir kez değil, sürekli hissediliyor.
+
+Elde taşımanın üç sonucu var, üçü de istenen:
 
 - **Mesafe önem kazanır.** Evin arka odasındaki bir eşya, kapının yanındakinden
   pahalıya mal olur. Oda yerleşimi (C'nin işi) doğrudan oynanışa dokunur.
 - **Büyük eşya gerçekten yorucudur.** Ağırlık bir sayı değil, hissedilen bir şey.
 - **Komiktir.** Kanepeyi kapıdan geçirmeye çalışmak bu oyunun görsel şakası.
+
+**Hangi eşya küçük sayılır:** hacimden türetilmiyor, her eşyada **ayrı bir
+işaret** var (`cebeGirer`). Yağlıboya tablo hacimce küçük ama ince ve geniş —
+cebe girmemeli. Elle karar verilebilmesi gerekiyor.
 
 ## Süre: gerçek zamanlı sayaç *(karar: 31.08.2026)*
 
@@ -132,11 +148,6 @@ Yatak, mutfak eşyası, mesleki alet. Hukuki doğruluk aranmıyor, basitleştiri
 **Karar (denemede alındı):** yasak eşyanın bedeli **para cezası değil, sahada
 zorluk.** Gizlice çıkarmak süre yer, gürültü çıkarır, ev sahibini üstüne çeker.
 Para cezası zayıf kalıyordu — oyuncu hesabı yapıp yine alıyordu ve karar ölüyordu.
-
-### Engeller
-Ev sahibi · köpek · komşu (polis sayacı) · dar kapı · asansörsüz kat · kilitli oda.
-
-**Açık:** her birinin nasıl çalıştığı. Şu an sadece liste.
 
 ### İtibar — dar hâliyle *(karar: 31.08.2026)*
 Ayrı bir ilerleme ağacı **yok**. Sadece ceza tarafı var: yasak eşya almak, yalan

@@ -9,8 +9,8 @@ Oyunun diğer yarısı. "Çöpü sanat eseri diye pazarlama" kısmı.
 | Lot kurma | Tek tek veya set. Uyumlu set çarpan alır. | Tanımlı |
 | Rezerv | Alt fiyat. Yüksek = satmama riski, düşük = yakma riski. | Tanımlı |
 | Alıcılar | Farklı kategoriye farklı para veren kişilikler | Tanımlı |
-| Piyasa | Haftalık trend, haber bülteninden sezilebilir | **Açık** |
-| Restorasyon | Zaman + para → değer çarpanı. Her eşyada kâr etmez. | **Açık** |
+| Piyasa | Haftalık kategori trendi, depodaki bilgisayardan takip edilir | Kalıyor |
+| Restorasyon | Tamirci hizmeti, depoda. Zaman + para → kondisyon kademesi. | Tanımlı |
 | Katalog | Abartılı ilan → daha çok alıcı, ama iş emirleri kötüleşir | Dar itibara bağlı |
 
 ## Kilitli karar: canlı salon yok
@@ -49,8 +49,8 @@ anlamlı olması için **eşyanın elde kalıp sonra tekrar çıkarılabilmesi**
 
 - [x] Satılmayan eşya **depoda kalır**, sonraki müzayedeye tekrar çıkarılabilir
       *(karar: 31.08.2026)*. Bekletmenin bedeli hâlâ açık — `07-depo.md`
-- [ ] Piyasa trendi oyunda kalıyor mu? Kalıyorsa oyuncu nereden öğreniyor?
-- [ ] Restorasyon var mı? Varsa mini oyun mu, tek tuş mu, zaman mı harcıyor?
+- [x] Piyasa trendi kalıyor, depodaki bilgisayardan okunur *(karar: 31.08.2026)*
+- [x] Restorasyon = tamirci hizmeti, depoda *(karar: 31.08.2026)* — `07-depo.md`
 - [ ] Katalog abartma kalıyor (bedeli: iş emri kalitesinin düşmesi). Açık olan,
       abartmanın nasıl yapıldığı — kaydırıcı mı, hazır ifade seçimi mi?
 - [ ] Lot kurma arayüzü nasıl? Sürükle-bırak mı, liste mi?

@@ -302,3 +302,48 @@ koruyorsa, önüne geçiyorsa orada bir şey vardır.
 Köpek ve komşu (polis sayacı) sonraki miladlara. Dar kapı, asansörsüz kat ve
 kilitli oda mekân kaynaklı engeller olarak kalıyor — C'nin oda kitinden doğuyorlar,
 ayrı sistem gerektirmiyorlar.
+
+---
+
+# 31.08.2026 — Slot, kapasite, piyasa (sekizinci tur)
+
+**Onaylayan:** Özgür (B)
+
+## 24. Alet rafı 5 slot — VE küçük eşyalarla paylaşılır
+
+> **Bu karar, 19 numaralı kararı GÜNCELLER.** 19'da "tek eşya, elde, envanter yok"
+> denmişti. Artık: orta/büyük eşya elde ve tek tek, **küçük eşya slota girer**,
+> slotlar aletlerle ortak.
+
+Levye + el arabası aldıysan geriye 3 slot kalır — o sefer taşıyabileceğin küçük
+eşya sayısı üçtür.
+
+**Doğan takas: alet mi, kapasite mi?** Hazırlıktaki "neyi feda ediyorsun?" sorusu
+her sefere yayılıyor; alet seçimi bir kez değil sürekli hissediliyor.
+
+## 25. Küçük eşya ayrı bir işaretle belirlenir (`cebeGirer`)
+
+Hacimden türetilmiyor. Yağlıboya tablo hacimce küçük ama ince ve geniş — cebe
+girmemeli. Otomatik kural bunu ayırt edemez.
+
+## 26. Depo kapasitesi hacimle ölçülür (m³)
+
+Eşyaların zaten hacmi var, kamyon da hacimle ölçülüyor. Tek birim, tek mantık.
+
+## 27. Piyasa trendi kalıyor — bilgisayardan takip edilir
+
+Haftalık kategori dalgalanması. Depodaki bilgisayarda okunur.
+
+Bekleme kararını zenginleştiriyor: *"bu hafta antika prim yapıyor, kilimi şimdi
+çıkarayım"* ya da *"beyaz eşya düşmüş, gelecek haftaya bırakayım."*
+
+Bilgisayarın rolü genişliyor: dosya + hesap + tamirci + **piyasa**.
+
+## 28. Para harcama kalemleri
+
+- Kamyon yükseltmesi
+- Depo yükseltmesi
+- Alet satın alma
+- **İşletme giderleri** — tamir ücreti ve benzeri iş kalemleri
+
+Borç ödemesi bunlarla yarışıyor: *"bugünü mü yarını mı besliyorsun?"*

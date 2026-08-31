@@ -51,8 +51,9 @@ Bu tek kısıt üç şeyi birden çözüyor:
 > ilerlemenin kendisi — ama denge kurulurken depo kapasitesi eşya hacimleriyle
 > aynı ölçekte tutulmalı. Denemede kamyon kapasitesi bu yüzden kırılmıştı.
 
-**Açık:** kapasite neyle ölçülüyor — eşya sayısı mı, hacim mi? Hacim daha
-tutarlı olur (eşyaların zaten hacmi var, kamyon da hacimle ölçülüyor).
+**Kapasite hacimle ölçülür (m³)** *(karar: 31.08.2026)*. Eşyaların zaten hacmi
+var ve kamyon da hacimle ölçülüyor — tek birim, tek mantık. Gardırop çok yer
+kaplar, gümüş takım az.
 
 ## Tamirci *(karar: 31.08.2026)*
 
@@ -132,10 +133,11 @@ Bilinen adaylar: matkap, levye, el arabası, battaniye.
 Bunlar `02-saha.md`'deki engellere cevap veriyor: kilitli oda, ağır eşya,
 kırılganlık.
 
-**Açık:** kaç slot? İki alet mi üç mü — bu sayı "neyi feda ediyorsun" kararının
-sertliğini belirliyor.
+**5 slot** *(karar: 31.08.2026)* — ve bu slotlar **küçük eşyalarla paylaşılır**
+(`02-saha.md`). Alet almak, o sefer taşıyacağın küçük eşya sayısını düşürür.
 
-**Açık:** aletler satın mı alınıyor, kademeyle mi geliyor? Yıpranıyor mu?
+Aletler **para ile satın alınıyor** *(karar: 31.08.2026)* — erken oyunda gerçek
+bir tercih. Yıpranıp yıpranmadığı açık.
 
 ## Depo bir ilerleme ekseni
 
@@ -153,9 +155,9 @@ Oyun ilerledikçe daha gelişmiş depolara geçilir:
 
 ## Açık sorular
 
-- [ ] Depo kapasitesi neyle ölçülüyor — eşya sayısı mı, hacim mi?
+- [x] Hacim (m³) *(karar: 31.08.2026)*
 - [ ] Kaç kademe depo, her biri neyi açıyor?
-- [ ] Kaç alet slotu?
+- [x] 5 slot, küçük eşyalarla paylaşımlı *(karar: 31.08.2026)*
 - [ ] Aletler satın mı alınıyor, yıpranıyor mu?
 - [ ] Kaç tamirci, fiyat/hız/beceri dengesi nasıl, nasıl açılıyorlar?
 - [x] Başarısızlıkta para ve süre gider, eşya bozulmaz *(karar: 31.08.2026)*

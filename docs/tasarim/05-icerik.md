@@ -101,3 +101,16 @@ olduğunu uzaktan ayırt edebilmeli. Sekiz kategori var.
 - [ ] Alıcı havuzu kaç kişi?
 - [ ] Her ev tipi için oda ve eşya sayısı
 - [ ] Palet — C belirleyecek
+
+## Yeni alan: `cebeGirer` *(karar: 31.08.2026)*
+
+Küçük eşyalar 5 paylaşımlı slota giriyor (`02-saha.md`). Hangi eşyanın küçük
+sayılacağı **hacimden türetilmiyor**, her eşyada ayrı bir işaret var.
+
+Sebep: yağlıboya tablo hacimce küçük (0.12 m³) ama ince ve geniş — cebe girmemeli.
+Otomatik kural bunu ayırt edemez, elle karar verilebilmeli.
+
+Güncel eşya alan seti:
+
+`ad · id · kategori · taban değer · ağırlık · hacim · kırılgan · haczedilebilir ·
+bolluk · değer belirsizliği · ikiKişiGerekir · cebeGirer · klasman`
