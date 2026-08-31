@@ -68,6 +68,32 @@ Yükseltmenin dokunduğu dosyalar: `packages-lock.json`,
 Ayrıca iki yeni ayar dosyası geldi: `PhysicsCoreProjectSettings2D.asset`,
 `ProjectAuditorSettings.asset`.
 
+### Ek doğrulama: gerçek GUI açılışı, batch modun kaçırdığını yakaladı
+
+Aynı gün, Onat'ın makinesinde proje **gerçekten Unity Editor arayüzünde**
+açıldı (batch modda değil, tam açılıp Package Manager'ın bitmesi beklenerek).
+Sonuç, yukarıdaki batch mod doğrulamasıyla kısmen çelişiyordu:
+
+- **`packages-lock.json`'da (gerçekte çözümlenen sürüm) URP zaten `17.5.0`**
+  — "17.3.0'da kaldı" tespiti yanlış değildi ama eksikti: lock dosyası
+  görünmeden önce güncellenmiş, sadece **`manifest.json` (istenen sürüm
+  metni) hâlâ `17.3.0` yazıyordu.**
+- Batch mod açılışı **5 dosyayı hiç dokunmadan bırakmış**: `manifest.json`,
+  `Mobile_RPAsset.asset`, `PC_RPAsset.asset`, `PackageManagerSettings.asset`,
+  `URPProjectSettings.asset` (asset sürüm numaraları, materyal versiyonu,
+  yansıma probu atlası gibi alanlar). Gerçek GUI açılışında bunlar da
+  güncellendi.
+
+**Sonuç:** `-batchmode -quit -nographics` ile yapılan bir sürüm doğrulaması
+**yeterli değil** — bazı asset-seviyesi migrasyonlar, Editor'ün render
+pipeline'ı gerçekten yükleyip Scene View'u çizmesini gerektiriyor gibi
+duruyor, headless modda tetiklenmiyor. Bu 5 dosya da eklendi.
+
+> **Kural (yeni):** Unity sürüm yükseltmesi doğrulanırken **hem batch modda
+> hem gerçek Editor arayüzünde** açılıp iki sonucun `git status`'u
+> karşılaştırılmalı. Sadece batch mod "temiz" (0 hata) demek, migrasyonun
+> eksiksiz olduğu anlamına gelmiyor.
+
 ### Sürüm yükseltme kuralları — bundan sonrası için
 
 Unity içinde ileri yükseltme mümkün, **geri dönüş değil**: Unity projeyi eski
