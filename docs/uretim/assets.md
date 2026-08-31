@@ -60,6 +60,15 @@ farklı** (biz 1 m modül + 0.10 m kalınlık + 2.70 m kat kullanıyoruz, karar 
    orijinal formatı .dae, ölçüm Python ile ham XML okunarak yapıldı. Gerçekten
    kullanılacaksa dönüştürme adımı (ör. eski Blender sürümü ya da başka bir
    araç) gerekecek.
+5. **Kenney'nin FBX'i Unity'de varsayılan ayarla ~10 kat büyük içe aktarılıyor.**
+   Blender'da OBJ üzerinden ölçülen boyut doğruydu (tabloda yazan), ama gerçek
+   Unity iş akışında (FBX + varsayılan import ayarı) ayrı bir hata çıktı —
+   dosyanın içine gömülü `UnitScaleFactor: 100` (2018 tarihli, eski bir FBX
+   ihracı) Unity'nin `Use File Scale` otomatik hesabını bozuyor. Gerçek Unity
+   Editor'de sınandı (Onat gözüyle) ve doğrulandı: **`Use File Scale`
+   kapatılıp `Scale Factor: 0.1` elle girilince** mesh boyutu Blender ölçümüyle
+   birebir eşleşiyor. Kenney kullanılacaksa bu içe aktarma ayarı **her FBX'e
+   tek tek uygulanmalı**, varsayılana güvenilmemeli.
 
 ## Alınacak Kararlar
 
