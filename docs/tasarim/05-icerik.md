@@ -34,6 +34,19 @@ Ve bu **görsel olarak desteklenecek** — oyuncu bakınca ayırt edebilmeli.
 vertex renk mi? Bu C'nin ilk mimari kararlarından biri ve 20 eşyanın hepsini
 etkiliyor, erken verilmeli.
 
+## Ürün klasmanı — tanımlanacak
+
+Tamir sisteminin ihtiyaç duyduğu yeni bir eşya özelliği: **klasman**, yani
+eşyanın tamir zorluğu. Tamircinin becerisiyle birlikte başarı ihtimalini
+belirliyor (`07-depo.md`).
+
+Sezgisel olarak: tüplü televizyon kolay, yağlıboya tablo zor. Ama bu kategoriyle
+aynı şey değil — aynı kategoride kolay ve zor eşyalar olabilir.
+
+**Açık:** klasman kaç kademe? Kategoriden mi türüyor, ayrı bir alan mı, yoksa
+taban değerle mi ilişkili? (Pahalı olan zor olsun demek basit bir kural olurdu
+ama "ucuz ama zor" eşyaları imkânsız kılar.)
+
 > Eşya tablosunun kendisi taşınacak (denemede dolduruldu ve dengesi ölçüldü),
 > ama önce kategori listesi ve alan setinin son hâli onaylanmalı.
 

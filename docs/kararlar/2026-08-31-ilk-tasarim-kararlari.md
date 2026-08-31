@@ -142,3 +142,40 @@ katlanır. Doğru yol **tek model + kondisyon katmanı**: aynı mesh, üstüne
 malzeme değişimi veya decal (toz, çizik, çatlak, ezik, sararma).
 
 Bu, low-poly stiline de uygun — kondisyon biçimden değil yüzeyden okunur.
+
+---
+
+# 31.08.2026 — Tamir derinleşti (dördüncü tur)
+
+**Onaylayan:** Özgür (B)
+
+## 10. Kaç kademe tamir edileceğini oyuncu seçer
+
+Bir kademe ucuz ve hızlı, iki kademe pahalı ve uzun.
+`hasarlı → eski` ya da `hasarlı → iyi durumda`.
+
+Her eşyada ikinci bir soru daha doğuyor: *"yarım mı bırakayım, sonuna kadar mı
+gideyim?"* Cuma müzayedesine yetişmesi gereken eşyada tek kademe akıllıca olabilir.
+
+## 11. Tamir başarısız olabilir
+
+Başarı ihtimali iki şeye bağlı:
+- **Ürün klasmanı** — eşyanın tamir zorluğu (yeni kavram, tanımlanacak)
+- **Tamircinin becerisi** — ucuz/acemi ya da pahalı/usta
+
+İki kademe atlamak doğal olarak daha riskli.
+
+### Doğan kural: ihtimal önceden gösterilir
+
+Oyuncu "onayla" demeden önce başarı yüzdesini görmeli.
+
+> Gördüğü hâlde riske girdiyse bu bir **karar**.
+> Görmeden başına geldiyse bu bir **ceza**.
+
+Kondisyonun görünür olmasıyla aynı mantık: kararı verebilmek için gereken bilgi
+oyuncuda olmalı. Gizli kalan **sonuç** olmalı, **olasılık** değil.
+
+### Açılan yeni kavram: ürün klasmanı
+
+Eşyanın tamir zorluğu. Kategoriyle aynı şey değil — aynı kategoride kolay ve zor
+eşyalar olabilir. `05-icerik.md`'ye eklendi, tanımlanmayı bekliyor.

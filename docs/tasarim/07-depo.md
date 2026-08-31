@@ -83,17 +83,46 @@ Bunun güzelliği: el becerisi değil, **zamanlama ve ekonomi kararı**.
 > Ayrıca oyuncu eşyasının nerede olduğunu görmeye devam ediyor — "eşyam
 > kayboldu" kafa karışıklığı olmuyor.
 
-**Açık:** kaç tamirci var? Dealer's Life'ta farklı tamircilerin fiyat, hız ve
-kalite dengesi farklı — ucuz ve yavaş, pahalı ve hızlı, ya da riskli olan.
-Aynı yapı buraya da uyar ama karar verilmedi.
+### Kaç kademe — oyuncu seçer *(karar: 31.08.2026)*
 
-**Açık:** tamir sonucu kesin mi? Kademe yükselmesi garanti mi, yoksa başarısız
-olabiliyor mu? Riskli tamirciler ucuz, güvenilir olanlar pahalı olabilir —
-ama başarısızlık sinir bozucu olabilir, dikkatli denenmeli.
+Tamir bir kademe de yükseltebilir, iki kademe de. **Seçim oyuncunun.**
 
-**Açık:** hasarlı bir eşya iki kademe birden çıkabilir mi (hasarlı → iyi durumda),
-yoksa tavanı "eski" mi? İkincisi sahada dikkatli olmayı ödüllendirir: kırdığın
-eşyayı asla tam geri kazanamazsın.
+`hasarlı → eski` ucuz ve hızlı.
+`hasarlı → iyi durumda` pahalı ve uzun.
+
+Yani her eşyada ikinci bir soru daha var: *"yarım mı bırakayım, sonuna kadar
+mı gideyim?"* Cuma müzayedesine yetişmesi gereken bir eşyada tek kademe akıllıca
+olabilir.
+
+### Başarısızlık ihtimali *(karar: 31.08.2026)*
+
+Tamir garantili değil. Başarı ihtimali iki şeye bağlı:
+
+- **Ürün klasmanı** — eşyanın tamir zorluğu *(tanımlanacak, bkz. `05-icerik.md`)*
+- **Tamircinin becerisi** — ucuz ve acemi mi, pahalı ve usta mı
+
+İki kademe atlamak doğal olarak daha riskli.
+
+> **Kural: ihtimal önceden gösterilir.**
+>
+> Oyuncu "onayla" demeden önce başarı yüzdesini görmeli. Gördüğü hâlde riske
+> girdiyse bu bir **karar**; görmeden başına geldiyse bu bir **ceza**.
+>
+> Aynı mantık kondisyonun görünür olmasıyla aynı: kararı verebilmesi için
+> gereken bilgi oyuncuda olmalı. Gizli kalan şey **sonuç** olmalı, **olasılık**
+> değil.
+
+**Açık:** başarısızlıkta ne oluyor?
+- Para ve süre gider, eşya aynı kalır *(en yaygın ve en adil)*
+- Para gider, süre gitmez (hemen belli olur)
+- Eşya bir kademe daha iner *(sert — muhtemelen fazla)*
+
+**Açık:** başarısızlık sürenin sonunda mı belli oluyor, hemen mi? Sonunda olması
+daha dramatik ama üç gün bekleyip elin boş dönmesi sinir bozabilir.
+
+**Açık:** kaç tamirci var ve nasıl açılıyorlar? Fiyat / hız / beceri üçgeninde
+farklılaşmalılar. Daha iyi tamirciler depo kademesiyle mi geliyor, itibarla mı,
+parayla mı?
 
 ## Aletler — sınırlı slot *(karar: 31.08.2026)*
 
@@ -129,8 +158,10 @@ Oyun ilerledikçe daha gelişmiş depolara geçilir:
 - [ ] Kaç kademe depo, her biri neyi açıyor?
 - [ ] Kaç alet slotu?
 - [ ] Aletler satın mı alınıyor, yıpranıyor mu?
-- [ ] Kaç tamirci, fiyat/hız/kalite dengesi nasıl?
-- [ ] Tamir sonucu kesin mi, riskli mi?
+- [ ] Kaç tamirci, fiyat/hız/beceri dengesi nasıl, nasıl açılıyorlar?
+- [ ] Başarısızlıkta ne oluyor — para+süre mi gidiyor, eşya da mı bozuluyor?
+- [ ] Başarısızlık sürenin sonunda mı belli oluyor, hemen mi?
+- [ ] Ürün klasmanı nasıl belirleniyor? (`05-icerik.md`)
 - [ ] Depoda geçen süre oyun gününden mi yiyor, serbest mi?
 - [ ] Sahadan dönünce eşyalar otomatik mi boşalıyor, elle mi taşınıyor?
 - [ ] Depo mekânı kaç oda? Tek büyük hacim mi, bölmeli mi?
