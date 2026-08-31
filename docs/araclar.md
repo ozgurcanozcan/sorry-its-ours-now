@@ -10,7 +10,7 @@ dosyası = kayıp gün.
 
 | Araç | Sürüm | Not |
 |------|-------|-----|
-| **Unity** | `6000.3.23f1` (Unity 6.3 LTS) | Unity Hub → Installs → Add |
+| **Unity** | `6000.5.10f1` | Unity Hub → Installs → Add. Değişti: 31.08.2026, `docs/kararlar/` |
 | Render Pipeline | URP | Proje oluştururken "Universal 3D" şablonu |
 | **Rider** | Güncel | Ticari olmayan kullanımda ücretsiz |
 | **Cursor** | Güncel | |
