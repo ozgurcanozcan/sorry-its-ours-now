@@ -103,3 +103,42 @@ yetişir mi?"*
 > para, süre ve yer.
 >
 > Yan fayda: oyuncu eşyasının nerede olduğunu görmeye devam ediyor.
+
+---
+
+# 31.08.2026 — Kondisyon sistemi (üçüncü tur)
+
+**Onaylayan:** Özgür (B)
+
+## 9. Eşyalar üç kondisyondan birinde: hasarlı · eski · iyi durumda
+
+Sürekli bir "durum" sayısı değil, üç ayrık hâl. Denemede 0.55–1.25 arası
+sürekli bir çarpandı; ayrık hâle geçiliyor.
+
+**Gerekçe:** hem okunabilirlik hem üretilebilirlik. Oyuncu bakınca anlamalı,
+C sonsuz ara hâl modellememeli.
+
+**Kondisyon görsel olarak desteklenecek.** Oyuncu etiket okumadan ayırt edebilmeli.
+
+### Doğan kural: kondisyon görünür, değer görünmez
+
+Oyuncu eşyanın hasarlı mı iyi mi olduğunu bakarak anlar; ne ettiğini bilmez.
+Belirsizlik kondisyondan değil, piyasadan ve salonda kimin olduğundan gelir.
+
+Kondisyon da gizli olsaydı oyuncunun elinde hiçbir bilgi kalmaz, karar kumara
+dönerdi.
+
+### Bağlı değişiklikler
+
+- **Kırılgan eşya düşerse bir kademe iner** (iyi → eski → hasarlı). Denemede
+  "değerin yarısı gider" şeklindeydi; kademe hem okunaklı hem görsel.
+- **Tamir bir kademe yükseltir** ve **tahmin aralığı güncellenir** — oyuncu
+  ne kazandığını görür. (Karar 8'in tamamlayıcısı.)
+
+### C için üretim uyarısı
+
+20 eşya × 3 kondisyon = 60 görünüm. Üç ayrı model olarak yapılırsa üretim üçe
+katlanır. Doğru yol **tek model + kondisyon katmanı**: aynı mesh, üstüne
+malzeme değişimi veya decal (toz, çizik, çatlak, ezik, sararma).
+
+Bu, low-poly stiline de uygun — kondisyon biçimden değil yüzeyden okunur.

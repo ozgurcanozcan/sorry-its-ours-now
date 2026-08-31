@@ -17,9 +17,30 @@ toplama işidir.
 Gerçek değer gizli. Oyuncu bir aralık görür (`~400–1.200 ₺`), deneyimle daralır.
 Ayrıntı: `03-muzayede.md`.
 
+### Kondisyon — üç hâl *(karar: 31.08.2026)*
+
+Her eşya üç kondisyondan birinde: **hasarlı · eski · iyi durumda**.
+
+Sürekli bir sayı değil, üç ayrık hâl. Sebebi hem okunabilirlik hem üretim:
+oyuncu bakınca anlayabilmeli, C de sonsuz ara hâl modellemek zorunda kalmamalı.
+
+> **Kural: kondisyon görünür, değer görünmez.**
+>
+> Oyuncu eşyanın hasarlı mı iyi mi olduğunu **bakarak** anlar. Ama o eşyanın
+> ne ettiğini bilmez. Belirsizlik kondisyondan değil, piyasadan ve salonda
+> kimin olduğundan gelir.
+>
+> Bu ayrım önemli: kondisyon da gizli olsaydı oyuncunun elinde hiçbir bilgi
+> kalmaz, karar kumara dönerdi.
+
+Kondisyon **görsel olarak desteklenir** — oyuncu etiket okumadan ayırt edebilmeli.
+
 ### Fizik
-Ağırlık, hacim, kırılganlık. Düşen televizyon değerinin yarısını kaybeder.
-Bazı eşyalar tek kişiyle taşınamaz.
+Ağırlık, hacim, kırılganlık. Bazı eşyalar tek kişiyle taşınamaz.
+
+Kırılgan eşya düşerse **bir kondisyon kademesi iner** (iyi → eski → hasarlı).
+Denemede "değerin yarısı gider" şeklindeydi; kademe sistemi hem daha okunaklı
+hem görsel olarak gösterilebilir.
 
 ### Gizli değer
 Yatak altı, dolap arkası, çerçeve arkası, dondurucu. Aramak süre yer.

@@ -62,7 +62,11 @@ Temizleme ve tamir **mini oyun değil, hizmet.** Dealer's Life 2'deki gibi:
 2. Ücret ödenir
 3. **Eşya depoda kalır ama kilitlenir** — üstünde `TAMİRDE · Kalan süre: 3 gün`
    uyarısı görünür. Alınamaz, lota konamaz, satılamaz.
-4. Süre dolunca kilit kalkar, eşya değeri artmış olarak kullanıma döner
+4. Süre dolunca kilit kalkar, eşya **bir kondisyon kademesi yükselmiş** olarak
+   kullanıma döner ve **tahmin aralığı güncellenir** — oyuncu ne kazandığını görür
+
+Tamir, `02-saha.md`'deki üç kondisyon üzerinden çalışır:
+`hasarlı → eski → iyi durumda`
 
 Bunun güzelliği: el becerisi değil, **zamanlama ve ekonomi kararı**.
 
@@ -83,8 +87,13 @@ Bunun güzelliği: el becerisi değil, **zamanlama ve ekonomi kararı**.
 kalite dengesi farklı — ucuz ve yavaş, pahalı ve hızlı, ya da riskli olan.
 Aynı yapı buraya da uyar ama karar verilmedi.
 
-**Açık:** tamir sonucu kesin mi? "300 ₺ verdin, değer %40 arttı" mı, yoksa
-"artabilir de bozabilir de" mi? İkincisi gerilim katar ama sinir bozucu olabilir.
+**Açık:** tamir sonucu kesin mi? Kademe yükselmesi garanti mi, yoksa başarısız
+olabiliyor mu? Riskli tamirciler ucuz, güvenilir olanlar pahalı olabilir —
+ama başarısızlık sinir bozucu olabilir, dikkatli denenmeli.
+
+**Açık:** hasarlı bir eşya iki kademe birden çıkabilir mi (hasarlı → iyi durumda),
+yoksa tavanı "eski" mi? İkincisi sahada dikkatli olmayı ödüllendirir: kırdığın
+eşyayı asla tam geri kazanamazsın.
 
 ## Aletler — sınırlı slot *(karar: 31.08.2026)*
 

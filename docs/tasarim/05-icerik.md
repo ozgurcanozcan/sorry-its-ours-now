@@ -15,6 +15,25 @@ Antikanın nadir olması şart — her ev antika doluysa değer biçme gerilimi 
 **Kategoriler:** Mobilya · Elektronik · Antika · Mutfak · Kişisel · Çöp ·
 Beyaz Eşya · Aletler
 
+## Kondisyon — üretim maliyeti *(karar: 31.08.2026)*
+
+Her eşya üç kondisyondan birinde: **hasarlı · eski · iyi durumda**.
+Ve bu **görsel olarak desteklenecek** — oyuncu bakınca ayırt edebilmeli.
+
+> **C için kritik karar:** 20 eşya × 3 kondisyon = 60 farklı görünüm.
+> Bunu üç ayrı model olarak yaparsak üretim üçe katlanır ve iş oraya gömülür.
+>
+> Doğru yol: **tek model + kondisyon katmanı.** Aynı mesh, üstüne malzeme
+> değişimi veya decal — toz, çizik, çatlak, ezik, sararma. Böylece yeni bir
+> eşya eklemek hâlâ tek model demek olur.
+>
+> Bu yaklaşım oyunun stiline de uygun: low-poly'de kondisyon farkı biçimden
+> değil yüzeyden okunur.
+
+**Açık:** kondisyon katmanı nasıl kurulacak — malzeme varyantı mı, decal mı,
+vertex renk mi? Bu C'nin ilk mimari kararlarından biri ve 20 eşyanın hepsini
+etkiliyor, erken verilmeli.
+
 > Eşya tablosunun kendisi taşınacak (denemede dolduruldu ve dengesi ölçüldü),
 > ama önce kategori listesi ve alan setinin son hâli onaylanmalı.
 
