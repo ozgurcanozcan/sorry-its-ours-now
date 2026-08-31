@@ -18,7 +18,7 @@
 
 ## İlk kurulum
 
-**1. Unity Hub'dan `6000.3.23f1` (Unity 6.3 LTS) kur.** Modüller:
+**1. Unity Hub'dan `6000.5.10f1` (Unity 6.5) kur.** Modüller:
 `Windows Build Support (IL2CPP)` ve `Documentation`.
 
 **2. Git LFS ve repo:**
@@ -44,6 +44,7 @@ Ayrıntılar: [`docs/araclar.md`](docs/araclar.md)
 | [`docs/ajan-kurallari.md`](docs/ajan-kurallari.md) | AI araçlarının uyacağı kurallar |
 | [`docs/plan.md`](docs/plan.md) | Kilometre taşları, M1 kapsamı, haftalık görev dağılımı |
 | [`docs/tasarim/`](docs/tasarim/) | Oyun tasarımı — 7 belge |
+| [`docs/uretim/`](docs/uretim/) | Sanat üretim şemaları — ölçü, pivot, ihraç ayarları |
 | `docs/kararlar/` | Tarihli karar kaydı — ne, neden, kim |
 | `docs/gorevler/` | Ajanlara verilen şartnameler |
 
@@ -70,12 +71,14 @@ Assets/
     Scenes/     Boot MainMenu Office Field Auction
     UI/
   ThirdParty/   <- dışarıdan gelen her şey ayrı
+Kaynak/
+  Blender/      <- model üreten script'ler; çıktıları commit edilmez
 docs/
 ```
 
 ## Durum — 31 Ağustos 2026
 
-Tasarım ve plan yazıldı. **52 karar** alındı, hepsi gerekçesiyle
+Tasarım ve plan yazıldı. **63 karar** alındı, hepsi gerekçesiyle
 [`docs/kararlar/`](docs/kararlar/) altında kayıtlı.
 
 Sırada **Unity projesinin kurulması** ve M1'in 1. haftası var
@@ -84,4 +87,6 @@ Sırada **Unity projesinin kurulması** ve M1'in 1. haftası var
 İlk işler:
 - **A** — Field sahnesi ve birinci şahıs kontrol
 - **B** — tohumlu rastgelelik ve eşya veri şablonu
-- **C** — Blender→Unity akışını kanıtlamak (ölçek, pivot, ihraç)
+- **C** — Blender tarafı bitti: ev kiti 9 parça script'le üretildi
+  ([`docs/uretim/ev-kiti.md`](docs/uretim/ev-kiti.md)). Unity içe aktarma testi
+  Unity projesi `dev`'e girince yapılacak.

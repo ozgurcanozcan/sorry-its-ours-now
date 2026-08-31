@@ -1,6 +1,6 @@
 # Sorry, It's Ours Now
 
-Unity 6 (`6000.3.23f1`, URP) oyunu. Birinci şahıs, stilize low-poly, kara komedi:
+Unity 6 (`6000.5.10f1`, URP) oyunu. Birinci şahıs, stilize low-poly, kara komedi:
 gündüz borçlunun evini boşalt, akşam müzayedede sat.
 
 Ekip: **A** Çağatay (saha) · **B** Özgür (sistem/UI) · **C** Onat (teknik sanat).
