@@ -485,3 +485,47 @@ Eşyaları tezgâha koyup grupluyorsun. Depo fiziksel mekân olduğu için tutar
 >
 > Erken çözüm: eşyayı tezgâha koyunca kendiliğinden gruplanması, ve "geçen
 > haftaki lotu tekrarla" gibi bir kısayol. Ama önce oynanıp görülmeli.
+
+---
+
+# 31.08.2026 — İçerik ölçeği ve final (on ikinci tur)
+
+**Onaylayan:** Özgür (B)
+
+## 41. Alıcı havuzu: M1'de 12, çıkışta 30+; her müzayedeye 8 kişi
+
+Eşya sayısıyla aynı mantık: prototipte az, çıkışta çok.
+
+> **Matematik uyarısı — M1'de nadirlik çalışmaz.**
+>
+> 12 kişilik havuzdan 8 kişi gelirse havuzun üçte ikisi her hafta salonda olur.
+> "Seyrek" işaretli bir alıcı bile iki haftada bir görünür.
+>
+> Oysa mekaniğin bütün gerilimi *"bu hafta Koleksiyoncu var mı?"* sorusunda.
+> 12/8 oranında o soru neredeyse hep "evet" cevabını alır.
+>
+> **Öneri:** M1'de gelen sayısı 8 değil **4–5** olsun. Havuz 12 kalsın.
+> Çıkışta havuz 30+'a çıkınca gelen sayısı 8'e yükselir ve oran doğru yere oturur.
+>
+> Alternatif: M1'de havuz 12 yerine 20 olsun. Ama bu C'nin değil B'nin yükü
+> (alıcılar veri, model değil), yani daha ucuz seçenek bu olabilir.
+>
+> Karar bekliyor — ama 12/8 kombinasyonu test edilmeden bırakılmamalı.
+
+## 42. "Çöp" kategorisi "Hurda" oldu
+
+Hurdacı alıcısıyla doğrudan eşleşiyor. "Çöp" değersiz çağrışımı yapıyordu; oysa
+bakır tesisat değerli.
+
+## 43. Kampanyada final kararı yok
+
+Borç kapanınca kampanya biter, serbest mod açılır. "Temize çık mı, rakibi yut mu"
+ikilemi kaldırıldı.
+
+Rakip şirket zaten hafif dokunuş *(karar 3)*; onu bir finale taşımak, olmayan
+bir sistemin üstüne son kurmak olurdu.
+
+## 44. Ev ölçeği ertelendi
+
+Kaç oda, kaç eşya — oynamadan karar verilmeyecek. Doğru yaklaşım: denemedeki
+ölçekle (3–4 oda / 12–15 eşya) başlanır, playtest'te ayarlanır.

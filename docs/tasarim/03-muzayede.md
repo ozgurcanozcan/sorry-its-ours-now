@@ -55,4 +55,7 @@ anlamlı olması için **eşyanın elde kalıp sonra tekrar çıkarılabilmesi**
       abartmanın nasıl yapıldığı — kaydırıcı mı, hazır ifade seçimi mi?
 - [x] Tezgâhta fiziksel *(karar: 31.08.2026)*
 - [x] Lot sınırı var, depo/kademeyle artar *(karar: 31.08.2026)*
-- [ ] Alıcı sayısı: havuzda kaç kişi, her seferinde kaç kişi gelecek?
+- [x] M1'de 12 havuz, çıkışta 30+; müzayedeye 8 kişi *(karar: 31.08.2026)*
+- [ ] **12 havuz / 8 gelen oranı gözden geçirilmeli.** Havuzun üçte ikisi her
+      hafta salonda olursa "bu hafta Koleksiyoncu var mı?" gerilimi kaybolur.
+      M1'de gelen sayısı 4–5 olmalı ya da havuz 20'ye çıkmalı.

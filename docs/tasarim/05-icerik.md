@@ -12,8 +12,11 @@ Deneme sürümünde 20 eşya tanımlandı ve dengesi denendi. Alanlar:
 **Bolluk** (1–10): bir evde bulunma sıklığı. Yatak 9, el dokuma kilim 1.
 Antikanın nadir olması şart — her ev antika doluysa değer biçme gerilimi kalmaz.
 
-**Kategoriler:** Mobilya · Elektronik · Antika · Mutfak · Kişisel · Çöp ·
+**Kategoriler:** Mobilya · Elektronik · Antika · Mutfak · Kişisel · **Hurda** ·
 Beyaz Eşya · Aletler
+
+*("Çöp" adı **Hurda** oldu — karar: 31.08.2026. Hurdacı alıcısıyla doğrudan
+eşleşiyor ve bakır tesisatın değerli olması "çöp" adıyla çelişiyordu.)*
 
 ## Kondisyon — üretim maliyeti *(karar: 31.08.2026)*
 
@@ -96,10 +99,11 @@ olduğunu uzaktan ayırt edebilmeli. Sekiz kategori var.
 
 ## Açık sorular
 
-- [ ] Kategori listesi kesin mi? "Çöp" mü "Hurda" mı — ad seçilmeli
+- [x] "Çöp" yerine **Hurda** *(karar: 31.08.2026)*
 - [x] M1.de 20, çıkışta 60+ *(karar: 31.08.2026)*
-- [ ] Alıcı havuzu kaç kişi?
-- [ ] Her ev tipi için oda ve eşya sayısı
+- [x] M1.de 12, çıkışta 30+; müzayedeye 8 kişi *(karar: 31.08.2026)* —
+      ama 12/8 oranı nadirliği öldürüyor, karar kaydına bak
+- [ ] Her ev tipi için oda ve eşya sayısı — bilerek ertelendi, playtestte
 - [ ] Palet — C belirleyecek
 
 ## Yeni alan: `cebeGirer` *(karar: 31.08.2026)*

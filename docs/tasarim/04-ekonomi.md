@@ -70,8 +70,7 @@ Kampanya bitince **Serbest Mod**: tüm kademeler açık, sınırsız prosedürel
 - [x] Kamyon, depo, alet ve işletme giderleri (tamir vb.) *(karar: 31.08.2026)*
 - [ ] Ekipman satın alınabiliyor mu, yoksa sadece kademe ilerledikçe mi geliyor?
 - [x] 15-20 saat, ~25 USD bandı *(karar: 31.08.2026)*
-- [ ] Final kararı (temize çık / rakibi yut) iki farklı son mu, yoksa tek son
-      iki renkte mi?
+- [x] Final kararı YOK. Borç kapanınca kampanya biter, serbest mod açılır.
 - [x] Serbest modda borç YOK *(karar: 31.08.2026)* — ama baskı kaynağı açık,
       aşağı bak
 

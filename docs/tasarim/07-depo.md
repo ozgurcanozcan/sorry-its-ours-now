@@ -120,9 +120,16 @@ Bu, riski gerçek ama adil kılıyor: kaybettiğin para ve zaman, elindeki mal d
 Cuma'ya yetiştirmek için riskli tamirciye verdiysen ve tutmadıysa, o hafta
 satamıyorsun — ceza zaten bu.
 
-**Açık:** kaç tamirci var ve nasıl açılıyorlar? Fiyat / hız / beceri üçgeninde
-farklılaşmalılar. Daha iyi tamirciler depo kademesiyle mi geliyor, itibarla mı,
-parayla mı?
+### Üç tamirci *(karar: 31.08.2026)*
+
+| | Fiyat | Hız | Beceri |
+|---|---|---|---|
+| **Acemi** | ucuz | yavaş | riskli |
+| **Orta** | orta | orta | orta |
+| **Usta** | pahalı | hızlı | güvenilir |
+
+**Şirket kademesi ilerledikçe açılırlar.** Erken oyunda tek seçeneğin acemi
+olması doğru: riski göze almak zorunda kalırsın, ilerledikçe rahatlarsın.
 
 ## Aletler — sınırlı slot *(karar: 31.08.2026)*
 
@@ -168,9 +175,11 @@ deponun içinde ayrı geliştirme yapılabiliyor: raf, tezgâh, bilgisayar.
 > farkları boyut ve yerleşim olsun. Malzeme ve detay seviyesi kademeyle artsın
 > (çıplak beton → boyalı duvar → düzgün aydınlatma).
 
-> Not: depo kademesi ile **şirket kademesi** (`04-ekonomi.md`) aynı şey değil.
-> Şirket kademesi hangi iş tiplerinin açıldığını söyler; depo kademesi fiziksel
-> kapasiteyi. İkisi bağlantılı olabilir ama ayrı tutulmalı.
+> **Depo kademesi ile şirket kademesi eşleşiyor ama aynı şey değil.**
+> Şirket kademesi hangi iş tiplerinin ve hangi tamircilerin açıldığını söyler;
+> depo kademesi fiziksel kapasiteyi. Beşer kademe oldukları için birlikte
+> ilerliyorlar, ama kodda ayrı tutulmalılar — ileride biri diğerinden
+> ayrılabilir.
 
 ## Açık sorular
 
