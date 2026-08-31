@@ -259,13 +259,7 @@ public static class SahaGreyboxAraci
         ornek.name = ad;
         ornek.transform.position = konum;
 
-        // FBX ice aktarimi carpisma eklemiyor. Carpisan olmadan duvar duvar degil,
-        // oyuncu icinden gecer ve test hicbir sey olcmez.
-        foreach (var suzgec in ornek.GetComponentsInChildren<MeshFilter>())
-        {
-            var carpisan = suzgec.gameObject.AddComponent<MeshCollider>();
-            carpisan.sharedMesh = suzgec.sharedMesh;
-        }
+        CarpisanEkle(ornek);
     }
 
     private const string VitrinKoku = "Vitrin";
@@ -313,6 +307,10 @@ public static class SahaGreyboxAraci
             var ornek = (GameObject)PrefabUtility.InstantiatePrefab(onKalip, kok.transform);
             ornek.name = onKalip.name;
             ornek.transform.localPosition = new Vector3((i % Sutun) * Aralik, 0f, (i / Sutun) * Aralik);
+
+            // Vitrinde de carpisan olmali: modellerin sadece boyutuna degil,
+            // etrafinda donerken nasil hissettirdigine de bakiliyor.
+            CarpisanEkle(ornek);
         }
 
         Debug.Log($"Vitrin kuruldu: {kimlikler.Length} model, kok x=30");
@@ -394,5 +392,22 @@ public static class SahaGreyboxAraci
         KapiTestiKur();
         VarlikVitriniKur();
         Debug.Log("Tam kurulum bitti: zemin + oyuncu + kapi testi + vitrin.");
+    }
+
+    // FBX ice aktarimi carpisan eklemiyor - Unity'nin varsayilani bu.
+    // Carpisan olmadan duvar duvar degil, esya esya degil: oyuncu icinden gecer.
+    // Hem kapi testinde hem vitrinde ayni sey gerekiyor, o yuzden tek yerde.
+    private static void CarpisanEkle(GameObject nesne)
+    {
+        foreach (var suzgec in nesne.GetComponentsInChildren<MeshFilter>())
+        {
+            if (suzgec.sharedMesh == null)
+            {
+                continue;
+            }
+
+            var carpisan = suzgec.gameObject.AddComponent<MeshCollider>();
+            carpisan.sharedMesh = suzgec.sharedMesh;
+        }
     }
 }
