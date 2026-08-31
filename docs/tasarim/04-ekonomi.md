@@ -64,8 +64,9 @@ Kampanya bitince **Serbest Mod**: tüm kademeler açık, sınırsız prosedürel
 
 ## Açık sorular
 
-- [ ] **Rakip şirket ne kadar derin?** Sadece hikâye unsuru mu, yoksa işleri
-      gerçekten kapan bir sistem mi? İkincisi ciddi iş.
+- [x] **Rakip şirket: hafif dokunuş** *(karar: 31.08.2026)*. Bazı iş emirleri
+      "kapılmış" gelir, arada müzayedede karşına çıkıp fiyatı yükseltir. Ayrı bir
+      rakip AI'ı yok. Açık kalan: kaç dosya kapılıyor, hangi sıklıkta salona geliyor?
 - [ ] Para nereye harcanıyor? Kamyon ve alet dışında ne var — depo, personel,
       lisans, reklam?
 - [ ] Ekipman satın alınabiliyor mu, yoksa sadece kademe ilerledikçe mi geliyor?

@@ -39,12 +39,13 @@ Ev sahibi · köpek · komşu (polis sayacı) · dar kapı · asansörsüz kat �
 
 **Açık:** her birinin nasıl çalıştığı. Şu an sadece liste.
 
-### İtibar
-"Memur oynarsan lisans yükselir, çakal oynarsan hızlı para + şikâyet."
+### İtibar — dar hâliyle *(karar: 31.08.2026)*
+Ayrı bir ilerleme ağacı **yok**. Sadece ceza tarafı var: yasak eşya almak, yalan
+ilan vermek gibi davranışlar **iş emirlerinin kalitesini düşürür**.
 
-**Açık ve tartışmalı:** bu ikinci bir ilerleme ekseni. Borç zaten merkezi sayaç
-(`04-ekonomi.md`). İki eksen birbiriyle yarışır mı, besler mi? Kapsam kesme
-sırasında itibar üst sıralardaydı — yani ilk kesilecekler arasında.
+Yani itibar bir puan değil, bir sonuç: kötü oynarsan bilgisayara düşen dosyalar
+kötüleşir. "Memur mu çakal mı" diye iki ayrı oynanış tarzı kurulmuyor — borç
+zaten merkezi sayaç, ikinci bir eksen dikkati böler.
 
 ## Deneme sürümünden çıkan ölçümler
 
@@ -71,5 +72,6 @@ dokuma kilim çıkıyordu; hem kurgu bozuluyor hem antika nadirliği eriyordu.
 - [ ] Süre gerçek zamanlı sayaç mı, yoksa eylem başına mı harcanıyor?
 - [ ] Ev sahibi konuşuyor mu? (seslendirme / gıdıklama sesi / sadece yazı)
 - [ ] Köpek ve komşu M1'de var mı, sonraya mı kalıyor?
-- [ ] İtibar sistemi oyunda kalıyor mu, kesiliyor mu?
+- [ ] Dar itibar somut olarak nasıl işliyor? Kaç kötü davranıştan sonra dosyalar
+      kötüleşir, oyuncu bunu nereden anlar, geri kazanılabilir mi?
 - [ ] Aletler ne işe yarıyor? (levye = kilitli oda, el arabası = kapasite?)

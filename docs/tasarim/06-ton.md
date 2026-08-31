@@ -27,13 +27,17 @@ ev sahibinin çaresizliğine gülmek — yasak. Ev sahibinin buzdolabına sarıl
 Ev sahibi engel, düşman değil. Yaklaşınca bağırır, süreyi hızlandırır, belki
 eşyaya sarılır. **Oyuncuya zarar vermez, oyuncu ona zarar veremez.**
 
-**Açık:** konuşuyor mu? Üç seçenek vardı — gerçek seslendirme, anlamsız
-gıdıklama sesi (Sims tarzı), sadece yazı. Yerellik kuralı gıdıklama sesini
-destekliyor: çeviri derdi yok, mizah evrensel kalıyor.
+**Karar (31.08.2026): gıdıklama sesi + yazı.** Anlamsız mırıltı sesle çıkar,
+söylediği konuşma balonunda yazılı görünür.
+
+İkisi birden olması iki işi birden çözüyor: **ses** baskı ve karakter verir
+(sessiz sahne gerilim taşımaz), **yazı** anlamı taşır ve çeviriye açıktır.
+Gerçek seslendirme maliyeti ve her dil için tekrar kayıt derdi yok.
 
 ## Açık sorular
 
-- [ ] Ev sahibi sesi: seslendirme / gıdıklama / yazı?
+- [ ] Gıdıklama sesi kaç çeşit? Ev sahibi tipine göre değişiyor mu (ince/kalın,
+      hızlı/yavaş), yoksa tek ses havuzu mu?
 - [ ] Bürokrasi mizahı nerede görünüyor? Sadece iş emri metinlerinde mi, yoksa
       arayüzün tamamı form estetiğinde mi?
 - [ ] Oyuncunun karakteri görünüyor mu (eller, gölge), yoksa tamamen görünmez mi?

@@ -11,7 +11,7 @@ Oyunun diğer yarısı. "Çöpü sanat eseri diye pazarlama" kısmı.
 | Alıcılar | Farklı kategoriye farklı para veren kişilikler | Tanımlı |
 | Piyasa | Haftalık trend, haber bülteninden sezilebilir | **Açık** |
 | Restorasyon | Zaman + para → değer çarpanı. Her eşyada kâr etmez. | **Açık** |
-| Katalog | Abartılı ilan → daha çok alıcı, ama yalan itibarı düşürür | **Açık** |
+| Katalog | Abartılı ilan → daha çok alıcı, ama iş emirleri kötüleşir | Dar itibara bağlı |
 
 ## Kilitli karar: canlı salon yok
 
@@ -47,11 +47,12 @@ anlamlı olması için **eşyanın elde kalıp sonra tekrar çıkarılabilmesi**
 
 ## Açık sorular
 
-- [ ] Satılmayan eşya ne oluyor? Depoda bekliyorsa bekletmenin bedeli ne
-      (kira? bayatlama? kapasite işgali?)
+- [x] Satılmayan eşya **depoda kalır**, sonraki müzayedeye tekrar çıkarılabilir
+      *(karar: 31.08.2026)*. Bekletmenin bedeli hâlâ açık — `07-depo.md`
 - [ ] Piyasa trendi oyunda kalıyor mu? Kalıyorsa oyuncu nereden öğreniyor?
 - [ ] Restorasyon var mı? Varsa mini oyun mu, tek tuş mu, zaman mı harcıyor?
-- [ ] Katalog abartma itibar sistemine bağlı — itibar kesilirse bu da kesilir mi?
+- [ ] Katalog abartma kalıyor (bedeli: iş emri kalitesinin düşmesi). Açık olan,
+      abartmanın nasıl yapıldığı — kaydırıcı mı, hazır ifade seçimi mi?
 - [ ] Lot kurma arayüzü nasıl? Sürükle-bırak mı, liste mi?
 - [ ] Oyuncu müzayedeye kaç lot çıkarabiliyor? Sınır var mı?
 - [ ] Alıcı sayısı: havuzda kaç kişi, her seferinde kaç kişi gelecek?
