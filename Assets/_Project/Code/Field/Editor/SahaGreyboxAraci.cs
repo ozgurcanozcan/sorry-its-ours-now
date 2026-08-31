@@ -53,8 +53,8 @@ public static class SahaGreyboxAraci
         // tek bir Plane ayni isi bedavaya goruyor.
         //
         // Ust yuzey Y=0 - ev kiti zemin kotu kurali.
-        zemin.transform.position = new Vector3(15f, 0f, 5f);
-        zemin.transform.localScale = new Vector3(5f, 1f, 3f);
+        zemin.transform.position = new Vector3(2.5f, 0f, 0f);
+        zemin.transform.localScale = new Vector3(7.5f, 1f, 5f);
     }
 
     private static void ReferansKupleri()
@@ -139,7 +139,7 @@ public static class SahaGreyboxAraci
     [MenuItem("Saha/Model Olculerini Dogrula")]
     public static void ModelOlculeriniDogrula()
     {
-        string[] kimlikler = AssetDatabase.FindAssets("t:Model", new[] { "Assets/_Project/Art/Models" });
+        string[] kimlikler = AssetDatabase.FindAssets("t:Model", new[] { "Assets/_Project/Art/Models", "Assets/ThirdParty" });
 
         if (kimlikler.Length == 0)
         {
@@ -245,7 +245,7 @@ public static class SahaGreyboxAraci
     {
         // Modeller EvKiti/ ve Esyalar/ alt klasorlerine bolunmus durumda; sabit yol
         // yerine ada gore araniyor ki klasor duzeni degisince kirilmasin.
-        string[] kimlikler = AssetDatabase.FindAssets($"{ad} t:Model", new[] { ModelKlasoru });
+        string[] kimlikler = AssetDatabase.FindAssets($"\"{ad}\" t:Model", new[] { ModelKlasoru, "Assets/ThirdParty" });
         string yol = kimlikler.Length > 0 ? AssetDatabase.GUIDToAssetPath(kimlikler[0]) : null;
         var onKalip = yol != null ? AssetDatabase.LoadAssetAtPath<GameObject>(yol) : null;
 
@@ -328,10 +328,11 @@ public static class SahaGreyboxAraci
     {
         EditorSceneManager.OpenScene(SahneYolu, OpenSceneMode.Single);
 
-        var kok = GameObject.Find(VitrinKoku);
+        // Hangi vitrin varsa onu cek; VNBP oncelikli cunku dokulu olan o.
+        var kok = GameObject.Find(VnbpKoku) ?? GameObject.Find(VitrinKoku);
         if (kok == null)
         {
-            Debug.LogError("Vitrin yok - once 'Saha/Varlik Vitrini Kur' calistirilmali.");
+            Debug.LogError("Vitrin yok - once 'Saha/Tam Kurulum' calistirilmali.");
             return;
         }
 
@@ -391,6 +392,8 @@ public static class SahaGreyboxAraci
         TestSahnesiKur();
         KapiTestiKur();
         VarlikVitriniKur();
+        VnbpVitriniKur();
+        VnbpKapiTestiKur();
         Debug.Log("Tam kurulum bitti: zemin + oyuncu + kapi testi + vitrin.");
     }
 
@@ -409,5 +412,229 @@ public static class SahaGreyboxAraci
             var carpisan = suzgec.gameObject.AddComponent<MeshCollider>();
             carpisan.sharedMesh = suzgec.sharedMesh;
         }
+    }
+
+    private const string VnbpKoku = "VitrinVNBP";
+    private const string VnbpKlasoru = "Assets/ThirdParty/VNBP-HomeSet/Models";
+
+    // VNBP setini AYRI bir vitrinde gosterir.
+    //
+    // Neden ayri: karar 64 "iki izgara ayni odada karistirilmaz" diyor. VNBP
+    // duvari 2.00 x 0.20 x 3.00 m, bizim kit 1 m modul / 0.10 kalinlik / 2.70 kat.
+    // Yan yana koymak hangi kitin secilecegi kararini gormeyi kolaylastirir ama
+    // ayni odaya sokmak yanlis olur - o yuzden ayri alan.
+    [MenuItem("Saha/VNBP Vitrini Kur")]
+    public static void VnbpVitriniKur()
+    {
+        var sahne = EditorSceneManager.OpenScene(SahneYolu, OpenSceneMode.Single);
+
+        var eski = GameObject.Find(VnbpKoku);
+        if (eski != null)
+        {
+            Object.DestroyImmediate(eski);
+        }
+
+        var kok = new GameObject(VnbpKoku);
+        kok.transform.position = new Vector3(26f, 0f, -18f);
+
+        string[] kimlikler = AssetDatabase.FindAssets("t:Model", new[] { VnbpKlasoru });
+        System.Array.Sort(kimlikler, (a, b) =>
+            string.CompareOrdinal(AssetDatabase.GUIDToAssetPath(a), AssetDatabase.GUIDToAssetPath(b)));
+
+        const int Sutun = 4;
+        const float Aralik = 3.5f;
+
+        for (int i = 0; i < kimlikler.Length; i++)
+        {
+            var onKalip = AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(kimlikler[i]));
+            if (onKalip == null)
+            {
+                continue;
+            }
+
+            var ornek = (GameObject)PrefabUtility.InstantiatePrefab(onKalip, kok.transform);
+            ornek.name = onKalip.name;
+            ornek.transform.localPosition = new Vector3((i % Sutun) * Aralik, 0f, (i / Sutun) * Aralik);
+            CarpisanEkle(ornek);
+        }
+
+        Debug.Log($"VNBP vitrini kuruldu: {kimlikler.Length} model, kok (26, 0, -18)");
+        EditorSceneManager.MarkSceneDirty(sahne);
+        EditorSceneManager.SaveScene(sahne, SahneYolu);
+    }
+
+    // Kapi bosluklarinin gercek genisligini ve yuksekligini olcer.
+    //
+    // Neden gerekli: sinir kutusu duvar panelinin disini veriyor, delik degil.
+    // Hangi kitin secilecegi karari (karar 64) kapi genisligine bagli - bizim
+    // kitte 0.80 m "dar kapi" engelinin kaynagi. VNBP'ninki bilinmeden karar
+    // verilemez. Olculur, tahmin edilmez.
+    //
+    // Yontem: duvarin onune bir sira isin atilir; carpmayan isinlar deliktir.
+    [MenuItem("Saha/Kapi Boslugu Olc")]
+    public static void KapiBoslugoOlc()
+    {
+        EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+
+        string[] adaylar = { "SM_DuvarKapi_1m", "Wall Standard Door" };
+        var rapor = new System.Text.StringBuilder();
+        rapor.AppendLine("Kapi boslugu olcumu (isin sondasi)");
+
+        foreach (string ad in adaylar)
+        {
+            string[] kimlikler = AssetDatabase.FindAssets($"\"{ad}\" t:Model",
+                new[] { "Assets/_Project/Art/Models", "Assets/ThirdParty" });
+
+            if (kimlikler.Length == 0)
+            {
+                rapor.AppendLine($"  {ad}: model bulunamadi");
+                continue;
+            }
+
+            var onKalip = AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(kimlikler[0]));
+            var ornek = (GameObject)PrefabUtility.InstantiatePrefab(onKalip);
+            ornek.transform.position = Vector3.zero;
+            CarpisanEkle(ornek);
+            Physics.SyncTransforms();
+
+            // Tarama duvarin KENDI sinirlariyla kisitli olmali. Yoksa isinlar
+            // duvarin yanindan gecer ve "bosluk" diye panelin disini olceriz.
+            Bounds? kutu = null;
+            foreach (var eleyici in ornek.GetComponentsInChildren<MeshRenderer>())
+            {
+                if (kutu.HasValue)
+                {
+                    var g = kutu.Value;
+                    g.Encapsulate(eleyici.bounds);
+                    kutu = g;
+                }
+                else
+                {
+                    kutu = eleyici.bounds;
+                }
+            }
+
+            if (!kutu.HasValue)
+            {
+                rapor.AppendLine($"  {ad}: MeshRenderer yok");
+                Object.DestroyImmediate(ornek);
+                continue;
+            }
+
+            Bounds b = kutu.Value;
+            // Kenarlardan 1 mm iceri girilir; tam sinirda isin duvari siyirabiliyor.
+            float xBas = b.min.x + 0.001f, xSon = b.max.x - 0.001f;
+            float yBas = b.min.y + 0.001f, ySon = b.max.y - 0.001f;
+            float onZ = b.min.z - 1f;
+
+            // Yatay tarama: kapi kanadi yuksekligi civarinda (1.0 m) delik aranir.
+            float genislik = Tara(xBas, xSon, 0.005f, x => new Vector3(x, 1.0f, onZ), Vector3.forward);
+
+            // Dikey tarama: deligin tam ortasindan.
+            float ortaX = OrtaNokta(xBas, xSon, 0.005f, x => new Vector3(x, 1.0f, onZ), Vector3.forward);
+            float yukseklik = Tara(yBas, ySon, 0.005f, y => new Vector3(ortaX, y, onZ), Vector3.forward);
+
+            rapor.AppendLine($"  {ad,-22} bosluk: {genislik:F2} m genis x {yukseklik:F2} m yuksek");
+            Object.DestroyImmediate(ornek);
+        }
+
+        Debug.Log(rapor.ToString());
+    }
+
+    // Verilen eksende, isinin carpmadigi kesintisiz en uzun araligin uzunlugu.
+    private static float Tara(float bas, float son, float adim,
+                              System.Func<float, Vector3> baslangic, Vector3 yon)
+    {
+        float enUzun = 0f, suanki = 0f;
+
+        for (float t = bas; t <= son; t += adim)
+        {
+            if (Physics.Raycast(baslangic(t), yon, 4f))
+            {
+                suanki = 0f;
+            }
+            else
+            {
+                suanki += adim;
+                if (suanki > enUzun)
+                {
+                    enUzun = suanki;
+                }
+            }
+        }
+
+        return enUzun;
+    }
+
+    // Kesintisiz bosluk araliginin orta noktasi.
+    private static float OrtaNokta(float bas, float son, float adim,
+                                   System.Func<float, Vector3> baslangic, Vector3 yon)
+    {
+        float enUzun = 0f, suanki = 0f, enIyiSon = bas;
+
+        for (float t = bas; t <= son; t += adim)
+        {
+            if (Physics.Raycast(baslangic(t), yon, 4f))
+            {
+                suanki = 0f;
+            }
+            else
+            {
+                suanki += adim;
+                if (suanki > enUzun)
+                {
+                    enUzun = suanki;
+                    enIyiSon = t;
+                }
+            }
+        }
+
+        return enIyiSon - enUzun * 0.5f;
+    }
+
+    private const string VnbpTestKoku = "VnbpKapiTesti";
+
+    // VNBP setiyle ikinci bir kapi testi. Gri kutu testinin batisinda, x=-22.
+    //
+    // Neden ayri alan: karar 64 iki izgarayi ayni odada karistirmayi yasakliyor.
+    // Karistirmak tasarimi da bozuyor - VNBP kapisi 1.06 m, bizim gardirop
+    // 1.00 m; karisik kurulumda gardirop kapidan geciyor ve "gardirop kapidan
+    // gecmez" sakasi oluyor. VNBP'nin kendi gardirobu 1.19 m, kendi kapisindan
+    // gecmiyor. Setler kendi iclerinde tutarli, karisim tutarsiz.
+    //
+    // Amac karsilastirma: ikisini de yuruyup hangi kitin secilecegine karar
+    // vermek (karar 64 bu karari A'ya birakiyor).
+    [MenuItem("Saha/VNBP Kapi Testi Kur")]
+    public static void VnbpKapiTestiKur()
+    {
+        var sahne = EditorSceneManager.OpenScene(SahneYolu, OpenSceneMode.Single);
+
+        var eski = GameObject.Find(VnbpTestKoku);
+        if (eski != null)
+        {
+            Object.DestroyImmediate(eski);
+        }
+
+        var kok = new GameObject(VnbpTestKoku);
+
+        // VNBP duvari 2.00 m genis, pivotu tabanda-merkezde (docs/uretim/assets.md).
+        // 2 m arayla dizilince kendiliginden bitisiyor.
+        Parca("Wall Standard", new Vector3(-26f, 0f, 5f), kok.transform);
+        Parca("Wall Standard Door", new Vector3(-24f, 0f, 5f), kok.transform);
+        Parca("Wall Standard", new Vector3(-22f, 0f, 5f), kok.transform);
+        Parca("Wall Standard Window 1", new Vector3(-20f, 0f, 5f), kok.transform);
+
+        // Kapinin arkasi: gardirop (1.19 m - kapidan gecmemeli) ve digerleri.
+        Parca("Wardrobe", new Vector3(-22f, 0f, 7f), kok.transform);
+        Parca("Fridge", new Vector3(-25f, 0f, 7f), kok.transform);
+        Parca("Washing Machine", new Vector3(-26.5f, 0f, 7f), kok.transform);
+        Parca("Dining Table", new Vector3(-24f, 0f, 9.5f), kok.transform);
+        Parca("Bed Base 1 1", new Vector3(-27.5f, 0f, 9.5f), kok.transform);
+        Parca("TV 1", new Vector3(-20.5f, 0f, 8f), kok.transform);
+        Parca("Rug 1", new Vector3(-24f, 0f, 12f), kok.transform);
+
+        Debug.Log("VNBP kapi testi kuruldu: x=-26..-20, kapi x=-24");
+        EditorSceneManager.MarkSceneDirty(sahne);
+        EditorSceneManager.SaveScene(sahne, SahneYolu);
     }
 }
