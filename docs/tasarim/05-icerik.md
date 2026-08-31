@@ -3,145 +3,127 @@
 Eşyalar, evler, alıcılar, palet. Bu belge **içerik envanteri** — mekanikler
 başka belgelerde, burada "ne kadar ve hangileri" var.
 
-## Eşyalar
+## Ölçek
 
-Deneme sürümünde 20 eşya tanımlandı ve dengesi denendi. Alanlar:
+| Ne | M1 (prototip) | Çıkış |
+|----|---------------|-------|
+| Eşya çeşidi | **20** | **60+** |
+| Alıcı havuzu | **12** | **30+** |
+| Müzayedeye gelen | 8 *(gözden geçirilmeli)* | 8 |
+| Ev tipi | 1–2 (gecekondu, daire) | 5 |
 
-`ad · kategori · taban değer · ağırlık · hacim · kırılgan · haczedilebilir · bolluk · değer belirsizliği`
+M1'de 20 eşya yeterli — denemede bu sayıyla oynandı ve mekanik çalıştı.
+Çıkışa kadar kademeli büyür, C'nin yükü zamana yayılır.
 
-**Bolluk** (1–10): bir evde bulunma sıklığı. Yatak 9, el dokuma kilim 1.
-Antikanın nadir olması şart — her ev antika doluysa değer biçme gerilimi kalmaz.
+> **12 havuz / 8 gelen oranı sorunlu.** Havuzun üçte ikisi her hafta salonda
+> olursa *"bu hafta Koleksiyoncu var mı?"* gerilimi kaybolur — oysa mekaniğin
+> bütün anlamı orada.
+>
+> M1'de gelen sayısı **4–5** olmalı, ya da havuz 20'ye çıkmalı. Alıcılar veri
+> (model değil), yani havuzu büyütmek C'ye değil B'ye yük.
+
+## Eşya veri alanları
+
+```
+ad · id · kategori · taban değer · ağırlık · hacim
+kırılgan · haczedilebilir · ikiKişiGerekir · cebeGirer · sabit
+bolluk · değer belirsizliği · klasman
+```
 
 **Kategoriler:** Mobilya · Elektronik · Antika · Mutfak · Kişisel · **Hurda** ·
 Beyaz Eşya · Aletler
 
-*("Çöp" adı **Hurda** oldu — karar: 31.08.2026. Hurdacı alıcısıyla doğrudan
-eşleşiyor ve bakır tesisatın değerli olması "çöp" adıyla çelişiyordu.)*
+*"Çöp" adı Hurda oldu (31.08.2026): Hurdacı alıcısıyla eşleşiyor, ve bakır
+tesisatın değerli olması "çöp" adıyla çelişiyordu.*
 
-## Kondisyon — üretim maliyeti *(karar: 31.08.2026)*
+### Alanların anlamı
 
-Her eşya üç kondisyondan birinde: **hasarlı · eski · iyi durumda**.
-Ve bu **görsel olarak desteklenecek** — oyuncu bakınca ayırt edebilmeli.
+**bolluk** (1–10) — bir evde bulunma sıklığı. Yatak 9, el dokuma kilim 1.
+Antikanın nadir olması şart; her ev antika doluysa değer biçme gerilimi kalmaz.
 
-> **C için kritik karar:** 20 eşya × 3 kondisyon = 60 farklı görünüm.
-> Bunu üç ayrı model olarak yaparsak üretim üçe katlanır ve iş oraya gömülür.
+**cebeGirer** — küçük eşya mı? 5 paylaşımlı slota giriyor (`02-saha.md`).
+Hacimden türetilmiyor: yağlıboya tablo hacimce küçük ama ince ve geniş, cebe
+girmemeli. Elle karar verilebilmeli.
+
+**sabit** — duvara/zemine bağlı. Radyatör, mutfak dolabı, bakır tesisat, klima,
+avize. **Matkap** olmadan hiç alınamaz; sökme işlemi ayrıca süre yer.
+
+**klasman** — tamir zorluğu. Tamircinin becerisiyle birlikte başarı ihtimalini
+belirler (`07-depo.md`).
+
+> **Açık:** klasman kaç kademe? Kategoriden mi türüyor, ayrı alan mı, taban
+> değerle mi ilişkili? "Pahalı olan zordur" basit bir kural olurdu ama
+> *"ucuz ama zor"* eşyaları imkânsız kılar — oysa o birleşim ilginç: kimsenin
+> tamir ettirmeye değmeyeceği bir şey.
+
+## Kondisyon — üretim maliyeti
+
+Her eşya üç kondisyondan birinde: **hasarlı · eski · iyi durumda**, ve bu
+**görsel olarak desteklenecek**.
+
+> **C için kritik karar:** 20 eşya × 3 kondisyon = 60 görünüm. Üç ayrı model
+> olarak yapılırsa üretim üçe katlanır.
 >
-> Doğru yol: **tek model + kondisyon katmanı.** Aynı mesh, üstüne malzeme
-> değişimi veya decal — toz, çizik, çatlak, ezik, sararma. Böylece yeni bir
-> eşya eklemek hâlâ tek model demek olur.
+> Doğru yol: **tek model + kondisyon katmanı** — aynı mesh, üstüne malzeme
+> değişimi veya decal (toz, çizik, çatlak, ezik, sararma). Yeni eşya eklemek
+> hâlâ tek model demek olur.
 >
-> Bu yaklaşım oyunun stiline de uygun: low-poly'de kondisyon farkı biçimden
-> değil yüzeyden okunur.
+> Low-poly stiline de uygun: kondisyon biçimden değil yüzeyden okunur.
 
-**Açık:** kondisyon katmanı nasıl kurulacak — malzeme varyantı mı, decal mı,
-vertex renk mi? Bu C'nin ilk mimari kararlarından biri ve 20 eşyanın hepsini
-etkiliyor, erken verilmeli.
-
-## Ürün klasmanı — tanımlanacak
-
-Tamir sisteminin ihtiyaç duyduğu yeni bir eşya özelliği: **klasman**, yani
-eşyanın tamir zorluğu. Tamircinin becerisiyle birlikte başarı ihtimalini
-belirliyor (`07-depo.md`).
-
-Sezgisel olarak: tüplü televizyon kolay, yağlıboya tablo zor. Ama bu kategoriyle
-aynı şey değil — aynı kategoride kolay ve zor eşyalar olabilir.
-
-**Açık:** klasman kaç kademe? Kategoriden mi türüyor, ayrı bir alan mı, yoksa
-taban değerle mi ilişkili? (Pahalı olan zor olsun demek basit bir kural olurdu
-ama "ucuz ama zor" eşyaları imkânsız kılar.)
-
-> Eşya tablosunun kendisi taşınacak (denemede dolduruldu ve dengesi ölçüldü),
-> ama önce kategori listesi ve alan setinin son hâli onaylanmalı.
+**Açık:** katman nasıl kurulacak — malzeme varyantı, decal, yoksa vertex renk?
+C'nin ilk mimari kararlarından biri, 20 eşyanın hepsini etkiliyor, erken verilmeli.
 
 ## Ev tipleri
 
 | Tip | Kademe | Karakteri |
 |-----|--------|-----------|
-| Gecekondu / tek katlı | 1 | Küçük, dar, az eşya |
-| Apartman dairesi | 2 | Merdiven, asansör yok, komşu |
-| Dükkân | 3 | Ticari envanter, mesleki alet |
+| Gecekondu / tek katlı | 1 | Küçük, dar, az eşya. Kamyon kapının önünde. |
+| Apartman dairesi | 2 | Merdiven, asansör yok. Kamyon sokakta. |
+| Dükkân | 3 | Ticari envanter, mesleki alet yasağı |
 | Lüks villa | 4 | Güvenlik, kamera, gerçek antika |
 | Fabrika / depo | 5 | Devasa eşya |
 
-**Açık:** her ev tipinde kaç oda, kaç eşya, hangi bolluk dağılımı?
+**Ertelendi:** her ev tipinde kaç oda, kaç eşya, hangi bolluk dağılımı.
+Denemedeki ölçekle (3–4 oda / 12–15 eşya) başlanır, playtest'te ayarlanır.
 
 ## Alıcılar
 
-Denemede 24 kişilik havuz kuruldu ve çalıştı. Her alıcının alanları:
+Alan seti:
 
-`ad · huy (tek cümle) · bütçe · kategori primleri · varsayılan çarpan · katılım sıklığı`
+```
+ad · huy (tek cümle) · bütçe · kategori primleri · varsayılan çarpan · katılım sıklığı
+```
 
-Havuzdan her müzayedeye 8 kişi geliyordu. Oyuncu havuzu görmüyor, oynayarak
-seziyor.
+Oyuncu havuzu **görmez**, oynayarak sezer. Katılım sıklığı gizli.
 
-**Açık:** 24 sayısı denemede seçildi, doğrulanmadı. Havuz kaç kişi olmalı,
-her seferinde kaç kişi gelmeli?
+Denemede 24 kişilik havuz kuruldu ve çalıştı; kişilikler (Antikacı, Hurdacı,
+Koleksiyoncu, Spekülatör, Emlakçı, Lokantacı, Emekli amca, Yabancı alıcı,
+Rakip firma sahibi…) taşınabilir.
 
 ## Ev sahipleri
 
 Karikatür figürler. Ağlayan değil, absürt derecede inatçı (`06-ton.md`).
 
-**Açık:** kaç farklı ev sahibi tipi? Her birinin ayrı davranışı mı var, yoksa
-tek davranış farklı görünüşler mi?
+Sadece engel değil, **bilgi kaynağı**: bir eşyayı fazla koruyorsa orada gizli
+değer vardır (`02-saha.md`).
+
+**Açık:** kaç farklı tip? Her birinin ayrı davranışı mı var, yoksa tek davranış
+farklı görünüşler mi?
 
 ## Renk paleti
 
-8–12 renk seçilecek. Low-poly'de tutarlılık modelden değil paletten gelir.
+8–12 renk. Low-poly'de tutarlılık modelden değil paletten gelir.
 
-| # | Hex | Kullanım |
-|---|-----|----------|
-| 1 | | |
-
-Ayrıca gri kutu aşamasında **kategori renkleri** lazım: oyuncu eşyanın ne
+Ayrıca **kategori renkleri** lazım (gri kutu aşamasında): oyuncu eşyanın ne
 olduğunu uzaktan ayırt edebilmeli. Sekiz kategori var.
 
 **Sahibi:** C (Onat).
 
 ## Açık sorular
 
-- [x] "Çöp" yerine **Hurda** *(karar: 31.08.2026)*
-- [x] M1.de 20, çıkışta 60+ *(karar: 31.08.2026)*
-- [x] M1.de 12, çıkışta 30+; müzayedeye 8 kişi *(karar: 31.08.2026)* —
-      ama 12/8 oranı nadirliği öldürüyor, karar kaydına bak
-- [ ] Her ev tipi için oda ve eşya sayısı — bilerek ertelendi, playtestte
-- [ ] Palet — C belirleyecek
-
-## Yeni alan: `cebeGirer` *(karar: 31.08.2026)*
-
-Küçük eşyalar 5 paylaşımlı slota giriyor (`02-saha.md`). Hangi eşyanın küçük
-sayılacağı **hacimden türetilmiyor**, her eşyada ayrı bir işaret var.
-
-Sebep: yağlıboya tablo hacimce küçük (0.12 m³) ama ince ve geniş — cebe girmemeli.
-Otomatik kural bunu ayırt edemez, elle karar verilebilmeli.
-
-Güncel eşya alan seti:
-
-`ad · id · kategori · taban değer · ağırlık · hacim · kırılgan · haczedilebilir ·
-bolluk · değer belirsizliği · ikiKişiGerekir · cebeGirer · klasman`
-
-## Ölçek *(karar: 31.08.2026)*
-
-| Ne | M1 (prototip) | Çıkış |
-|----|---------------|-------|
-| Eşya çeşidi | **20** | **60+** |
-| Ev tipi | 1–2 (gecekondu, daire) | 5 (+ dükkân, villa, fabrika) |
-| Alıcı | *(açık)* | *(açık)* |
-
-M1'de 20 eşya yeterli — denemede bu sayıyla oynandı ve mekanik çalıştı.
-Çıkışa kadar kademeli büyür, C'nin yükü zamana yayılır.
-
-## Yeni alan: `sabit` *(karar: 31.08.2026)*
-
-Matkap gerektiren eşyalar için. Duvara veya zemine bağlı: radyatör, mutfak
-dolabı, bakır tesisat, klima, avize.
-
-Alet olmadan **hiç alınamazlar** — envanterde görünmezler bile, sökülmeleri
-gerekir. Sökme işlemi ayrıca süre yer.
-
-Bu, alet kararının en sert hâli: matkap almadıysan evin en değerli şeyi gözünün
-önünde durur ve dokunamazsın.
-
-Güncel eşya alan seti:
-
-`ad · id · kategori · taban değer · ağırlık · hacim · kırılgan · haczedilebilir ·
-bolluk · değer belirsizliği · ikiKişiGerekir · cebeGirer · klasman · sabit`
+- [ ] Klasman kaç kademe, neye göre belirleniyor?
+- [ ] Kondisyon katmanı nasıl kurulacak (malzeme / decal / vertex renk)?
+- [ ] Her ev tipi için oda ve eşya sayısı — bilerek ertelendi
+- [ ] Kaç farklı ev sahibi tipi?
+- [ ] Renk paleti — C belirleyecek
+- [ ] Alıcı havuzu / gelen sayısı oranı gözden geçirilmeli
