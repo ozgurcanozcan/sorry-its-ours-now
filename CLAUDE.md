@@ -5,7 +5,22 @@ gündüz borçlunun evini boşalt, akşam müzayedede sat.
 
 Ekip: **A** Çağatay (saha) · **B** Özgür (sistem/UI) · **C** Onat (teknik sanat).
 
-Ayrıntılı kurallar: `docs/kurallar.md`, `docs/araclar.md`, `docs/ajan-kurallari.md`
+## Önce bunları oku
+
+| Belge | Ne zaman |
+|-------|----------|
+| `docs/plan.md` | Ne üzerinde çalışıldığını anlamak için — M1 kapsamı ve haftalık görevler |
+| `docs/kararlar/` | **Bir tasarım sorusu aklına geldiğinde ilk buraya bak.** 52 karar, hepsi gerekçeli |
+| `docs/tasarim/` | O alanda iş yapmadan önce ilgili dosyayı oku (00–07) |
+| `docs/kurallar.md` | Dal düzeni, klasör sahipliği, PR akışı |
+| `docs/araclar.md` | Unity / Rider / Cursor / Claude — kim ne zaman |
+| `docs/ajan-kurallari.md` | AI araçlarının uyacağı kurallar |
+
+**Bir tasarım kararı zaten verilmiş olabilir.** `docs/kararlar/` içinde ara; yoksa
+kullanıcıya sor, kendi başına karar verme. Verilen karar oraya yazılır.
+
+Tasarım tartışması ayrı bir sohbet penceresinde yürüyor. Buradaki iş **uygulama**;
+tasarım sorusu çıkarsa cevabı `docs/` altında aranır, orada yoksa sorulur.
 
 ## Dallar
 
