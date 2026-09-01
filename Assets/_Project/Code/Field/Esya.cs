@@ -56,6 +56,20 @@ namespace Oyun.Field
             {
                 // Sessizce durmasindansa soyle: prefab'i kuran kisi gorsun.
                 Debug.LogWarning($"{name}: EsyaTanimi atanmamis, esya verisiz calisiyor.", this);
+                return;
+            }
+
+            // Kutle veriden geliyor, prefab'dan degil.
+            //
+            // Neden: agirlik EsyaVerisi'nde tanimli ve tasima zorlugu ile
+            // ikiKisiGerekir esigi ona bakiyor. Prefab'da elle girilirse ayni
+            // sayi iki yerde durur ve kacinilmaz olarak ayrisir -- PR #10'da
+            // olculdu: televizyonun verisi 12 kg derken prefab'in kutlesi 1'di.
+            //
+            // Prefab kuran kisinin kutleye dokunmasi gerekmiyor.
+            if (Veri != null)
+            {
+                katiCisim.mass = Veri.Agirlik;
             }
         }
 
