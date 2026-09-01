@@ -81,7 +81,46 @@ namespace Oyun.Core
                 id: "tv", ad: "Televizyon", kategori: Kategori.Elektronik,
                 tabanDeger: 5950, agirlik: 12.0f, hacim: 0.048f,
                 kirilgan: true, haczedilebilir: true, ikiKisiGerekir: false,
-                cebeGirer: false, sabit: false, bolluk: 6)
+                cebeGirer: false, sabit: false, bolluk: 6),
+
+            // --- Cebe giren esyalar --------------------------------------------
+            //
+            // Ilk uc kucuk esya. 5 slotlu tasima sistemi (docs/tasarim/02-saha.md,
+            // PR #12) yazildi ama denenemedi: katalogda cebeGirer isaretli tek
+            // esya yoktu, yedisi de buyuk mobilyaydi.
+            //
+            // TABAN DEGERLERI OLCULEMEDI. Web aramasi somut rakam vermedi;
+            // bulunabilen tek veri "ikinci el telefon 0-17.500 TL" idi ve icinde
+            // 0 gectigi icin orta nokta kurali uygulanamaz. Ucu de asagidaki
+            // zayifTabanDeger listesinde; kisitlari EsyaKataloguTestleri koruyor.
+            //
+            // Olculer bilinen urun boyutlari -- esyalar.md'deki mobilya olculeri
+            // gibi, tahmin degil.
+
+            // 6 kisilik kutulu takim: kutu ~35 x 25 x 6 cm.
+            // Kategori Antika, Mutfak degil: Antikaci alicisinin hedefi ve
+            // koleksiyonluk. Mutfak olsaydi yasak listesine girerdi
+            // (docs/tasarim/02-saha.md: "yatak, mutfak esyasi, mesleki alet").
+            // Bu bir icerik karari -- degistirilmesi gerekiyorsa konusulmali.
+            new EsyaVerisi(
+                id: "gumus-takim", ad: "Gümüş Çatal Bıçak Takımı", kategori: Kategori.Antika,
+                tabanDeger: 6000, agirlik: 2.0f, hacim: 0.00525f,
+                kirilgan: false, haczedilebilir: true, ikiKisiGerekir: false,
+                cebeGirer: true, sabit: false, bolluk: 2),
+
+            // Kol saati: ~5 x 5 x 2 cm.
+            new EsyaVerisi(
+                id: "saat", ad: "Kol Saati", kategori: Kategori.Kisisel,
+                tabanDeger: 1500, agirlik: 0.1f, hacim: 0.00005f,
+                kirilgan: false, haczedilebilir: true, ikiKisiGerekir: false,
+                cebeGirer: true, sabit: false, bolluk: 4),
+
+            // Akilli telefon: ~16 x 8 x 1 cm. Kirilgan -- dusunce ekrani gider.
+            new EsyaVerisi(
+                id: "telefon", ad: "Cep Telefonu", kategori: Kategori.Elektronik,
+                tabanDeger: 4000, agirlik: 0.2f, hacim: 0.000128f,
+                kirilgan: true, haczedilebilir: true, ikiKisiGerekir: false,
+                cebeGirer: true, sabit: false, bolluk: 5)
         };
 
         // Taban degeri saglam piyasa verisine dayanmayan esyalar. Hafta 5
@@ -90,7 +129,14 @@ namespace Oyun.Core
         // Liste burada duruyor ki gozden kacmasin: bir testi var ve o test
         // listeyi katalogla birlikte tutuyor. Yeni esya eklerken olculmemis
         // deger koyarsan buraya da yazmadikca test kirilir.
-        static readonly string[] zayifTabanDeger = { "masa", "tv" };
+        static readonly string[] zayifTabanDeger =
+        {
+            "masa",         // belgenin tek referansi 6 kisilik takim, tek masa icin gecersiz
+            "tv",           // tek veri noktasi (~5.950 TL, 42")
+            "gumus-takim",  // arama somut rakam vermedi
+            "saat",         // arama somut rakam vermedi
+            "telefon"       // "0-17.500 TL" -- icinde 0 gecen aralik, orta noktasi anlamsiz
+        };
 
         static readonly Dictionary<string, EsyaVerisi> kimlige = Kur();
 

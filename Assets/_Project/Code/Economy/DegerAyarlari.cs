@@ -36,17 +36,21 @@ namespace Oyun.Economy
         /// "~400-1.200 TL" okunur, "~412-1.187 TL" okunmaz. Alt asagi, ust yukari
         /// yuvarlaniyor -- yakina yuvarlamak gercek degeri araligin disina itebilirdi.
         ///
-        /// Ama yuvarlama araligi GENISLETIYOR, yani belirsizligi artiriyor. Ucuz
-        /// esyada bu etki buyuk: 50'lik adim en ucuz esyanin araligini %20'ye
-        /// varan oranda sisiriyordu, yani olculmus +-%28 fiilen +-%34 gibi
-        /// davraniyordu. 25'te bu %10'un altina iniyor.
+        /// Ama yuvarlama araligi GENISLETIYOR, yani belirsizligi artiriyor.
+        /// Ucuz esyada bu etki buyuk. Katalog uzerinde olculdu:
+        ///
+        ///   adim 50 -> %20 sisme   (+-%28 fiilen +-%34 gibi)
+        ///   adim 25 -> %10.8       kol saati eklendiginde esigi asti
+        ///   adim 10 -> %4.5        secilen
         ///
         /// Saglamasi gereken kisit (DegerlemeTestleri koruyor): yuvarlama,
-        /// katalogdaki en ucuz esyanin en dar araligini %10'dan fazla
-        /// genisletmemeli. Kataloga cok ucuz bir esya (Hurda) girerse test kirilir
-        /// ve adim kucultulur.
+        /// katalogdaki en dar araligi %10'dan fazla genisletmemeli.
+        ///
+        /// Neden 20 degil: 20 de esigi geciyordu (%7.9) ama bir sonraki ucuz
+        /// esyada yine kirilirdi. 10, en kotu durumu esigin yarisinda tutuyor
+        /// ve Hurda kategorisi icin pay birakiyor.
         /// </remarks>
-        public const int VarsayilanYuvarlamaAdimi = 25;
+        public const int VarsayilanYuvarlamaAdimi = 10;
 
         public float YariGenislik { get; }
         public float KademeCarpani { get; }

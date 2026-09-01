@@ -3,6 +3,7 @@ using NUnit.Framework;
 using Oyun.Core;
 using Oyun.Editor;
 using UnityEditor;
+using UnityEngine;
 
 namespace Oyun.Testler
 {
@@ -11,11 +12,11 @@ namespace Oyun.Testler
         // --- Katalogun kendisi -------------------------------------------------
 
         [Test]
-        public void KatalogdaYediEsyaVar()
+        public void KatalogdaOnEsyaVar()
         {
-            // M1 hedefi 20; 7'si uretilmis durumda (docs/uretim/esyalar.md),
-            // kalani docs/plan.md Hafta 4'te. Sayi degisince bu test hatirlatsin.
-            Assert.AreEqual(7, EsyaKatalogu.Hepsi.Count);
+            // M1 hedefi 20. 7 buyuk esya (docs/uretim/esyalar.md) + 3 cebe giren.
+            // Kalani docs/plan.md Hafta 4'te. Sayi degisince bu test hatirlatsin.
+            Assert.AreEqual(10, EsyaKatalogu.Hepsi.Count);
         }
 
         [Test]
@@ -72,22 +73,71 @@ namespace Oyun.Testler
         }
 
         [Test]
-        public void SadeceTVKirilgan()
+        public void KirilganlarElektronikler()
         {
+            // Ekranli iki esya. Kirilgan olan duserse bir kondisyon kademesi
+            // iniyor (docs/tasarim/02-saha.md).
+            var beklenen = new HashSet<string> { "tv", "telefon" };
+
             foreach (var esya in EsyaKatalogu.Hepsi)
-                Assert.AreEqual(esya.Id == "tv", esya.Kirilgan, esya.Id);
+                Assert.AreEqual(beklenen.Contains(esya.Id), esya.Kirilgan, esya.Id);
         }
 
         [Test]
-        public void YediEsyaninHicbiriCebeGirmiyorVeSabitDegil()
+        public void CebeGirenEsyalarVar()
         {
-            // Yedisi de buyuk mobilya/beyaz esya. Cebe giren ve sabit esyalar
-            // (bakir tesisat, radyator) kalan 13'le birlikte gelecek.
+            // 5 slotlu tasima sistemi (docs/tasarim/02-saha.md) cebeGirer
+            // isaretine bakiyor. Isaretli esya olmazsa sistem denenemiyor --
+            // PR #12'de tam bu oldu.
+            var cebeGirenler = new List<string>();
+            foreach (var esya in EsyaKatalogu.Hepsi)
+                if (esya.CebeGirer) cebeGirenler.Add(esya.Id);
+
+            CollectionAssert.AreEquivalent(
+                new[] { "gumus-takim", "saat", "telefon" }, cebeGirenler);
+        }
+
+        [Test]
+        public void CebeGirenEsyalarTekKisilik()
+        {
+            // EsyaVerisi yapicisi zaten reddediyor; burada katalog seviyesinde
+            // de duruyor ki yeni esya eklerken kural gorunur olsun.
+            foreach (var esya in EsyaKatalogu.Hepsi)
+                if (esya.CebeGirer)
+                    Assert.IsFalse(esya.IkiKisiGerekir, esya.Id);
+        }
+
+        // Slotlarin VAR OLMA SEBEBI bu. docs/tasarim/02-saha.md 5 slotu aletlerle
+        // paylastiriyor ve "alet mi kapasite mi" takasini oradan kuruyor. Cebe
+        // giren esya, elde tasinan buyuk esyadan cok daha deger-yogun olmazsa
+        // slotu kullanmak anlamsizlasir: oyuncu hep buyuk esya tasir.
+        [Test]
+        public void CebeGirenlerDegerYogun()
+        {
+            float enDusukCep = float.MaxValue;
+            float enYuksekBuyuk = 0.0f;
+
             foreach (var esya in EsyaKatalogu.Hepsi)
             {
-                Assert.IsFalse(esya.CebeGirer, esya.Id);
-                Assert.IsFalse(esya.Sabit, esya.Id);
+                float yogunluk = esya.TabanDeger / esya.Hacim;
+
+                if (esya.CebeGirer) enDusukCep = Mathf.Min(enDusukCep, yogunluk);
+                else enYuksekBuyuk = Mathf.Max(enYuksekBuyuk, yogunluk);
             }
+
+            Assert.Greater(enDusukCep, enYuksekBuyuk,
+                "En az deger-yogun cep esyasi (" + enDusukCep.ToString("0") + " TL/m3), " +
+                "en yogun buyuk esyadan (" + enYuksekBuyuk.ToString("0") + " TL/m3) dusuk. " +
+                "Boyle olursa slot kullanmak anlamsizlasir.");
+        }
+
+        [Test]
+        public void HicbiriSabitDegil()
+        {
+            // Sabit esyalar (bakir tesisat, radyator, klima) matkap gerektiriyor;
+            // matkap ve sabit esyalar kalan 10 esyayla birlikte gelecek.
+            foreach (var esya in EsyaKatalogu.Hepsi)
+                Assert.IsFalse(esya.Sabit, esya.Id);
         }
 
         // --- Olculmemis degerler -----------------------------------------------
@@ -100,7 +150,8 @@ namespace Oyun.Testler
                 Assert.IsTrue(EsyaKatalogu.VarMi(id), "Zayif deger listesinde olmayan id: " + id);
 
             CollectionAssert.AreEquivalent(
-                new[] { "masa", "tv" }, EsyaKatalogu.ZayifTabanDeger,
+                new[] { "masa", "tv", "gumus-takim", "saat", "telefon" },
+                EsyaKatalogu.ZayifTabanDeger,
                 "Zayif taban deger listesi degisti. Hafta 5 dengesi bu listeye bakiyor; " +
                 "degisiklik bilincliyse docs/kararlar/ altina not dusulmeli.");
         }
@@ -152,7 +203,7 @@ namespace Oyun.Testler
                 Assert.AreEqual(veri.Kategori, varliktaki.Kategori, neden);
                 Assert.AreEqual(veri.TabanDeger, varliktaki.TabanDeger, neden);
                 Assert.AreEqual(veri.Agirlik, varliktaki.Agirlik, 0.0001f, neden);
-                Assert.AreEqual(veri.Hacim, varliktaki.Hacim, 0.0001f, neden);
+                Assert.AreEqual(veri.Hacim, varliktaki.Hacim, 0.0000001f, neden);
                 Assert.AreEqual(veri.Kirilgan, varliktaki.Kirilgan, neden);
                 Assert.AreEqual(veri.Haczedilebilir, varliktaki.Haczedilebilir, neden);
                 Assert.AreEqual(veri.IkiKisiGerekir, varliktaki.IkiKisiGerekir, neden);

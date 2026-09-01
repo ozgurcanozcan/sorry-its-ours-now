@@ -77,28 +77,42 @@ yarı genişlik de birlikte düşünülmeli.
 
 ---
 
-## 76. Yuvarlama adımı 25 — ve neden 50 değil
+## 76. Yuvarlama adımı 10
 
-**Karar:** Gösterilen sınırlar 25 TL'ye yuvarlanır; alt aşağı, üst yukarı.
+**Karar:** Gösterilen sınırlar 10 TL'ye yuvarlanır; alt aşağı, üst yukarı.
 
 **Neden yuvarlama:** `~1.125–2.025 TL` okunur, `~1.131–2.017 TL` okunmaz.
 **Neden alt aşağı / üst yukarı:** yakına yuvarlamak sınırı gerçek değerin
 yanlış tarafına geçirip **karar 73'ü** çiğneyebilirdi.
 
-**Neden 50 değil — ölçüldü:** Yuvarlama aralığı genişletiyor, yani ölçülmüş
-±%28'i fiilen büyütüyor. Ucuz eşyada etki büyük:
-
-| Adım | En kötü şişme (katalog geneli) |
-|------|-------------------------------|
-| 50 | ~%20 → ±%28 fiilen ±%34 gibi |
-| **25** | **%8.9** |
-
 **Kısıt** (`DegerlemeTestleri.YuvarlamaEnUcuzEsyayiBozmuyor` koruyor):
 yuvarlama, katalogdaki en dar aralığı **%10'dan fazla genişletmemeli.**
+Yuvarlama aralığı genişletiyor, yani ölçülmüş ±%28'i fiilen büyütüyor.
 
-> **Payı ince: %8.9 / %10.** En kötü durum halı-hasarlı (1.102 TL). Kataloğa
-> daha ucuz bir eşya — özellikle **Hurda** kategorisi — girdiği anda test
-> kırılacak ve adım küçültülmesi gerekecek. Bu kasıtlı: sessizce bozulmasın.
+| Adım | En kötü şişme | |
+|------|---------------|---|
+| 50 | ~%20 | ±%28 fiilen ±%34 gibi |
+| 25 | %10.8 | eşiği aşıyor |
+| 20 | %7.9 | geçiyor ama payı ince |
+| **10** | **%4.5** | seçilen |
+
+**Neden 20 değil:** 20 de eşiği geçiyor ama bir sonraki ucuz eşyada yine
+kırılırdı. 10, en kötü durumu eşiğin yarısında tutuyor.
+
+### Bu sayı bir kez zaten değişti — test yakaladı
+
+İlk hâli **25**'ti ve payı incedir diye yazılmıştı:
+
+> *"Kataloğa daha ucuz bir eşya girdiği anda test kırılacak ve adım
+> küçültülmesi gerekecek. Bu kasıtlı: sessizce bozulmasın."*
+
+**Aynı gün oldu.** Kol saati (1.500 TL) kataloğa girince en kötü şişme
+%8.9'dan %10.8'e çıktı ve `YuvarlamaEnUcuzEsyayiBozmuyor` kırıldı. Adım
+10'a indirildi.
+
+> Kaydedilmeye değer olan şu: kısıt sayı olarak değil **test olarak**
+> yazıldığı için, sayı geçersizleştiğinde kimse fark etmek zorunda kalmadı.
+> Hafta 5'te ölçülecek öteki sayılar için de aynı biçim kullanılmalı.
 
 ---
 

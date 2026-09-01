@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd98da5ec94da04449bf012ff031ae63, type: 3}
+  m_Name: gumus-takim
+  m_EditorClassIdentifier: Oyun::Oyun.Core.EsyaTanimi
+  id: gumus-takim
+  ad: "G\xFCm\xFC\u015F \xC7atal B\u0131\xE7ak Tak\u0131m\u0131"
+  kategori: 2
+  tabanDeger: 6000
+  agirlik: 2
+  hacim: 0.00525
+  kirilgan: 0
+  haczedilebilir: 1
+  ikiKisiGerekir: 0
+  cebeGirer: 1
+  sabit: 0
+  bolluk: 2
