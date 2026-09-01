@@ -748,7 +748,7 @@ public static class SahaGreyboxAraci
     }
 
     // Hazir prefab yerlestirir (ham modelden farki: bilesenleri zaten uzerinde).
-    private static void Onkalip(string ad, Vector3 konum, float donus, Transform ebeveyn)
+    private static GameObject Onkalip(string ad, Vector3 konum, float donus, Transform ebeveyn)
     {
         string[] kimlikler = AssetDatabase.FindAssets($"\"{ad}\" t:Prefab",
             new[] { "Assets/_Project/Prefabs" });
@@ -756,7 +756,7 @@ public static class SahaGreyboxAraci
         if (kimlikler.Length == 0)
         {
             Debug.LogError($"Prefab bulunamadi: {ad}");
-            return;
+            return null;
         }
 
         var kaynak = AssetDatabase.LoadAssetAtPath<GameObject>(
@@ -765,6 +765,7 @@ public static class SahaGreyboxAraci
         var ornek = (GameObject)PrefabUtility.InstantiatePrefab(kaynak, ebeveyn);
         ornek.transform.position = konum;
         ornek.transform.rotation = Quaternion.Euler(0f, donus, 0f);
+        return ornek;
     }
 
     private const string EvlerKoku = "Evler";
@@ -800,12 +801,59 @@ public static class SahaGreyboxAraci
 
         BirArtiBir(kok);
         IkiArtiBir(kok);
+        DenemeEsyalari(kok);
 
         EditorSceneManager.MarkSceneDirty(sahne);
         EditorSceneManager.SaveScene(sahne, SahneYolu);
 
         Debug.Log("Iki ev kuruldu: 1+1 (18x14 m) ve 2+1 (24x18 m).");
         DuvarCakismasiDenetle();
+    }
+
+    // Oyuncunun hemen onune konan kucuk esyalar.
+    //
+    // Neden burada: cebe giren esyalar (saat, telefon) kucuk ve eve dagilmis
+    // olsa bulmasi zor. Slot sistemini denemek icin baslangicta elin altinda
+    // olmalilar. Ev doldurulunca (Onat, Hafta 1 Gun 4) bunlar kaldirilacak.
+    private static void DenemeEsyalari(Transform kok)
+    {
+        var alan = new GameObject("DenemeEsyalari").transform;
+        alan.SetParent(kok, false);
+
+        // Oyuncu (-3, 0, -4) konumunda ve +Z'ye bakiyor.
+        //
+        // Kucuk esyalar masanin USTUNDE. Yerde dururken hem gorunmuyorlar
+        // (kol saati 5 cm) hem de asagi bakmak gerekiyor. Masa ustu hem
+        // gercekci hem de goz hizasina yakin -- 01.09'da olculdu, yerdeyken
+        // alinamiyorlardi.
+        //
+        // Masa yuksekligi 1.00 m (Dining Table, olculdu). Esyalar onun
+        // ustune, birbirine girmeyecek aralikla.
+        Parca("Dining Table", new Vector3(-3f, 0f, -2f), alan);
+
+        var saat = Onkalip("Esya_Saat", new Vector3(-3.7f, 1.01f, -2f), 0f, alan);
+        Onkalip("Esya_Telefon", new Vector3(-2.9f, 1.01f, -2f), 0f, alan);
+
+        // GECICI GORSEL BUYUTME -- veriyle CELISIYOR, bilerek.
+        //
+        // Kol saati modeli 5 x 2 x 5 cm ve verisiyle uyumlu (hacim 5e-05 m3,
+        // gercek bir kol saati kadar). Ama oyunda yuzuk gibi gorunuyor ve
+        // nereye bakacagini bilmeden bulunamiyor (01.09'da olculdu).
+        //
+        // Bu olcek YALNIZCA bu deneme sahnesinde. Kapasite hesabi hala
+        // veriden geliyor, yani ekranda buyuk gorunup cebe kucuk giriyor --
+        // tutarsiz ve kalici olmamali.
+        //
+        // Kalici cozum ikisinden biri: Onat modeli buyutur (kayis dahil bir
+        // kol saati 22 cm uzundur, model sadece kasa), ya da Ozgur hacmi
+        // buyutur. Ikisi birlikte degismeli, yoksa ayni tutarsizlik kalir.
+        if (saat != null)
+        {
+            saat.transform.localScale = Vector3.one * 3f;
+        }
+
+        // Televizyon yerde: buyuk esya, elde tasinacak.
+        Onkalip("Esya_TV", new Vector3(-1.4f, 0f, -2.6f), 0f, alan);
     }
 
     // Duvar dizisi: baslangictan itibaren adet kadar parca, 2 m arayla.

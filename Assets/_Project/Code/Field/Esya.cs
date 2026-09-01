@@ -59,6 +59,23 @@ namespace Oyun.Field
             eleyiciler = GetComponentsInChildren<MeshRenderer>();
             blok = new MaterialPropertyBlock();
 
+            // Surekli carpisma algilama, bir kez ve her zaman.
+            //
+            // Neden: varsayilan ayrik (Discrete) algilama ince nesnelerde
+            // tunelleme yapiyor. Cep telefonu 1 cm kalinliginda; cepten
+            // birakilinca bir fizik adiminda zeminin obur tarafina geciyor
+            // ve dusmeye devam ediyor -- oyuncuya "yok oldu" gibi gorunuyor
+            // (01.09'da olculdu).
+            //
+            // Onceden bu yalnizca EleAlindi icinde ayarlaniyordu, yani slota
+            // giren esya hic almiyordu. Awake'e alininca her yol icin gecerli.
+            //
+            // Speculative secildi cunku kinematik govdede de calisiyor;
+            // slottaki esya kinematik oluyor ve ContinuousDynamic orada
+            // gecersiz.
+            katiCisim.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
+            katiCisim.interpolation = RigidbodyInterpolation.Interpolate;
+
             if (tanim == null)
             {
                 // Sessizce durmasindansa soyle: prefab'i kuran kisi gorsun.
@@ -110,8 +127,7 @@ namespace Oyun.Field
             // Sonumleme yuksek: esya ele varinca salinmasin, titremesin.
             katiCisim.linearDamping = 12f;
             katiCisim.angularDamping = 12f;
-            katiCisim.interpolation = RigidbodyInterpolation.Interpolate;
-            katiCisim.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+            // Carpisma algilama ve interpolasyon Awake'te ayarlandi.
         }
 
         // Esyayi ele dogru ceker. FixedUpdate cunku fizik nesnesi.
