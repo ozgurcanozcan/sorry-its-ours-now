@@ -33,5 +33,29 @@ namespace Oyun.Field
         {
             return Mathf.Clamp(mevcutEgim - delta, -sinir, sinir);
         }
+
+    // Tasinan agirligin yurume hizina etkisi.
+    //
+    // Neden bir kat: agirlik EsyaVerisi'nde kilogram olarak duruyor ve
+    // docs/tasarim/02-saha.md "buyuk esya gercekten yorucudur, agirlik bir
+    // sayi degil hissedilen bir sey" diyor. Hissedilmesinin tek yolu tasirken
+    // yavaslamak.
+    //
+    // Sayilar olculmus degil. Saglamasi gereken kisitlar:
+    //   - Bos elle hiz degismez (kat = 1).
+    //   - En agir tek-kisilik esya tasinabilir kalmali, yani kat hicbir zaman
+    //     EnDusukKat'in altina inmez; yoksa oyuncu yerinde sayar.
+    //   - Fark hissedilir olmali: hali (8 kg) ile masa (25 kg) arasindaki
+    //     fark oynarken ayirt edilebilmeli.
+    public static float TasimaHizKati(float agirlik, float agirlikSiniri, float enDusukKat)
+    {
+        if (agirlik <= 0f || agirlikSiniri <= 0f)
+        {
+            return 1f;
+        }
+
+        float oran = Mathf.Clamp01(agirlik / agirlikSiniri);
+        return Mathf.Lerp(1f, enDusukKat, oran);
     }
+}
 }

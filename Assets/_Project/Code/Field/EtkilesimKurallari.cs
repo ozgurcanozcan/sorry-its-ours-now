@@ -14,7 +14,8 @@ namespace Oyun.Field
         Alinabilir = 0,
         ElDolu = 1,
         Sabit = 2,
-        IkiKisiGerekir = 3
+        IkiKisiGerekir = 3,
+        SlotDolu = 4
     }
 
     // Alma kurallari. MonoBehaviour disinda: sahne, kamera ve fizik
@@ -28,14 +29,46 @@ namespace Oyun.Field
         /// esyanin kendi ozelligi ve oyuncu o an hicbir sey yapamaz. Once
         /// duzeltilebilir olani soylemek daha faydali bir geri bildirim.
         /// </remarks>
-        public static AlmaSonucu Degerlendir(EsyaVerisi veri, bool elDolu)
+        /// <summary>Kac slot var. docs/tasarim/02-saha.md, 31.08.2026 karari.</summary>
+        /// <remarks>
+        /// Slotlar aletlerle PAYLASILIYOR: levye ve el arabasi aldiysan geriye
+        /// uc slot kalir. Aletler Hafta 2'de geliyor; o zaman doluSlot sayisina
+        /// onlar da dahil olacak, bu sayi degismeyecek.
+        /// </remarks>
+        public const int SlotSayisi = 5;
+
+        /// <summary>Esya nereye gider: cebe mi, ele mi?</summary>
+        /// <remarks>
+        /// Hacimden turetilmiyor. docs/tasarim/02-saha.md: "Yagliboya tablo
+        /// hacimce kucuk ama ince ve genis -- cebe girmemeli. Elle karar
+        /// verilebilmesi gerekiyor." O yuzden ayri bir isaret var.
+        /// </remarks>
+        public static bool SlotaGirer(EsyaVerisi veri)
+        {
+            return veri != null && veri.CebeGirer;
+        }
+
+        public static AlmaSonucu Degerlendir(EsyaVerisi veri, bool elDolu, int doluSlot)
         {
             if (veri == null)
             {
                 return AlmaSonucu.Sabit;
             }
 
-            if (elDolu)
+            // Kapasite once bakiliyor, kalici ozellikler sonra. Sebep: kapasite
+            // oyuncunun degistirebilecegi tek sey. "Sabit" bir esyaya elin
+            // doluyken bakiyorsan once "elin dolu" demek daha faydali.
+            //
+            // Hangi kapasite? Esyanin gidecegi yere gore: kucuk esya slota,
+            // buyuk esya ele. Kucuk esya alirken elin dolu olmasi engel degil.
+            if (SlotaGirer(veri))
+            {
+                if (doluSlot >= SlotSayisi)
+                {
+                    return AlmaSonucu.SlotDolu;
+                }
+            }
+            else if (elDolu)
             {
                 return AlmaSonucu.ElDolu;
             }
@@ -46,8 +79,8 @@ namespace Oyun.Field
                 return AlmaSonucu.Sabit;
             }
 
-            // Tek kisilik modda el arabasi gerekiyor (karar: 02-saha.md
-            // "Agir esya: el arabasi"). El arabasi Hafta 2'de geliyor.
+            // Tek kisilik modda el arabasi gerekiyor (02-saha.md "Agir esya:
+            // el arabasi"). El arabasi Hafta 2'de geliyor.
             if (veri.IkiKisiGerekir)
             {
                 return AlmaSonucu.IkiKisiGerekir;
@@ -65,6 +98,7 @@ namespace Oyun.Field
                 case AlmaSonucu.ElDolu: return "Elin dolu";
                 case AlmaSonucu.Sabit: return "Sabit -- alet gerekiyor";
                 case AlmaSonucu.IkiKisiGerekir: return "Tek basina kaldiramazsin";
+                case AlmaSonucu.SlotDolu: return "Cep dolu";
                 default: return "";
             }
         }

@@ -36,6 +36,18 @@ namespace Oyun.Field
         // sikici olmamali. Kesin deger oynanarak ayarlanacak.
         [SerializeField] private float yurumeHizi = 3f;
 
+        // Kosma kati. Olculmus degil. Kisit: kacisi kolaylastirmamali ama
+        // bos koridoru gecmeyi angarya olmaktan cikarmali. Sure M1'in
+        // baglayici kisiti (02-saha.md), bu sayi onu dogrudan etkiliyor --
+        // Hafta 5 denge isinde yeniden bakilacak.
+        [SerializeField] private float kosmaKati = 1.6f;
+
+        // Bu agirlikta hiz kati en dusuk degerine iner.
+        [SerializeField] private float agirlikSiniri = 40f;
+
+        // Hiz kati bunun altina inmez; yoksa oyuncu yerinde sayar.
+        [SerializeField] private float enDusukHizKati = 0.5f;
+
         // Fizik sabiti, denge sayisi degil.
         [SerializeField] private float yercekimi = -9.81f;
 
@@ -49,6 +61,22 @@ namespace Oyun.Field
         private CharacterController kontrolcu;
         private InputAction hareketEylemi;
         private InputAction bakmaEylemi;
+        private InputAction kosmaEylemi;
+
+        /// <summary>Acikken fare bakisi kamerayi degil baska bir seyi cevirir.</summary>
+        /// <remarks>
+        /// Esya cevirme sirasinda kamera sabit kalmali; yoksa hem esya hem
+        /// bakis ayni fare hareketiyle donuyor ve isin icinden cikilmiyor.
+        /// </remarks>
+        public bool BakisKilitli { get; set; }
+
+        /// <summary>Elde tasinan agirlik, kg. OyuncuEtkilesim yaziyor.</summary>
+        /// <remarks>
+        /// Etkilesim bileseni bunu set ediyor; kontrolcu esyayi tanimiyor.
+        /// Bagimlilik tek yonlu kaliyor: hareket kodu tasima kodunu bilmiyor,
+        /// sadece bir sayi aliyor.
+        /// </remarks>
+        public float TasimaAgirligi { get; set; }
 
         private float egim;
         private float dikeyHiz;
@@ -77,12 +105,14 @@ namespace Oyun.Field
             InputActionMap haritasi = girdiVarligi.FindActionMap("Player", true);
             hareketEylemi = haritasi.FindAction("Move", true);
             bakmaEylemi = haritasi.FindAction("Look", true);
+            kosmaEylemi = haritasi.FindAction("Sprint", true);
         }
 
         private void OnEnable()
         {
             hareketEylemi.Enable();
             bakmaEylemi.Enable();
+            kosmaEylemi.Enable();
             ImleciKilitle(true);
         }
 
@@ -90,6 +120,7 @@ namespace Oyun.Field
         {
             hareketEylemi.Disable();
             bakmaEylemi.Disable();
+            kosmaEylemi.Disable();
             ImleciKilitle(false);
         }
 
@@ -101,6 +132,11 @@ namespace Oyun.Field
 
         private void Bak()
         {
+            if (BakisKilitli)
+            {
+                return;
+            }
+
             Vector2 delta = bakmaEylemi.ReadValue<Vector2>() * bakmaHassasiyeti;
 
             // Sapma govdede: yurume yonu bakis yonunu takip etsin.
@@ -128,7 +164,14 @@ namespace Oyun.Field
                 dikeyHiz += yercekimi * Time.deltaTime;
             }
 
-            Vector3 hareket = yon * yurumeHizi;
+            float kat = HareketHesabi.TasimaHizKati(TasimaAgirligi, agirlikSiniri, enDusukHizKati);
+
+            if (kosmaEylemi.IsPressed())
+            {
+                kat *= kosmaKati;
+            }
+
+            Vector3 hareket = yon * (yurumeHizi * kat);
             hareket.y = dikeyHiz;
 
             kontrolcu.Move(hareket * Time.deltaTime);
