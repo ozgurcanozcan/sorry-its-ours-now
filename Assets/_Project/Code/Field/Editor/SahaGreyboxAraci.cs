@@ -717,9 +717,6 @@ public static class SahaGreyboxAraci
         seri.FindProperty("tanim").objectReferenceValue = tanim;
         seri.ApplyModifiedPropertiesWithoutUndo();
 
-        var katiCisim = nesne.GetComponent<Rigidbody>();
-        katiCisim.mass = Mathf.Max(0.1f, tanim.Veri().Agirlik);
-
         // MeshCollider varsayilan olarak convex degil; convex olmayan collider
         // hareketli Rigidbody ile calismiyor. Esyalar hareket edecegi icin sart.
         foreach (var carpisan in nesne.GetComponentsInChildren<MeshCollider>())
