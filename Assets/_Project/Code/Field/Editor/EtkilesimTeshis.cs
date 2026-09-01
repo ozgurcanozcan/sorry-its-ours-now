@@ -42,7 +42,7 @@ namespace Oyun.Field.Editor
                 float mesafe = Vector3.Distance(kamera.transform.position, esya.transform.position);
                 bool veriVar = esya.Veri != null;
                 string sonuc = veriVar
-                    ? EtkilesimKurallari.Degerlendir(esya.Veri, false).ToString()
+                    ? EtkilesimKurallari.Degerlendir(esya.Veri, false, 0).ToString()
                     : "VERI YOK";
 
                 // Esyanin merkezine dogru isin at: carpan ilk sey esya mi?

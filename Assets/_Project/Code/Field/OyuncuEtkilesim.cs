@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -60,8 +61,17 @@ namespace Oyun.Field
         // da olmasin. Firlatma ayri bir mekanik ve M1'de yok.
         [SerializeField] private float birakmaHizi = 1.5f;
 
+        // Esya cevirme hassasiyeti. Bakma hassasiyetinden bagimsiz: esyayi
+        // ceviren hareket daha kucuk ve kontrollu olmali, bakis gibi hizli
+        // degil -- dar kapiya hizalamaya calisirken ince ayar gerekiyor.
+        [SerializeField] private float cevirmeHassasiyeti = 0.4f;
+
+        private CharacterController kapsul;
         private InputAction etkilesimEylemi;
         private InputAction birakmaEylemi;
+        private InputAction dondurmeEylemi;
+        private InputAction bakmaEylemi;
+        private OyuncuKontrolcu kontrolcu;
 
         /// <summary>Su anda bakilan esya. Yoksa null. HUD bunu okur.</summary>
         public Esya BakilanEsya { get; private set; }
@@ -69,12 +79,21 @@ namespace Oyun.Field
         /// <summary>Elde tutulan esya. Yoksa null.</summary>
         public Esya ElindekiEsya { get; private set; }
 
+        // Slottaki esyalar. Liste, dizi degil: slotlar Hafta 2'de aletlerle
+        // paylasilacak ve alet cikarilinca aradaki bosluk kapanmali.
+        private readonly List<Esya> slotlar = new List<Esya>();
+
+        /// <summary>Dolu slot sayisi. Hafta 2'de aletler de buraya girecek.</summary>
+        public int DoluSlot { get { return slotlar.Count; } }
+
         /// <summary>Bakilan esya alinamiyorsa sebebi. HUD bunu gosterir.</summary>
         public AlmaSonucu SonDegerlendirme { get; private set; }
 
 
         private void Awake()
         {
+            kapsul = GetComponent<CharacterController>();
+
             if (kamera == null)
             {
                 Debug.LogError($"{nameof(OyuncuEtkilesim)}: kamera atanmamis.", this);
@@ -99,6 +118,9 @@ namespace Oyun.Field
             InputActionMap haritasi = girdiVarligi.FindActionMap("Player", true);
             etkilesimEylemi = haritasi.FindAction("Interact", true);
             birakmaEylemi = haritasi.FindAction("Birak", true);
+            dondurmeEylemi = haritasi.FindAction("Dondur", true);
+            bakmaEylemi = haritasi.FindAction("Look", true);
+            kontrolcu = GetComponent<OyuncuKontrolcu>();
         }
 
         private void OnEnable()
@@ -120,6 +142,8 @@ namespace Oyun.Field
             etkilesimEylemi.started += Etkiles;
 
             birakmaEylemi.Enable();
+            dondurmeEylemi.Enable();
+            bakmaEylemi.Enable();
             birakmaEylemi.started += BirakmaBasildi;
         }
 
@@ -130,26 +154,87 @@ namespace Oyun.Field
 
             birakmaEylemi.started -= BirakmaBasildi;
             birakmaEylemi.Disable();
+            dondurmeEylemi.Disable();
+            bakmaEylemi.Disable();
+
+            if (kontrolcu != null) kontrolcu.BakisKilitli = false;
         }
 
         private void Update()
         {
+            Cevirme();
             Bak();
+            KopanEsyayiBirak();
         }
+
+        // "R" basili tutulurken fare esyayi cevirir, kamerayi degil.
+        //
+        // Neden basili tutma: ayri bir kip degil. Birakinca aninda bakmaya
+        // donuyorsun, esyayi hizalayip yurumeye devam ediyorsun. Kip olsaydi
+        // her seferinde girip cikmak gerekirdi.
+        private void Cevirme()
+        {
+            bool cevirilebilir = ElindekiEsya != null && dondurmeEylemi.IsPressed();
+
+            if (kontrolcu != null)
+            {
+                kontrolcu.BakisKilitli = cevirilebilir;
+            }
+
+            if (!cevirilebilir)
+            {
+                return;
+            }
+
+            Vector2 delta = bakmaEylemi.ReadValue<Vector2>() * cevirmeHassasiyeti;
+
+            if (delta.sqrMagnitude < 0.0001f)
+            {
+                return;
+            }
+
+            // Kameranin eksenlerinde donduruluyor: fareyi saga itince esya
+            // ekranda saga doner, esyanin kendi ekseni ne olursa olsun.
+            Quaternion donus = Quaternion.AngleAxis(delta.x, kamera.up)
+                             * Quaternion.AngleAxis(-delta.y, kamera.right);
+
+            ElindekiEsya.Cevir(donus);
+        }
+
+        // Duvarin ardinda sikisan esya elden kopar.
+        //
+        // Neden: esya artik duvarlara carpiyor, yani el ilerlerken esya geride
+        // kalabiliyor. Bagi koparmazsak oyuncu esyayi gormeden surukler ve
+        // kose donunce lastik gibi firlar.
+        private void KopanEsyayiBirak()
+        {
+            if (ElindekiEsya == null)
+            {
+                return;
+            }
+
+            float uzaklik = Vector3.Distance(ElindekiEsya.transform.position, elCapasi.position);
+
+            if (uzaklik > KopmaMesafesi)
+            {
+                Birak();
+            }
+        }
+
+        // Elden kopma mesafesi. Tutma noktasi esya boyutuna gore 1.15 m'ye
+        // kadar uzayabiliyor; esik onun uzerinde olmali yoksa buyuk esya
+        // taminca kendiliginden dusurulur.
+        // Agir esya ele yavas yetisiyor; esik dar olursa yururken kendiliginden
+        // dusuyordu (31.08'de olculdu). Oyuncu tasirken zaten yavasladigi icin
+        // 2.5 m yeterli pay birakiyor.
+        private const float KopmaMesafesi = 2.5f;
 
         // Her karede bakilan esyayi tazeler. Sonuc HUD icin saklaniyor;
         // bu bilesen ekrana bir sey cizmiyor -- cizim Code/UI'nin isi.
         private void Bak()
         {
-            // Elde esya varken bakmaya devam etmenin anlami yok: tek esya
-            // tasiniyor ve elin doluyken yeni esya alinamiyor.
-            if (ElindekiEsya != null)
-            {
-                VurguyuBirak();
-                SonDegerlendirme = AlmaSonucu.ElDolu;
-                return;
-            }
-
+            // Elde esya varken de bakmaya devam ediliyor: kucuk esya cebe
+            // girer, el dolu olsa bile alinabilir (docs/tasarim/02-saha.md).
             Esya yeni = EnUygunEsya();
 
             if (yeni != BakilanEsya)
@@ -162,7 +247,7 @@ namespace Oyun.Field
 
             if (BakilanEsya != null)
             {
-                SonDegerlendirme = EtkilesimKurallari.Degerlendir(BakilanEsya.Veri, false);
+                SonDegerlendirme = EtkilesimKurallari.Degerlendir(BakilanEsya.Veri, ElindekiEsya != null, DoluSlot);
             }
         }
 
@@ -238,7 +323,7 @@ namespace Oyun.Field
             foreach (var carpisan in yakinlar)
             {
                 var aday = carpisan.GetComponentInParent<Esya>();
-                if (aday == null || aday == ElindekiEsya)
+                if (aday == null || aday == ElindekiEsya || slotlar.Contains(aday))
                 {
                     continue;
                 }
@@ -283,17 +368,12 @@ namespace Oyun.Field
         // aliyordu -- birakmamis gibi hissediliyor (31.08'de olculdu).
         private void Etkiles(InputAction.CallbackContext baglam)
         {
-            if (ElindekiEsya != null)
-            {
-                return;
-            }
-
             if (BakilanEsya == null)
             {
                 return;
             }
 
-            AlmaSonucu sonuc = EtkilesimKurallari.Degerlendir(BakilanEsya.Veri, false);
+            AlmaSonucu sonuc = EtkilesimKurallari.Degerlendir(BakilanEsya.Veri, ElindekiEsya != null, DoluSlot);
             SonDegerlendirme = sonuc;
 
             if (sonuc != AlmaSonucu.Alinabilir)
@@ -308,10 +388,7 @@ namespace Oyun.Field
 
         private void BirakmaBasildi(InputAction.CallbackContext baglam)
         {
-            if (ElindekiEsya != null)
-            {
-                Birak();
-            }
+            Birak();
         }
 
         private void VurguyuBirak()
@@ -326,17 +403,88 @@ namespace Oyun.Field
         private void Al(Esya esya)
         {
             esya.Vurgula(false);
-            esya.EleAlindi(elCapasi);
-            ElindekiEsya = esya;
+
+            if (EtkilesimKurallari.SlotaGirer(esya.Veri))
+            {
+                esya.SlotaKondu(transform);
+                slotlar.Add(esya);
+            }
+            else
+            {
+                esya.EleAlindi(elCapasi);
+                ElindekiEsya = esya;
+
+                // Esya artik gercek fizik nesnesi ve elin onunde duruyor.
+                // Oyuncuyla carpismasi engellenmezse kendini itip oyuncuyu
+                // sahnede kaydiriyor ve kamera titriyor.
+                CarpismayiAyarla(esya, true);
+                AgirligiBildir();
+            }
+
             BakilanEsya = null;
         }
 
+        // Once eldeki birakiliyor, el bosalinca slottakiler.
+        //
+        // Neden bu sira: elde tutulan esya gorunuyor ve oyuncunun aklinda olan
+        // o. Once cepten bir sey dusurmek surpriz olurdu.
         private void Birak()
         {
-            Esya esya = ElindekiEsya;
-            ElindekiEsya = null;
+            Esya esya;
 
+            if (ElindekiEsya != null)
+            {
+                esya = ElindekiEsya;
+                ElindekiEsya = null;
+            }
+            else if (slotlar.Count > 0)
+            {
+                esya = slotlar[slotlar.Count - 1];
+                slotlar.RemoveAt(slotlar.Count - 1);
+
+                // Slottaki esya oyuncunun icinde duruyordu; onune tasi ki
+                // ayaginin dibinde belirip carpismasin.
+                esya.transform.position = kamera.position + kamera.forward * 0.6f;
+            }
+            else
+            {
+                return;
+            }
+
+            CarpismayiAyarla(esya, false);
             esya.Birakildi(kamera.forward * birakmaHizi);
+            AgirligiBildir();
+        }
+
+        // Tasinan agirligi hareket koduna bildirir.
+        //
+        // Sadece eldeki sayiliyor: cepteki kucuk esyalar (en fazla birkac kg)
+        // yurumeyi yavaslatacak kadar agir degil ve slot sistemi zaten ayri
+        // bir kapasite. Aletler geldiginde (Hafta 2) yeniden bakilmali.
+        private void AgirligiBildir()
+        {
+            if (kontrolcu == null)
+            {
+                return;
+            }
+
+            kontrolcu.TasimaAgirligi =
+                ElindekiEsya != null && ElindekiEsya.Veri != null
+                    ? ElindekiEsya.Veri.Agirlik
+                    : 0f;
+        }
+
+        private void CarpismayiAyarla(Esya esya, bool yoksay)
+        {
+            if (kapsul == null)
+            {
+                return;
+            }
+
+            foreach (var carpisan in esya.GetComponentsInChildren<Collider>())
+            {
+                Physics.IgnoreCollision(carpisan, kapsul, yoksay);
+            }
         }
 
         // GECICI hata ayiklama ekrani. Kalici HUD Code/UI'nin isi (B).
@@ -355,25 +503,31 @@ namespace Oyun.Field
             float ortaY = Screen.height * 0.5f;
             GUI.Label(new Rect(ortaX - 6f, ortaY - 12f, 20f, 24f), "+", stil);
 
-            if (ElindekiEsya != null)
+            // Tasima durumu: el + slotlar.
+            // Cep gostergesi sayi degil, dolu/bos kareler: bir bakista kac
+            // yer kaldigi goruluyor, okumaya gerek kalmiyor.
+            var cep = new System.Text.StringBuilder(EtkilesimKurallari.SlotSayisi);
+            for (int i = 0; i < EtkilesimKurallari.SlotSayisi; i++)
             {
-                GUI.Label(new Rect(Y, Y, 600f, 30f),
-                    $"Elinde: {ElindekiEsya.Ad}   [Q] birak", stil);
-                return;
+                cep.Append(i < DoluSlot ? "[+]" : "[ ]");
             }
+
+            string el = ElindekiEsya != null ? ElindekiEsya.Ad : "-";
+            GUI.Label(new Rect(Y, Y, 800f, 30f), $"El  {el}{(ElindekiEsya != null ? "    [R] tut ve cevir" : "")}", stil);
+            GUI.Label(new Rect(Y, Y + 26f, 800f, 30f), $"Cep {cep}", stil);
 
             if (BakilanEsya == null)
             {
                 return;
             }
 
-            AlmaSonucu sonuc = EtkilesimKurallari.Degerlendir(BakilanEsya.Veri, false);
+            AlmaSonucu sonuc = EtkilesimKurallari.Degerlendir(BakilanEsya.Veri, ElindekiEsya != null, DoluSlot);
             string metin = sonuc == AlmaSonucu.Alinabilir
                 ? $"{BakilanEsya.Ad}   [E] al"
                 : $"{BakilanEsya.Ad}   -- {EtkilesimKurallari.Aciklama(sonuc)}";
 
             stil.normal.textColor = sonuc == AlmaSonucu.Alinabilir ? Color.white : new Color(1f, 0.7f, 0.4f);
-            GUI.Label(new Rect(Y, Y, 600f, 30f), metin, stil);
+            GUI.Label(new Rect(Y, Y + 58f, 800f, 30f), metin, stil);
         }
     }
 }

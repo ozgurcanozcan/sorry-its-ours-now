@@ -72,5 +72,39 @@ namespace Oyun.Testler
 
             Assert.Less(egim, 0f);
         }
+
+        [Test]
+        public void BosElle_HizDegismez()
+        {
+            Assert.AreEqual(1f, HareketHesabi.TasimaHizKati(0f, 40f, 0.5f), Tolerans);
+        }
+
+        [Test]
+        public void AgirEsya_Yavaslatir()
+        {
+            float hafif = HareketHesabi.TasimaHizKati(8f, 40f, 0.5f);
+            float agir = HareketHesabi.TasimaHizKati(25f, 40f, 0.5f);
+
+            // 02-saha.md: "agirlik bir sayi degil hissedilen bir sey". Hali ile
+            // masa arasindaki fark oynarken ayirt edilebilmeli.
+            Assert.Less(agir, hafif);
+            Assert.Less(hafif, 1f);
+        }
+
+        [Test]
+        public void Kat_EnDusugun_Altina_Inmez()
+        {
+            // Yoksa oyuncu yerinde sayar ve esya tasimak imkansizlasir.
+            float cokAgir = HareketHesabi.TasimaHizKati(500f, 40f, 0.5f);
+
+            Assert.AreEqual(0.5f, cokAgir, Tolerans);
+        }
+
+        [Test]
+        public void Gecersiz_Sinir_Hizi_Bozmaz()
+        {
+            Assert.AreEqual(1f, HareketHesabi.TasimaHizKati(10f, 0f, 0.5f), Tolerans);
+            Assert.AreEqual(1f, HareketHesabi.TasimaHizKati(-5f, 40f, 0.5f), Tolerans);
+        }
     }
 }

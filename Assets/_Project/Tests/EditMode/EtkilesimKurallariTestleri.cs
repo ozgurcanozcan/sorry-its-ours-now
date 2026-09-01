@@ -32,7 +32,7 @@ namespace Oyun.Testler
         public void SiradanEsya_BosElle_Alinabilir()
         {
             Assert.AreEqual(AlmaSonucu.Alinabilir,
-                EtkilesimKurallari.Degerlendir(Esya(), elDolu: false));
+                EtkilesimKurallari.Degerlendir(Esya(), elDolu: false, doluSlot: 0));
         }
 
         [Test]
@@ -41,21 +41,21 @@ namespace Oyun.Testler
             // "Elde tek esya" karari (02-saha.md): kamyona gidip gelmeyi
             // zorunlu kilan sey bu. Kural gevserse mekanigin tamami degisir.
             Assert.AreEqual(AlmaSonucu.ElDolu,
-                EtkilesimKurallari.Degerlendir(Esya(), elDolu: true));
+                EtkilesimKurallari.Degerlendir(Esya(), elDolu: true, doluSlot: 0));
         }
 
         [Test]
         public void SabitEsya_Alinamaz()
         {
             Assert.AreEqual(AlmaSonucu.Sabit,
-                EtkilesimKurallari.Degerlendir(Esya(sabit: true), elDolu: false));
+                EtkilesimKurallari.Degerlendir(Esya(sabit: true), elDolu: false, doluSlot: 0));
         }
 
         [Test]
         public void IkiKisilikEsya_TekBasina_Alinamaz()
         {
             Assert.AreEqual(AlmaSonucu.IkiKisiGerekir,
-                EtkilesimKurallari.Degerlendir(Esya(ikiKisiGerekir: true), elDolu: false));
+                EtkilesimKurallari.Degerlendir(Esya(ikiKisiGerekir: true), elDolu: false, doluSlot: 0));
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace Oyun.Testler
             // Sabit bir esyaya elin doluyken bakiyorsan once "elin dolu"
             // demek, sonra "zaten sabitti" demekten faydali.
             AlmaSonucu sonuc = EtkilesimKurallari.Degerlendir(
-                Esya(sabit: true, ikiKisiGerekir: true), elDolu: true);
+                Esya(sabit: true, ikiKisiGerekir: true), elDolu: true, doluSlot: 0);
 
             Assert.AreEqual(AlmaSonucu.ElDolu, sonuc);
         }
@@ -75,7 +75,7 @@ namespace Oyun.Testler
         {
             // Tanimi baglanmamis bir prefab sessizce alinabilir olmamali.
             Assert.AreNotEqual(AlmaSonucu.Alinabilir,
-                EtkilesimKurallari.Degerlendir(null, elDolu: false));
+                EtkilesimKurallari.Degerlendir(null, elDolu: false, doluSlot: 0));
         }
 
         [Test]
@@ -96,6 +96,51 @@ namespace Oyun.Testler
                     Assert.IsNotEmpty(aciklama, $"{sonuc} icin aciklama yok");
                 }
             }
+        }
+
+        [Test]
+        public void KucukEsya_ElDoluyken_Alinabilir()
+        {
+            // 02-saha.md: kucuk esya cebe girer. Elde buyuk esya tasirken de
+            // cebe atabilmek gerekiyor -- yoksa "elde tek esya" karari kucuk
+            // esyalari da kilitler ve slot sisteminin anlami kalmaz.
+            Assert.AreEqual(AlmaSonucu.Alinabilir,
+                EtkilesimKurallari.Degerlendir(Esya(cebeGirer: true), elDolu: true, doluSlot: 0));
+        }
+
+        [Test]
+        public void KucukEsya_SlotlarDoluyken_Alinamaz()
+        {
+            Assert.AreEqual(AlmaSonucu.SlotDolu,
+                EtkilesimKurallari.Degerlendir(Esya(cebeGirer: true),
+                    elDolu: false, doluSlot: EtkilesimKurallari.SlotSayisi));
+        }
+
+        [Test]
+        public void BuyukEsya_SlotlarDoluyken_Alinabilir()
+        {
+            // Cep dolu olmasi elde tasimayi engellemez; ikisi ayri kapasite.
+            Assert.AreEqual(AlmaSonucu.Alinabilir,
+                EtkilesimKurallari.Degerlendir(Esya(),
+                    elDolu: false, doluSlot: EtkilesimKurallari.SlotSayisi));
+        }
+
+        [Test]
+        public void SlotaGirer_CebeGirerIsaretine_Bakar()
+        {
+            // Hacimden turetilmiyor: 02-saha.md "yagliboya tablo hacimce kucuk
+            // ama cebe girmemeli, elle karar verilebilmeli".
+            Assert.IsTrue(EtkilesimKurallari.SlotaGirer(Esya(cebeGirer: true)));
+            Assert.IsFalse(EtkilesimKurallari.SlotaGirer(Esya()));
+            Assert.IsFalse(EtkilesimKurallari.SlotaGirer(null));
+        }
+
+        [Test]
+        public void SlotSayisi_Bes()
+        {
+            // Karar 31.08.2026, docs/tasarim/02-saha.md. Degisirse alet-kapasite
+            // takasi da degisir; sabit bir sayi degil, bir tasarim karari.
+            Assert.AreEqual(5, EtkilesimKurallari.SlotSayisi);
         }
     }
 }
