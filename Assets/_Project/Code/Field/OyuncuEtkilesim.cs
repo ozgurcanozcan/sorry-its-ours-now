@@ -408,6 +408,7 @@ namespace Oyun.Field
             {
                 esya.SlotaKondu(transform);
                 slotlar.Add(esya);
+                AgirligiBildir();
             }
             else
             {
@@ -472,6 +473,9 @@ namespace Oyun.Field
                 ElindekiEsya != null && ElindekiEsya.Veri != null
                     ? ElindekiEsya.Veri.Agirlik
                     : 0f;
+
+            // Karar 79: elde YA DA slotta esya varken kosma kapali.
+            kontrolcu.Tasiyor = ElindekiEsya != null || DoluSlot > 0;
         }
 
         private void CarpismayiAyarla(Esya esya, bool yoksay)

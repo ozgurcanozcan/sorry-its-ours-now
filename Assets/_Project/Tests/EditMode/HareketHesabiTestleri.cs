@@ -106,5 +106,19 @@ namespace Oyun.Testler
             Assert.AreEqual(1f, HareketHesabi.TasimaHizKati(10f, 0f, 0.5f), Tolerans);
             Assert.AreEqual(1f, HareketHesabi.TasimaHizKati(-5f, 40f, 0.5f), Tolerans);
         }
+
+        [Test]
+        public void EliBosken_Kosabilir()
+        {
+            Assert.IsTrue(HareketHesabi.KosabilirMi(tasiyor: false));
+        }
+
+        [Test]
+        public void TasirkenKosamaz()
+        {
+            // Karar 79. Kosmanin bedeli bu; olculen sorun kosmanin agirlik
+            // cezasinin yarisini telafi etmesiydi (gardiropta 0.50 -> 0.80).
+            Assert.IsFalse(HareketHesabi.KosabilirMi(tasiyor: true));
+        }
     }
 }
