@@ -57,6 +57,20 @@ namespace Oyun.Field
         // (docs/tasarim/02-saha.md).
         [SerializeField] private float secimAcisi = 55f;
 
+        // Bu mesafenin altinda koni genisliyor (bkz. YakindakiEnIyi).
+        private const float YakinMesafe = 1.5f;
+
+        // Yakindaki en genis koni. 100 derece: ayaginin dibindeki esyayi
+        // duz bakarken kapsiyor ama arkani donmeden yandakini almiyor.
+        private const float YakinKoni = 100f;
+
+        // Kucuk esyanin secim avantaji, derece.
+        //
+        // 30 denendi ve fazla geldi: masaya nisan alsan bile yanindaki
+        // telefon kazaniyordu (01.09). 12 yeterli -- masanin ustundeki
+        // telefonu kazandiriyor ama masaya dogrudan bakinca masa geliyor.
+        private const float KucukEsyaAvantaji = 12f;
+
         // Birakirken hafif bir itme: tam ayagin dibine dusmesin, ama firlatma
         // da olmasin. Firlatma ayri bir mekanik ve M1'de yok.
         [SerializeField] private float birakmaHizi = 1.5f;
@@ -294,8 +308,21 @@ namespace Oyun.Field
                     return dogrudan;
                 }
             }
-            // Kure kameranin biraz gerisinden baslatiliyor: tam kamerada
-            // baslarsa oyuncunun kapsulunun icinde dogar.
+            // Puanlama kademesi: yakindaki adaylar arasindan bakisa en yakin.
+            Esya puanli = YakindakiEnIyi();
+            if (puanli != null)
+            {
+                return puanli;
+            }
+
+            // SON CARE: kalin kure.
+            //
+            // Sirasi onemli. Once denendiginde masa gibi genis yuzeyleri
+            // hep once yakaliyor ve ustundeki kucuk esyayi golgeliyordu.
+            // En sona alininca ters etkisi kalkiyor ama faydasi duruyor:
+            // ince ve buyuk esyalari (TV 8 cm levha) hicbir kademe
+            // yakalayamazsa bu yakaliyor. 01.09'da olculdu -- kure
+            // kaldirilinca televizyon ve masa cok zorlasti.
             Vector3 geri = kamera.position - kamera.forward * nisanYaricapi;
 
             if (Physics.SphereCast(geri, nisanYaricapi, kamera.forward, out RaycastHit kureVurus,
@@ -308,7 +335,7 @@ namespace Oyun.Field
                 }
             }
 
-            return YakindakiEnIyi();
+            return null;
         }
 
         // Yakindaki esyalar arasindan bakis yonune en yakin olani secer.
@@ -318,7 +345,7 @@ namespace Oyun.Field
                 erisimKatmanlari, QueryTriggerInteraction.Ignore);
 
             Esya enIyi = null;
-            float enIyiAci = secimAcisi;
+            float enIyiAci = float.MaxValue;
 
             foreach (var carpisan in yakinlar)
             {
@@ -336,24 +363,81 @@ namespace Oyun.Field
                 Vector3 yon = carpisan.bounds.center - kamera.position;
                 float aci = Vector3.Angle(kamera.forward, yon);
 
-                if (aci >= enIyiAci)
+                // Yakindaki esyada koni genisliyor.
+                //
+                // Neden: goz hizasi 1.65 m. Yerdeki bir esyaya 0.5 m mesafeden
+                // duz bakarsan aradaki aci 73 derece -- sabit 55 derecelik koni
+                // onu disarida birakiyor ve ayaginin dibindeki saati alamiyorsun
+                // (01.09'da olculdu). Uzaklastikca aci dogal olarak kuculuyor,
+                // yani genis koni sadece yakinda gerekiyor.
+                //
+                // Uzakta dar kalmasi da onemli: genis koni her yerde acik olsa
+                // arkani donmeden yandaki esyayi alirdin.
+                float mesafe = yon.magnitude;
+                float buKoni = mesafe < YakinMesafe
+                    ? Mathf.Lerp(YakinKoni, secimAcisi, mesafe / YakinMesafe)
+                    : secimAcisi;
+
+                if (aci >= buKoni)
                 {
                     continue;
                 }
 
-                // Duvarin ardindaki esya alinmamali. Kucuk pay birakiliyor ki
-                // isin esyanin kendi yuzeyine carpip "engellendi" sanilmasin.
+                // Kucuk esyalar oncelikli.
+                //
+                // Neden: masanin ustundeki telefona bakarken masa da aday ve
+                // gorus merkezine daha yakin -- aci yarisini masa kazaniyor,
+                // oyuncu telefon yerine masayi aliyor. Oysa niyet belli:
+                // ortada kucuk esya varsa oyuncu onu istiyor.
+                //
+                // Avantaj aciyi tamamen ezmiyor: telefon gorus alanindan
+                // cikinca masa yine kazaniyor.
+                float puan = aci;
+                if (EtkilesimKurallari.SlotaGirer(aday.Veri))
+                {
+                    puan -= KucukEsyaAvantaji;
+                }
+
+                if (puan >= enIyiAci)
+                {
+                    continue;
+                }
+
+                // Duvarin ardindaki esya alinmamali.
+                //
+                // Pay esyanin kendi boyutuna gore: kucuk esya yerde durdugunda
+                // merkezi zemine cok yakin oluyor ve isin esyaya varmadan
+                // zemine carpip "engellendi" saniliyordu. 5 cm'lik kol saati
+                // bu yuzden hic alinamiyordu (01.09'da olculdu).
+                //
+                // Pay olarak esyanin en buyuk yari boyutu kullaniliyor: isin
+                // esyanin sinirina varinca kesiliyor, iceri girmiyor.
                 float uzaklik = yon.magnitude;
-                if (uzaklik > 0.1f
+                Vector3 yariBoyut = carpisan.bounds.extents;
+                float pay = Mathf.Max(0.08f, Mathf.Max(yariBoyut.x, Mathf.Max(yariBoyut.y, yariBoyut.z)));
+
+                // BASKA BIR ESYA ENGEL SAYILMAZ.
+                //
+                // Onceden "isin hedefe varmadan baska bir seye carptiysa
+                // engellenmistir" deniyordu. Ama masa da bir Esya: telefon
+                // masanin ustunde dururken isin masaya degiyor ve telefon
+                // elenmis oluyordu. Yerdeyken de ayni sey zeminle oluyordu.
+                // 01.09'da olculdu: "telefonu hic alamiyorum".
+                //
+                // Engel sadece duvar/zemin gibi esya olmayan seyler olmali.
+                // Yan etkisi kabul edilebilir: gardirobun ardindaki kucuk
+                // esya gorunmese de secilebilir -- ama zaten erisim 2 m ve
+                // gardirop o mesafede one cikmis olur.
+                if (uzaklik > pay
                     && Physics.Raycast(kamera.position, yon.normalized, out RaycastHit engel,
-                        uzaklik - 0.05f, erisimKatmanlari, QueryTriggerInteraction.Ignore)
-                    && engel.collider.GetComponentInParent<Esya>() != aday)
+                        uzaklik - pay, erisimKatmanlari, QueryTriggerInteraction.Ignore)
+                    && engel.collider.GetComponentInParent<Esya>() == null)
                 {
                     continue;
                 }
 
                 enIyi = aday;
-                enIyiAci = aci;
+                enIyiAci = puan;
             }
 
             if (enIyi != null)

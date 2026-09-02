@@ -34,7 +34,6 @@ public static class SahaGreyboxAraci
         var sahne = EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects, NewSceneMode.Single);
 
         Zemin();
-        ReferansKupleri();
         Oyuncu();
 
         EditorSceneManager.MarkSceneDirty(sahne);
@@ -55,8 +54,11 @@ public static class SahaGreyboxAraci
         // tek bir Plane ayni isi bedavaya goruyor.
         //
         // Ust yuzey Y=0 - ev kiti zemin kotu kurali.
-        zemin.transform.position = new Vector3(2.5f, 0f, 0f);
-        zemin.transform.localScale = new Vector3(7.5f, 1f, 5f);
+        // Iki ev yan yana: 1+1 (x=-9..9) ve 2+1 (x=16..40). Disarida pay
+        // birakiyoruz ki kapilara disaridan yaklasilabilsin.
+        // Plane 10 birim; olcek (8, 1, 4) = 80 x 40 m.
+        zemin.transform.position = new Vector3(14f, 0f, 6f);
+        zemin.transform.localScale = new Vector3(8f, 1f, 4f);
     }
 
     private static void ReferansKupleri()
@@ -94,7 +96,10 @@ public static class SahaGreyboxAraci
     private static void Oyuncu()
     {
         var oyuncu = new GameObject("Oyuncu");
-        oyuncu.transform.position = Vector3.zero;
+
+        // Evin disinda, kapinin karsisinda. Oyun "eve girmekle" basliyor
+        // (docs/tasarim/02-saha.md), sahne de oyle baslamali.
+        oyuncu.transform.position = new Vector3(-3f, 0f, -4f);
 
         var kapsul = oyuncu.AddComponent<CharacterController>();
         kapsul.height = OyuncuYuksekligi;
@@ -357,10 +362,10 @@ public static class SahaGreyboxAraci
         EditorSceneManager.OpenScene(SahneYolu, OpenSceneMode.Single);
 
         // Hangi vitrin varsa onu cek; VNBP oncelikli cunku dokulu olan o.
-        var kok = GameObject.Find(VnbpKoku) ?? GameObject.Find(VitrinKoku);
+        var kok = GameObject.Find(EvlerKoku);
         if (kok == null)
         {
-            Debug.LogError("Vitrin yok - once 'Saha/Tam Kurulum' calistirilmali.");
+            Debug.LogError("Evler yok - once 'Saha/Tam Kurulum' calistirilmali.");
             return;
         }
 
@@ -372,13 +377,13 @@ public static class SahaGreyboxAraci
         kamera.clearFlags = CameraClearFlags.SolidColor;
         kamera.backgroundColor = new Color(0.16f, 0.18f, 0.21f);
 
-        Vector3 merkez = kok.transform.position + new Vector3(4.5f, 1f, 4.5f);
+        Vector3 merkez = new Vector3(8f, 1f, 3f);
 
         (string ad, Vector3 konum, Vector3 bakis)[] acilar =
         {
-            ("01-ustten",  merkez + new Vector3(0f, 16f, -0.5f), merkez),
-            ("02-onden",   merkez + new Vector3(0f, 3.5f, -13f), merkez + new Vector3(0f, -0.5f, 0f)),
-            ("03-yandan",  merkez + new Vector3(-13f, 4f, 0f),   merkez),
+            ("01-ustten",  merkez + new Vector3(0f, 26f, -0.5f), merkez),
+            ("02-onden",   merkez + new Vector3(0f, 10f, -20f), merkez),
+            ("03-yandan",  merkez + new Vector3(-24f, 12f, 0f),  merkez),
         };
 
         foreach (var (ad, konum, bakis) in acilar)
@@ -418,11 +423,8 @@ public static class SahaGreyboxAraci
     public static void TamKurulum()
     {
         TestSahnesiKur();
-        KapiTestiKur();
-        VarlikVitriniKur();
-        VnbpVitriniKur();
-        VnbpKapiTestiKur();
-        Debug.Log("Tam kurulum bitti: zemin + oyuncu + kapi testi + vitrin.");
+        EvlerKur();
+        Debug.Log("Tam kurulum bitti: zemin + oyuncu + iki ev (1+1 ve 2+1).");
     }
 
     // FBX ice aktarimi carpisan eklemiyor - Unity'nin varsayilani bu.
@@ -722,6 +724,309 @@ public static class SahaGreyboxAraci
         foreach (var carpisan in nesne.GetComponentsInChildren<MeshCollider>())
         {
             carpisan.convex = true;
+        }
+    }
+
+    private static void Duvar(string ad, Vector3 konum, float donus, Transform ebeveyn)
+    {
+        string[] kimlikler = AssetDatabase.FindAssets($"\"{ad}\" t:Model", new[] { VnbpKiti });
+        if (kimlikler.Length == 0)
+        {
+            Debug.LogError($"Duvar bulunamadi: {ad}");
+            return;
+        }
+
+        var onKalip = AssetDatabase.LoadAssetAtPath<GameObject>(
+            AssetDatabase.GUIDToAssetPath(kimlikler[0]));
+
+        var ornek = (GameObject)PrefabUtility.InstantiatePrefab(onKalip, ebeveyn);
+        ornek.name = ad;
+        ornek.transform.position = konum;
+        ornek.transform.rotation = Quaternion.Euler(0f, donus, 0f);
+
+        CarpisanEkle(ornek);
+    }
+
+    // Hazir prefab yerlestirir (ham modelden farki: bilesenleri zaten uzerinde).
+    private static GameObject Onkalip(string ad, Vector3 konum, float donus, Transform ebeveyn)
+    {
+        string[] kimlikler = AssetDatabase.FindAssets($"\"{ad}\" t:Prefab",
+            new[] { "Assets/_Project/Prefabs" });
+
+        if (kimlikler.Length == 0)
+        {
+            Debug.LogError($"Prefab bulunamadi: {ad}");
+            return null;
+        }
+
+        var kaynak = AssetDatabase.LoadAssetAtPath<GameObject>(
+            AssetDatabase.GUIDToAssetPath(kimlikler[0]));
+
+        var ornek = (GameObject)PrefabUtility.InstantiatePrefab(kaynak, ebeveyn);
+        ornek.transform.position = konum;
+        ornek.transform.rotation = Quaternion.Euler(0f, donus, 0f);
+        return ornek;
+    }
+
+    private const string EvlerKoku = "Evler";
+    private const string VnbpKiti = "Assets/ThirdParty/VNBP-HomeSet/Models/EvKiti";
+
+    // VNBP duvari: 2.00 genis, 0.20 kalin, 3.00 yuksek. Pivot taban-merkezde
+    // (olculdu 31.08). Kapi boslugu 1.06 x 2.07.
+    private const float Modul = 2f;
+
+    // Iki ev: 1+1 (18x14 m) ve 2+1 (24x18 m).
+    //
+    // Olculer gercek daire buyuklugu DEGIL, bilerek buyuk: oyuncu icerde
+    // dolasirken mesafe hissetmeli ve esya tasimak sure yemeli
+    // (docs/tasarim/02-saha.md, baglayici kisit sure ve kapasite).
+    // Onceki 10x8 "masa kadar" hissettirdi (31.08, oynayarak olculdu).
+    //
+    // Ikisi de 2 m modulun kati; VNBP kiti oyle (karar 64, iki izgara ayni
+    // evde karistirilmaz -- bu sahnede gri kutu hic yok).
+    //
+    // Bu evler GECICI. Gercek gecekondu ve daire Onat'in isi.
+    [MenuItem("Saha/Evleri Kur")]
+    public static void EvlerKur()
+    {
+        var sahne = EditorSceneManager.OpenScene(SahneYolu, OpenSceneMode.Single);
+
+        var eski = GameObject.Find(EvlerKoku);
+        if (eski != null)
+        {
+            Object.DestroyImmediate(eski);
+        }
+
+        var kok = new GameObject(EvlerKoku).transform;
+
+        BirArtiBir(kok);
+        IkiArtiBir(kok);
+        DenemeEsyalari(kok);
+
+        EditorSceneManager.MarkSceneDirty(sahne);
+        EditorSceneManager.SaveScene(sahne, SahneYolu);
+
+        Debug.Log("Iki ev kuruldu: 1+1 (18x14 m) ve 2+1 (24x18 m).");
+        DuvarCakismasiDenetle();
+    }
+
+    // Oyuncunun hemen onune konan kucuk esyalar.
+    //
+    // Neden burada: cebe giren esyalar (saat, telefon) kucuk ve eve dagilmis
+    // olsa bulmasi zor. Slot sistemini denemek icin baslangicta elin altinda
+    // olmalilar. Ev doldurulunca (Onat, Hafta 1 Gun 4) bunlar kaldirilacak.
+    private static void DenemeEsyalari(Transform kok)
+    {
+        var alan = new GameObject("DenemeEsyalari").transform;
+        alan.SetParent(kok, false);
+
+        // Oyuncu (-3, 0, -4) konumunda ve +Z'ye bakiyor.
+        //
+        // Kucuk esyalar masanin USTUNDE. Yerde dururken hem gorunmuyorlar
+        // (kol saati 5 cm) hem de asagi bakmak gerekiyor. Masa ustu hem
+        // gercekci hem de goz hizasina yakin -- 01.09'da olculdu, yerdeyken
+        // alinamiyorlardi.
+        //
+        // Masa yuksekligi 1.00 m (Dining Table, olculdu). Esyalar onun
+        // ustune, birbirine girmeyecek aralikla.
+        Parca("Dining Table", new Vector3(-3f, 0f, -2f), alan);
+
+        var saat = Onkalip("Esya_Saat", new Vector3(-3.7f, 1.01f, -2f), 0f, alan);
+        Onkalip("Esya_Telefon", new Vector3(-2.9f, 1.01f, -2f), 0f, alan);
+
+        // GECICI GORSEL BUYUTME -- veriyle CELISIYOR, bilerek.
+        //
+        // Kol saati modeli 5 x 2 x 5 cm ve verisiyle uyumlu (hacim 5e-05 m3,
+        // gercek bir kol saati kadar). Ama oyunda yuzuk gibi gorunuyor ve
+        // nereye bakacagini bilmeden bulunamiyor (01.09'da olculdu).
+        //
+        // Bu olcek YALNIZCA bu deneme sahnesinde. Kapasite hesabi hala
+        // veriden geliyor, yani ekranda buyuk gorunup cebe kucuk giriyor --
+        // tutarsiz ve kalici olmamali.
+        //
+        // Kalici cozum ikisinden biri: Onat modeli buyutur (kayis dahil bir
+        // kol saati 22 cm uzundur, model sadece kasa), ya da Ozgur hacmi
+        // buyutur. Ikisi birlikte degismeli, yoksa ayni tutarsizlik kalir.
+        if (saat != null)
+        {
+            saat.transform.localScale = Vector3.one * 3f;
+        }
+
+        // Televizyon yerde: buyuk esya, elde tasinacak.
+        Onkalip("Esya_TV", new Vector3(-1.4f, 0f, -2.6f), 0f, alan);
+    }
+
+    // Duvar dizisi: baslangictan itibaren adet kadar parca, 2 m arayla.
+    private static void Dizi(Transform ev, Vector3 bas, Vector3 yon, int adet, float donus,
+                             int kapi = -1, int pencere1 = -1, int pencere2 = -1, int pencere3 = -1)
+    {
+        for (int i = 0; i < adet; i++)
+        {
+            string ad = "Wall Standard";
+            if (i == kapi)
+            {
+                ad = "Wall Standard Door";
+            }
+            else if (i == pencere1 || i == pencere2 || i == pencere3)
+            {
+                ad = "Wall Standard Window 1";
+            }
+
+            Duvar(ad, bas + yon * (Modul * i), donus, ev);
+        }
+    }
+
+    // 1+1: 18 x 14 m. Bati salon (12x14), dogu yatak odasi (6x14).
+    private static void BirArtiBir(Transform kok)
+    {
+        var ev = new GameObject("Ev_1plus1").transform;
+        ev.SetParent(kok, false);
+
+        // Dis cepheler: x=-9..9, z=0..14.
+        Dizi(ev, new Vector3(-8f, 0f, 0f), Vector3.right, 9, 0f, kapi: 2, pencere1: 6);
+        Dizi(ev, new Vector3(-8f, 0f, 14f), Vector3.right, 9, 180f, pencere1: 1, pencere2: 4, pencere3: 7);
+        Dizi(ev, new Vector3(-9f, 0f, 1f), Vector3.forward, 7, 90f, pencere1: 2, pencere2: 5);
+        Dizi(ev, new Vector3(9f, 0f, 1f), Vector3.forward, 7, -90f, pencere1: 3);
+
+        // Ic bolme x=3, kapisi z=5'te.
+        Dizi(ev, new Vector3(3f, 0f, 1f), Vector3.forward, 7, 90f, kapi: 2);
+
+        // Salon (x=-9..3). Esyalar duvarlardan uzak, ortada genis dolasim.
+        Onkalip("Esya_TV", new Vector3(-7.5f, 0f, 7f), 90f, ev);
+        Parca("Dining Table", new Vector3(-4f, 0f, 4f), ev);
+        Parca("Rug 1", new Vector3(-3f, 0f, 9f), ev);
+        Parca("Washing Machine", new Vector3(-6.5f, 0f, 10.5f), ev);
+        Parca("Fridge", new Vector3(0f, 0f, 11f), ev);
+
+        // Yatak odasi (x=3..9).
+        Parca("Bed Base 1 1", new Vector3(6f, 0f, 7.5f), ev);
+        Parca("Wardrobe", new Vector3(6f, 0f, 11.5f), ev);
+        Parca("Dining Table", new Vector3(6f, 0f, 3f), ev);
+    }
+
+    // 2+1: 24 x 18 m. Guneyde salon (24x10), kuzeyde iki oda.
+    private static void IkiArtiBir(Transform kok)
+    {
+        var ev = new GameObject("Ev_2plus1").transform;
+        ev.SetParent(kok, false);
+
+        const float X0 = 16f;
+        const float X1 = 40f;
+
+        // Dis cepheler: x=16..40, z=0..18.
+        Dizi(ev, new Vector3(X0 + 1f, 0f, 0f), Vector3.right, 12, 0f, kapi: 3, pencere1: 7, pencere2: 10);
+        Dizi(ev, new Vector3(X0 + 1f, 0f, 18f), Vector3.right, 12, 180f, pencere1: 2, pencere2: 6, pencere3: 9);
+        Dizi(ev, new Vector3(X0, 0f, 1f), Vector3.forward, 9, 90f, pencere1: 3, pencere2: 6);
+        Dizi(ev, new Vector3(X1, 0f, 1f), Vector3.forward, 9, -90f, pencere1: 3, pencere2: 6);
+
+        // Salonu odalardan ayiran bolme z=10, kapisi x=X0+5.
+        Dizi(ev, new Vector3(X0 + 1f, 0f, 10f), Vector3.right, 12, 0f, kapi: 2);
+
+        // Iki odayi ayiran bolme x=X0+12, z=10..18, kapisi z=13.
+        Dizi(ev, new Vector3(X0 + 12f, 0f, 11f), Vector3.forward, 4, 90f, kapi: 1);
+
+        // Salon (z=0..10).
+        Onkalip("Esya_TV", new Vector3(X0 + 12f, 0f, 8.5f), 180f, ev);
+        Parca("Dining Table", new Vector3(X0 + 5f, 0f, 4f), ev);
+        Parca("Rug 1", new Vector3(X0 + 17f, 0f, 5f), ev);
+        Parca("Washing Machine", new Vector3(X0 + 20f, 0f, 3.5f), ev);
+        Parca("Fridge", new Vector3(X0 + 3f, 0f, 7.5f), ev);
+
+        // Kuzeybati odasi (x=16..28, z=10..18).
+        Parca("Bed Base 1 1", new Vector3(X0 + 3f, 0f, 14f), ev);
+        Parca("Wardrobe", new Vector3(X0 + 8f, 0f, 15f), ev);
+
+        // Kuzeydogu odasi (x=28..40, z=10..18).
+        Parca("Bed Base 1 1", new Vector3(X0 + 15f, 0f, 14f), ev);
+        Parca("Dining Table", new Vector3(X0 + 20f, 0f, 15f), ev);
+    }
+
+    // Her esyanin duvarla cakisip cakismadigini OLCER.
+    //
+    // Neden gerekli: iki kez "esya duvarin icinde" sikayeti geldi ve iki
+    // seferinde de koordinatlara bakip "olmamasi lazim" dedim. Goz ve hesap
+    // yetmiyor; kurulumdan sonra fizik motoruna sorulmali.
+    [MenuItem("Saha/Duvar Cakismasini Denetle")]
+    public static void DuvarCakismasiDenetle()
+    {
+        // Sahne acik degilse hicbir esya bulunmaz ve denetim yanlislikla
+        // "temiz" der. Batch modda tam bu oldu (31.08). Once sahne acilir.
+        if (!UnityEngine.SceneManagement.SceneManager.GetActiveScene().path.EndsWith("Field.unity"))
+        {
+            EditorSceneManager.OpenScene(SahneYolu, OpenSceneMode.Single);
+        }
+
+        Physics.SyncTransforms();
+
+        var esyalar = Object.FindObjectsByType<Esya>(FindObjectsSortMode.None);
+        if (esyalar.Length == 0)
+        {
+            Debug.LogWarning("DENETIM: sahnede hic esya yok, denetlenecek bir sey bulunamadi.");
+            return;
+        }
+
+        var rapor = new System.Text.StringBuilder();
+        int cakisan = 0;
+
+        foreach (var esya in esyalar)
+        {
+            Bounds? kutu = null;
+            foreach (var eleyici in esya.GetComponentsInChildren<MeshRenderer>())
+            {
+                if (kutu.HasValue)
+                {
+                    var g = kutu.Value;
+                    g.Encapsulate(eleyici.bounds);
+                    kutu = g;
+                }
+                else
+                {
+                    kutu = eleyici.bounds;
+                }
+            }
+
+            if (!kutu.HasValue)
+            {
+                continue;
+            }
+
+            // Kucuk pay geri cekiliyor: yuzeyi degen esya cakisan sayilmasin.
+            Vector3 yariBoyut = Vector3.Max(kutu.Value.extents - Vector3.one * 0.03f,
+                                            Vector3.one * 0.01f);
+
+            foreach (var carpisan in Physics.OverlapBox(kutu.Value.center, yariBoyut,
+                         Quaternion.identity, ~0, QueryTriggerInteraction.Ignore))
+            {
+                if (carpisan.GetComponentInParent<Esya>() != null)
+                {
+                    continue;
+                }
+
+                if (!carpisan.name.StartsWith("Wall"))
+                {
+                    continue;
+                }
+
+                cakisan++;
+                Bounds db = carpisan.bounds;
+                Bounds eb = kutu.Value;
+
+                rapor.AppendLine($"  CAKISMA {esya.name}");
+                rapor.AppendLine($"     esya  x[{eb.min.x:F2}..{eb.max.x:F2}] "
+                    + $"z[{eb.min.z:F2}..{eb.max.z:F2}] y[{eb.min.y:F2}..{eb.max.y:F2}]");
+                rapor.AppendLine($"     duvar x[{db.min.x:F2}..{db.max.x:F2}] "
+                    + $"z[{db.min.z:F2}..{db.max.z:F2}] ({carpisan.name})");
+                break;
+            }
+        }
+
+        if (cakisan == 0)
+        {
+            Debug.Log($"DENETIM: {esyalar.Length} esya denetlendi, duvarla cakisan yok.");
+        }
+        else
+        {
+            Debug.LogWarning($"DENETIM: {cakisan} esya duvarla cakisiyor.\n{rapor}");
         }
     }
 }
