@@ -108,10 +108,12 @@ namespace Oyun.Core
                 kirilgan: false, haczedilebilir: true, ikiKisiGerekir: false,
                 cebeGirer: true, sabit: false, bolluk: 2),
 
-            // Kol saati: ~5 x 5 x 2 cm.
+            // Kol saati: ~8 x 8 x 3 cm (kordon kivrilmis halde -- ~5x5x2'lik
+            // sadece kasa olcusu oyunda yuzuk gibi duruyordu, Onat 01.09'da
+            // Unity'de gozle gordu ve olcuyu duzeltti).
             new EsyaVerisi(
                 id: "saat", ad: "Kol Saati", kategori: Kategori.Kisisel,
-                tabanDeger: 1500, agirlik: 0.1f, hacim: 0.00005f,
+                tabanDeger: 1500, agirlik: 0.1f, hacim: 0.000192f,
                 kirilgan: false, haczedilebilir: true, ikiKisiGerekir: false,
                 cebeGirer: true, sabit: false, bolluk: 4),
 
