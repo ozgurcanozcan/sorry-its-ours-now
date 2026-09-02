@@ -78,6 +78,14 @@ namespace Oyun.Field
         /// </remarks>
         public float TasimaAgirligi { get; set; }
 
+        /// <summary>Elde ya da slotta esya var mi. OyuncuEtkilesim yaziyor.</summary>
+        /// <remarks>
+        /// Agirliktan ayri bir bayrak cunku karar 79 agirliga degil VARLIGA
+        /// bakiyor: cepteki 0.1 kg'lik kol saati de kosmayi kapatiyor.
+        /// Agirlik yavaslatir, varlik kosmayi keser -- iki ayri kural.
+        /// </remarks>
+        public bool Tasiyor { get; set; }
+
         private float egim;
         private float dikeyHiz;
 
@@ -166,7 +174,7 @@ namespace Oyun.Field
 
             float kat = HareketHesabi.TasimaHizKati(TasimaAgirligi, agirlikSiniri, enDusukHizKati);
 
-            if (kosmaEylemi.IsPressed())
+            if (kosmaEylemi.IsPressed() && HareketHesabi.KosabilirMi(Tasiyor))
             {
                 kat *= kosmaKati;
             }

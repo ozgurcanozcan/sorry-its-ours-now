@@ -57,5 +57,17 @@ namespace Oyun.Field
         float oran = Mathf.Clamp01(agirlik / agirlikSiniri);
         return Mathf.Lerp(1f, enDusukKat, oran);
     }
+
+    // Kosulabilir mi? Karar 79: elde ya da slotta esya varken kosma kapali.
+    //
+    // Neden kural burada: kosmanin bedeli bu. Karar 79 uc aday arasindan
+    // bunu secti -- takat bir kaynak ve bir cubuk gerektiriyordu, gurultu
+    // ise ev sahibini bekliyordu (Hafta 3). Tasirken kosamamak olculen
+    // sorunu dogrudan cozuyor: kosma, agirlik cezasinin yarisini telafi
+    // ediyordu (gardiropta 0.50 -> 0.80).
+    public static bool KosabilirMi(bool tasiyor)
+    {
+        return !tasiyor;
+    }
 }
 }
