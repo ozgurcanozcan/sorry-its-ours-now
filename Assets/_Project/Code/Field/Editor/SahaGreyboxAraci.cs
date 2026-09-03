@@ -831,27 +831,15 @@ public static class SahaGreyboxAraci
         // ustune, birbirine girmeyecek aralikla.
         Parca("Dining Table", new Vector3(-3f, 0f, -2f), alan);
 
-        var saat = Onkalip("Esya_Saat", new Vector3(-3.7f, 1.01f, -2f), 0f, alan);
+        Onkalip("Esya_Saat", new Vector3(-3.7f, 1.01f, -2f), 0f, alan);
         Onkalip("Esya_Telefon", new Vector3(-2.9f, 1.01f, -2f), 0f, alan);
 
-        // GECICI GORSEL BUYUTME -- veriyle CELISIYOR, bilerek.
+        // Saatin gecici 3x olcegi kaldirildi.
         //
-        // Kol saati modeli 5 x 2 x 5 cm ve verisiyle uyumlu (hacim 5e-05 m3,
-        // gercek bir kol saati kadar). Ama oyunda yuzuk gibi gorunuyor ve
-        // nereye bakacagini bilmeden bulunamiyor (01.09'da olculdu).
-        //
-        // Bu olcek YALNIZCA bu deneme sahnesinde. Kapasite hesabi hala
-        // veriden geliyor, yani ekranda buyuk gorunup cebe kucuk giriyor --
-        // tutarsiz ve kalici olmamali.
-        //
-        // Kalici cozum ikisinden biri: Onat modeli buyutur (kayis dahil bir
-        // kol saati 22 cm uzundur, model sadece kasa), ya da Ozgur hacmi
-        // buyutur. Ikisi birlikte degismeli, yoksa ayni tutarsizlik kalir.
-        if (saat != null)
-        {
-            saat.transform.localScale = Vector3.one * 3f;
-        }
-
+        // Onat modeli 8x7x3 cm'ye buyutup hacim verisini de birlikte
+        // guncelledi (PR #19). Olcek hack'inin sebebi kalmadi: model ile
+        // veri artik ayni seyi soyluyor, ekranda gorunen boyut kapasite
+        // hesabiyla tutarli.
         // Televizyon yerde: buyuk esya, elde tasinacak.
         Onkalip("Esya_TV", new Vector3(-1.4f, 0f, -2.6f), 0f, alan);
     }
